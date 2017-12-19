@@ -36,10 +36,13 @@ public class DfPathItems implements PathItems {
 			
 			String nextToken = this.token.next();
 			
-			if(hasNext(nextToken))
+			if(hasNext(nextToken)) {
+				nextElement();
 				return true;
-			else if(nextToken.equals(END_TOKEN))
+			}
+			else if(nextToken.equals(END_TOKEN)) {
 				return this.next.element(false);
+			}
 			else {
 				this.next.element(false);
 				throw new ProtocolSyntaxErrorException("Expected token '' (empty token) or '" + END_TOKEN + "' (end token)");
@@ -49,7 +52,7 @@ public class DfPathItems implements PathItems {
 	}
 
 	@Override
-	public PathInfo path() {
+	public PathInfo pathInfo() {
 		
 		if(this.next.element())
 			return this.path.element();
@@ -63,7 +66,6 @@ public class DfPathItems implements PathItems {
 		if( ! nextToken.equals(""))
 			return false;
 			
-		nextElement();
 		return true;
 	}
 	
