@@ -1,5 +1,7 @@
 package org.faster.request;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -14,6 +16,7 @@ public class DfRequestedPaths implements RequestedPaths {
 	
 	private final Socket socket;
 	private final RequestedPaths requested;
+	private static final int BUFFER = 4096;
 	
 	public DfRequestedPaths(final String ipAddress, final int port) throws UnknownHostException, IOException {
 		
@@ -23,11 +26,11 @@ public class DfRequestedPaths implements RequestedPaths {
 			new RqResponsedPaths(
 				new DfTokenPathInfo(
 					new Scanner(
-						this.socket.getInputStream()
+						new BufferedInputStream(socket.getInputStream(), BUFFER)
 					)
 				)
 			),
-			this.socket.getOutputStream()
+			new BufferedOutputStream(socket.getOutputStream(), BUFFER)
 		);
 		
 	}
