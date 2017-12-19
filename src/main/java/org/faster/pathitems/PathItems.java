@@ -24,6 +24,6 @@ public interface PathItems {
 	 * Get the current path.
 	 * @return
 	 */
-	PathInfo path();
+	PathInfo pathInfo();
 
 }
