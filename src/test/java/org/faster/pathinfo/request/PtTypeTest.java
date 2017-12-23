@@ -1,5 +1,7 @@
 package org.faster.pathinfo.request;
 
+import static org.junit.Assert.assertFalse;
+
 import java.io.IOException;
 import org.faster.exception.ProtocolSyntaxErrorException;
 import org.hamcrest.MatcherAssert;
@@ -14,7 +16,7 @@ public class PtTypeTest {
 			new FakeTokenPathInfo("f\n")
 		);
 		
-		MatcherAssert.assertThat("Should be a file", !path.isDirectory());
+		assertFalse(path.isDirectory());
 	}
 	
 	@Test
