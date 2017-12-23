@@ -1,24 +1,30 @@
 package org.faster.pathinfo.request;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
 
-import org.junit.Assert;
+import org.faster.exception.ProtocolSyntaxErrorException;
+import org.faster.token.TokenPathInfo;
 import org.junit.Test;
 
 public class PtPathTest {
 	
 	
 	@Test
-	public void returnsPath() throws IOException {
+	public void returnsPath() throws IOException, ProtocolSyntaxErrorException {
 		
 		String path = "/abc/cde";
-		String pathToken = path + "\n";
 		
-		PathInfo pathInfo = new PtPath(
-			PathInfo.NO_PATH_INFO, new FakeTokenPathInfo(pathToken)
+		TokenPathInfo token = new FakeTokenPathInfo(
+			new PathInfoToken("f", path, 4).create()
 		);
 		
-		Assert.assertEquals(pathInfo.path(), path);
+		assertEquals(
+			new PtPath(
+				new PtType(token), token
+			).path(), path
+		);
 		
 	}
 
