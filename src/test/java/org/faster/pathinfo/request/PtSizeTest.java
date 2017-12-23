@@ -15,12 +15,17 @@ public class PtSizeTest {
 		
 		
 		long size = 1024;
-		TokenPathInfo token = new FakeTokenPathInfo("f\n" + size + "\n");
-		
-		PathInfo pathInfo = new PtSize(
-			new PtType(token),
-			token
+		TokenPathInfo token = new FakeTokenPathInfo(
+			new PathInfoToken("f", "/abc/pic.jpg", size).create()
 		);
+		
+		PathInfo pathInfo =
+			new PtSize(
+				new PtPath(
+					new PtType(token),
+					token),
+				token
+			);
 		
 		assertEquals(pathInfo.size(), size);
 	}
