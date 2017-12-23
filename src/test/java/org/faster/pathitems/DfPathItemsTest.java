@@ -84,6 +84,25 @@ public class DfPathItemsTest {
 		
 		assertFalse(items.next());
 	}
+	
+	@Test
+	public void fourthNextReturnsFalse() throws IOException, ProtocolSyntaxErrorException {
+		PathItems items = createPathItems();
+		items.next();
+		items.next();
+		items.next();
+
+		
+		assertFalse(items.next());
+	}
+	
+	@Test(expected = ProtocolSyntaxErrorException.class)
+	public void throwsIfInvalidToken() throws IOException, ProtocolSyntaxErrorException {
+		PathItems items = createPathItemsInvalidToken();
+		items.next();
+		items.next();
+		items.next();
+	}
 
 	
 	private PathItems createPathItems() {
@@ -95,6 +114,17 @@ public class DfPathItemsTest {
 				+ "d\n"
 				+ "/photos/family\n"
 				+ "e"));
+	}
+	
+	private PathItems createPathItemsInvalidToken() {
+		return new DfPathItems(new FakeTokenPathInfo("\n\n"
+				+ "f\n"
+				+ "/audio/voice.mp3\n"
+				+ "2017\n"
+				+ "\n"
+				+ "d\n"
+				+ "/photos/family\n"
+				+ "p"));
 	}
 
 }
