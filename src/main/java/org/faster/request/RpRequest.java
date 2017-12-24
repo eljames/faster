@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.pathitems.PathItems;
 
-public class RqRequestedPaths implements RequestedPaths {
+public class RpRequest implements RequestedPaths {
 	
 	private final RequestedPaths req;
 	private final OutputStream out;
@@ -18,7 +18,7 @@ public class RqRequestedPaths implements RequestedPaths {
 	private static final String PATH_ITEMS = "pi";
 	private static final String LINEBREAK = "\n";
 
-	public RqRequestedPaths(RequestedPaths requestedPaths, OutputStream outputStream) {
+	public RpRequest(RequestedPaths requestedPaths, OutputStream outputStream) {
 		this.req = requestedPaths;
 		this.out = outputStream;
 	}

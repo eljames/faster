@@ -13,11 +13,11 @@ import org.faster.token.TokenPathInfo;
  * @author Eli James Aguiar
  *
  */
-public class RqResponsedPaths implements RequestedPaths {
+public class RpResponse implements RequestedPaths {
 	
 	private final TokenPathInfo token;
 
-	public RqResponsedPaths(TokenPathInfo token) {
+	public RpResponse(TokenPathInfo token) {
 		this.token = token;
 	}
 

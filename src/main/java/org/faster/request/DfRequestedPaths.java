@@ -22,8 +22,8 @@ public class DfRequestedPaths implements RequestedPaths {
 		
 		this.socket = new Socket(ipAddress, port);
 		
-		this.requested = new RqRequestedPaths(
-			new RqResponsedPaths(
+		this.requested = new RpRequest(
+			new RpResponse(
 				new DfTokenPathInfo(
 					new Scanner(
 						new BufferedInputStream(socket.getInputStream(), BUFFER)
