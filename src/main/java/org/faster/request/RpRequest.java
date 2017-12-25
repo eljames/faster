@@ -27,9 +27,7 @@ public class RpRequest implements RequestedPaths {
 	public PathItems request(CharSequence path) throws IOException, ProtocolSyntaxErrorException {
 		
 		doRequest(
-			new BufferedWriter(
-				new OutputStreamWriter(this.out, StandardCharsets.UTF_8)
-			),
+			new OutputStreamWriter(this.out, StandardCharsets.UTF_8),
 			path
 		);
 
