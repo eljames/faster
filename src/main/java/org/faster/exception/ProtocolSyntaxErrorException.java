@@ -13,7 +13,7 @@ public class ProtocolSyntaxErrorException extends Exception {
 	}
 	
 	public ProtocolSyntaxErrorException(String msg) {
-		super(defaultMsg);
+		super(msg);
 	}
 
 }
