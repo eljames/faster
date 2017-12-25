@@ -16,7 +16,7 @@ public class PtSizeTest {
 		
 		long size = 1024;
 		TokenPathInfo token = new FakeTokenPathInfo(
-			new PathInfoToken("f", "/abc/pic.jpg", size).create()
+			new PathInfoToken().create("f", "/abc/pic.jpg", size)
 		);
 		
 		PathInfo pathInfo =
