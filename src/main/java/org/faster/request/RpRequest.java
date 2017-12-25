@@ -36,11 +36,6 @@ public class RpRequest implements RequestedPaths {
 		return req.request(path);
 		
 	}
-
-	@Override
-	public void close() throws IOException {
-		req.close();
-	}
 	
 	private void doRequest(Writer writer, CharSequence path) throws IOException {
 		writer.write(PATH_ITEMS);
