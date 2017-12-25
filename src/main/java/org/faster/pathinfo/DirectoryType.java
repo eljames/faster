@@ -1,4 +1,4 @@
-package org.faster.pathinfo.request;
+package org.faster.pathinfo;
 
 
 /**

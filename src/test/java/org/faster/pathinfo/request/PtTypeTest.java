@@ -4,6 +4,7 @@ import static org.junit.Assert.assertFalse;
 
 import java.io.IOException;
 import org.faster.exception.ProtocolSyntaxErrorException;
+import org.faster.pathinfo.PathInfo;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 

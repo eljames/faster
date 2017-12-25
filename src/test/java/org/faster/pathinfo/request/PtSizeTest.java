@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 
 import org.faster.exception.ProtocolSyntaxErrorException;
+import org.faster.pathinfo.PathInfo;
 import org.faster.token.TokenPathInfo;
 import org.junit.Test;
 

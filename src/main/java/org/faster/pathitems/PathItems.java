@@ -3,7 +3,7 @@ package org.faster.pathitems;
 import java.io.IOException;
 
 import org.faster.exception.ProtocolSyntaxErrorException;
-import org.faster.pathinfo.request.PathInfo;
+import org.faster.pathinfo.PathInfo;
 
 /**
  * Iteration on all files and directories from requested directory. Sub-directories not included.

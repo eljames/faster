@@ -1,4 +1,4 @@
-package org.faster.pathinfo.request;
+package org.faster.pathinfo;
 
 /**
  * This type indicates that the path information does not exist.

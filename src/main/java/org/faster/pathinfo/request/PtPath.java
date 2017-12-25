@@ -2,6 +2,7 @@ package org.faster.pathinfo.request;
 
 import java.io.IOException;
 
+import org.faster.pathinfo.PathInfo;
 import org.faster.token.TokenPathInfo;
 
 

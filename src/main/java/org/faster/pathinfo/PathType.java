@@ -1,4 +1,4 @@
-package org.faster.pathinfo.request;
+package org.faster.pathinfo;
 
 /**
  * The path type. Definition of file and directory.

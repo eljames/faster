@@ -6,8 +6,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import org.faster.exception.ProtocolSyntaxErrorException;
+import org.faster.pathinfo.PathInfo;
 import org.faster.pathinfo.request.FakeTokenPathInfo;
-import org.faster.pathinfo.request.PathInfo;
 import org.junit.Test;
 
 public class DfPathItemsTest {
