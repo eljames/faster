@@ -16,6 +16,8 @@ import org.faster.token.TokenPathInfo;
 public class RpResponse implements RequestedPaths {
 	
 	private final TokenPathInfo token;
+	
+	private static final String OK = "k";
 
 	public RpResponse(TokenPathInfo token) {
 		this.token = token;
@@ -32,11 +34,7 @@ public class RpResponse implements RequestedPaths {
 	}
 	
 	private boolean tokenOk() {
-		return this.token.next().equals(TokenKey.OK);
-	}
-	
-	private class TokenKey {
-		private static final String OK = "k";
+		return this.token.next().equals(OK);
 	}
 
 }
