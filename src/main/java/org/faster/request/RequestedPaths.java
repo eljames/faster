@@ -13,6 +13,5 @@ import org.faster.pathitems.PathItems;
 public interface RequestedPaths {
 	
 	PathItems request(CharSequence path) throws IOException, ProtocolSyntaxErrorException;
-	void close() throws IOException;
 
 }
