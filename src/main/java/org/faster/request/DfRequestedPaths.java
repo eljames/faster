@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 import org.faster.connection.Connection;
@@ -25,7 +26,7 @@ public class DfRequestedPaths implements RequestedPaths {
 			new RpResponse(
 				new DfTokenPathInfo(
 					new Scanner(
-						new BufferedInputStream(this.con.input(), BUFFER)
+						new BufferedInputStream(this.con.input(), BUFFER), StandardCharsets.UTF_8.name()
 					)
 				)
 			),
