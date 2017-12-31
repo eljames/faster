@@ -27,12 +27,12 @@ public class PtPath implements PathInfo {
 	}
 
 	@Override
-	public long size() {
+	public long size() throws IOException {
 		return this.pathInfo.size();
 	}
 
 	@Override
-	public boolean isDirectory() {
+	public boolean isDirectory() throws IOException {
 		return this.pathInfo.isDirectory();
 	}
 

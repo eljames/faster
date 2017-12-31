@@ -24,7 +24,7 @@ public class PtSize implements PathInfo {
 	}
 
 	@Override
-	public String path() {
+	public String path() throws IOException {
 		return this.path.path().toString();
 	}
 
@@ -34,11 +34,11 @@ public class PtSize implements PathInfo {
 	}
 
 	@Override
-	public boolean isDirectory() {
+	public boolean isDirectory() throws IOException {
 		return this.path.isDirectory();
 	}
 	
-	private long parseSize(PathInfo pathInfo, TokenPathInfo tokenPathInfo) throws ProtocolSyntaxErrorException {
+	private long parseSize(PathInfo pathInfo, TokenPathInfo tokenPathInfo) throws ProtocolSyntaxErrorException, IOException {
 		
 		// If it's a directory, there's no size to show.
 		if(pathInfo.isDirectory()) {
