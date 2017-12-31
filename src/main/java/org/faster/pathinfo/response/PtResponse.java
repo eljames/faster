@@ -22,7 +22,7 @@ public class PtResponse implements PathInfo {
 
 	@Override
 	public CharSequence path() {
-		return this.rootPath.relativize(this.filePath).toString();
+		return this.rootPath.getParent().relativize(this.filePath).toString();
 	}
 
 	@Override
