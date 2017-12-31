@@ -27,7 +27,7 @@ public class PtResponse implements PathInfo {
 
 	@Override
 	public long size() throws IOException {
-		if(Files.isDirectory(this.filePath)) return -1;
+		if(isDirectory()) return -1;
 		return Files.size(this.filePath);
 	}
 
