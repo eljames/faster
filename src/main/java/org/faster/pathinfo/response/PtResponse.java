@@ -26,13 +26,9 @@ public class PtResponse implements PathInfo {
 	}
 
 	@Override
-	public long size() {
-		try {
-			if(Files.isDirectory(this.filePath)) return -1;
-			return Files.size(this.filePath);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+	public long size() throws IOException {
+		if(Files.isDirectory(this.filePath)) return -1;
+		return Files.size(this.filePath);
 	}
 
 }
