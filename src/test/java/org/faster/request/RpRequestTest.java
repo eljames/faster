@@ -8,6 +8,8 @@ import java.nio.charset.StandardCharsets;
 
 import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.pathitems.PathItems;
+import org.faster.requestedpath.RequestedPaths;
+import org.faster.requestedpath.RpRequest;
 import org.junit.Test;
 
 public class RpRequestTest {

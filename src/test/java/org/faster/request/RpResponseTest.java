@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.pathinfo.request.FakeTokenPathInfo;
+import org.faster.requestedpath.RequestedPaths;
+import org.faster.requestedpath.RpResponse;
 import org.junit.Test;
 
 public class RpResponseTest {
