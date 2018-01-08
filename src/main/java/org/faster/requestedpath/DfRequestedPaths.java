@@ -1,4 +1,4 @@
-package org.faster.request;
+package org.faster.requestedpath;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

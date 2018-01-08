@@ -11,6 +11,8 @@ import java.nio.charset.StandardCharsets;
 import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.pathinfo.request.PathItemsToken;
 import org.faster.pathitems.PathItems;
+import org.faster.requestedpath.DfRequestedPaths;
+import org.faster.requestedpath.RequestedPaths;
 import org.junit.Test;
 
 public class DfRequestedPathsTest {
