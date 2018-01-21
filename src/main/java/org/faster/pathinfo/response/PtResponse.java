@@ -10,7 +10,7 @@ public class PtResponse implements PathInfo {
 	private final Path rootPath;
 	private final Path filePath;
 	
-	public PtResponse(Path rootPath, Path filePath) {
+	public PtResponse(final Path rootPath, final Path filePath) {
 		this.rootPath = rootPath;
 		this.filePath = filePath;
 	}
