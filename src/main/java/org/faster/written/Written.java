@@ -14,22 +14,10 @@ public interface Written {
 	Written write(long num) throws IOException;
 	
 	/**
-	 * Write charSeq only if b is true
-	 * @param b 
-	 * @param charSeq
+	 *  Must write a Unix line ending "\n"
 	 * @return
 	 * @throws IOException
 	 */
-	Written writeIf(boolean b, CharSequence charSeq) throws IOException;
-
-	/**
-	 * Write num only if b is true
-	 * @param b 
-	 * @param charSeq
-	 * @return
-	 * @throws IOException
-	 */
-	Written writeIf(boolean b, long num) throws IOException;
 	Written writeLine() throws IOException;
 	void flush() throws IOException;
 
