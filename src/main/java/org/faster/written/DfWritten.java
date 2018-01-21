@@ -30,24 +30,6 @@ public class DfWritten implements Written {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.faster.written.Written#writeIf(boolean, java.lang.CharSequence)
-	 */
-	@Override
-	public Written writeIf(boolean b, CharSequence charSeq) throws IOException {
-		if(b) write(charSeq);
-		return this;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.faster.written.Written#writeIf(boolean, long)
-	 */
-	@Override
-	public Written writeIf(boolean b, long num) throws IOException {
-		if(b) write(num);
-		return this;
-	}
-	
-	/* (non-Javadoc)
 	 * @see org.faster.written.Written#writeLine()
 	 */
 	@Override
