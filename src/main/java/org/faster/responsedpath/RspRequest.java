@@ -24,15 +24,17 @@ public class RspRequest implements ResponsedPath {
 	@Override
 	public void respond(Path relativePath) throws IOException {
 		
+		// If it's not directory, returns error to the requester.
 		if( ! Files.isDirectory(root.resolve(relativePath.toString()))) {
-			write();
+			writeError();
 			return;
 		}
 		
+		// If there's no problem with the given relative path, it will delegated by a decorator.
 		this.response.respond(relativePath);
 	}
 	
-	private void write() throws IOException {
+	private void writeError() throws IOException {
 		
 		this.written
 			.write(ERROR)
