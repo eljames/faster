@@ -3,7 +3,9 @@ package org.faster.requestedpath;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.UnknownHostException;
+import java.nio.channels.Channels;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
@@ -11,6 +13,7 @@ import org.faster.connection.Connection;
 import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.pathitems.PathItems;
 import org.faster.token.DfTokenPathInfo;
+import org.faster.written.DfWritten;
 
 public class DfRequestedPaths implements RequestedPaths {
 	
@@ -18,11 +21,14 @@ public class DfRequestedPaths implements RequestedPaths {
 	private final RequestedPaths requested;
 	private static final int BUFFER = 4096;
 	
+	
 	public DfRequestedPaths(Connection connection) throws UnknownHostException, IOException {
 		
 		this.con = connection;
 		
 		this.requested = new RpRequest(
+				
+			// Decorator to get the host's response (Note that host does not mean server here)
 			new RpResponse(
 				new DfTokenPathInfo(
 					new Scanner(
@@ -30,7 +36,15 @@ public class DfRequestedPaths implements RequestedPaths {
 					)
 				)
 			),
-			new BufferedOutputStream(this.con.output(), BUFFER)
+			
+			// It's a wrapper for Writer
+			new DfWritten(
+				Channels.newWriter(
+					Channels.newChannel(this.con.output()),
+					StandardCharsets.UTF_8.newEncoder(),
+					BUFFER
+				)
+			)
 		);
 		
 	}
