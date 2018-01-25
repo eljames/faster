@@ -29,5 +29,19 @@ public class PtPathTest {
 		);
 		
 	}
+	
+	@Test(expected = UnsupportedOperationException.class)
+	public void returnsSize() throws IOException, ProtocolSyntaxErrorException {
+		String path = "/abc/cde";
+		
+		TokenPathInfo token = new FakeTokenPathInfo(
+			new PathInfoToken().create(false, path, 2)
+		);
+		
+		new PtPath(
+			new PtType(token), token
+		).size();
+	
+	}
 
 }
