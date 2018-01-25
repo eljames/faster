@@ -8,10 +8,10 @@ public class PathItemsToken {
 		this.sb = sb;
 	}
 	
-	public PathItemsToken append(String type, String path, long size) {
+	public PathItemsToken append(boolean directory, String path, long size) {
 		
 		this.sb.append("\n\n");
-		this.sb.append(new PathInfoToken().create(type, path, size));
+		this.sb.append(new PathInfoToken().create(directory, path, size));
 		
 		return this;
 	}

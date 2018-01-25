@@ -25,10 +25,10 @@ public class DfRequestedPathsTest {
 					(
 						"k" +
 						new PathItemsToken(new StringBuilder())
-						.append("f", "/aaa/bbb.jpg", 4096)
-						.append("d", "/aaa/ccc", -1)
-						.append("d", "/ccc/ddd", -1)
-						.append("f", "/ccc/ddd", 1234)
+						.append(false, "/aaa/bbb.jpg", 4096)
+						.append(true, "/aaa/ccc", -1)
+						.append(true, "/ccc/ddd", -1)
+						.append(false, "/ccc/ddd", 1234)
 						.end()
 					).getBytes(StandardCharsets.UTF_8)
 				)

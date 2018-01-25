@@ -19,7 +19,7 @@ public class PtPathTest {
 		String path = "/abc/cde";
 		
 		TokenPathInfo token = new FakeTokenPathInfo(
-			new PathInfoToken().create("f", path, -1)
+			new PathInfoToken().create(false, path, -1)
 		);
 		
 		assertEquals(
