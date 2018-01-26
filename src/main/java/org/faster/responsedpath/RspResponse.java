@@ -9,7 +9,7 @@ import org.faster.sentpath.SentPath;
 
 
 /**
- * Sends paths to the 
+ * Sends paths to the requester peer.
  * @author Eli James
  *
  */
@@ -30,7 +30,7 @@ public class RspResponse implements ResponsedPath {
 		Iterator<Path> paths = paths(relativePath);
 		
 		while(paths.hasNext())
-			sent.send(new PtResponse(this.root, relativePath));
+			sent.send(new PtResponse(this.root, paths.next()));
 		
 	}
 	

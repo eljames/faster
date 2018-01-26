@@ -15,7 +15,7 @@ public class PtResponseTest {
 		String rootDir =  resourcePath(this.getClass());
 		String fileTest = rootDir + "/file_size_test.txt";
 		
-		assertEquals(new PtResponse(Paths.get(rootDir), Paths.get(fileTest)).path(), "response/file_size_test.txt");
+		assertEquals(new PtResponse(Paths.get(rootDir), Paths.get(fileTest)).path(), "/file_size_test.txt");
 	}
 	
 	@Test
