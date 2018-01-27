@@ -21,7 +21,7 @@ public interface PathInfo {
 	long size() throws IOException;
 	
 	/**
-	 * A object that represents a unknown path.
+	 * This represents that no object has returned.
 	 */
 	public static final PathInfo NO_PATH_INFO = new NoPathInfo();
 
