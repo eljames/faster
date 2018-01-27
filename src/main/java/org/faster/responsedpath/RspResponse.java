@@ -3,6 +3,7 @@ package org.faster.responsedpath;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Iterator;
 import org.faster.pathinfo.response.PtResponse;
 import org.faster.sentpath.SentPath;
@@ -27,15 +28,20 @@ public class RspResponse implements ResponsedPath {
 	@Override
 	public void respond(Path relativePath) throws IOException {
 
-		Iterator<Path> paths = paths(relativePath);
+		Iterator<Path> paths = Files.list(absolute(relativePath)).iterator();
 		
 		while(paths.hasNext())
 			sent.send(new PtResponse(this.root, paths.next()));
 		
 	}
 	
-	private Iterator<Path> paths(Path relativePath) throws IOException {
-		Path absolutePath = this.root.resolve(relativePath);
-		return Files.list(absolutePath).iterator();
+	/**
+	 * If root = "/home/usr/share" and relativePath = "/music",
+	 * This method returns "/home/usr/share/music". It just concatenate root with relativePath.
+	 * @param relativePath
+	 * @return
+	 */
+	private Path absolute(Path relativePath) {
+		return this.root.resolve(Paths.get("/").relativize(relativePath));
 	}
 }
