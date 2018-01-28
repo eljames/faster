@@ -25,6 +25,12 @@ public interface PrintedPath {
 	 */
 	String size() throws IOException;
 	
+	/**
+	 * Returns string that represents this object.
+	 * @return
+	 * @throws IOException
+	 */
+	String print() throws IOException;
 	
 	
 }

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.file.Paths;
 
+import org.faster.pathinfo.request.PathItemsToken;
 import org.faster.sentpath.DfSentPath;
 import org.faster.written.DfWritten;
 import org.junit.Test;
@@ -14,11 +15,12 @@ public class RspResponseTest {
 	@Test
 	public void responsePath() throws IOException {
 		
-		String expected = "\n" + 
-				"\n" + 
-				"f\n" + 
-				"/pics/file_test.txt\n" + 
-				"25";
+		String expected = new PathItemsToken()
+				.append(false, "/pics/me.txt", 55)
+				.append(true, "/pics/travel", -1)
+				.append(false, "/pics/file_test.txt", 25)
+				.builder()
+				.toString();
 		
 		StringWriter strWriter = new StringWriter();
 		
@@ -31,7 +33,7 @@ public class RspResponseTest {
 		
 		responsed.respond(
 			Paths.get(
-				"pics"
+				"/pics"
 			)
 		);
 		assertEquals(strWriter.toString(), expected);

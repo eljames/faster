@@ -5,7 +5,11 @@ public class PathItemsToken {
 	private final StringBuilder sb;
 	
 	public PathItemsToken(final StringBuilder sb) {
-		this.sb = sb;
+		this.sb = new StringBuilder();
+	}
+	
+	public PathItemsToken() {
+		this(new StringBuilder());
 	}
 	
 	public PathItemsToken append(boolean directory, String path, long size) {
@@ -18,6 +22,10 @@ public class PathItemsToken {
 	
 	public String end() {
 		return sb.toString() + "\ne";
+	}
+	
+	public StringBuilder builder() {
+		return this.sb;
 	}
 
 }

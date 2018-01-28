@@ -3,7 +3,6 @@ package org.faster.sentpath;
 import java.io.IOException;
 
 import org.faster.pathinfo.PathInfo;
-import org.faster.pathinfo.PrintedPath;
 import org.faster.pathinfo.PrintedPathProtocol;
 import org.faster.written.Written;
 
@@ -22,17 +21,10 @@ public class DfSentPath implements SentPath {
 	@Override
 	public void send(PathInfo pathInfo) throws IOException {
 		
-		PrintedPath printed = new PrintedPathProtocol(pathInfo);
-		
-		written
+		this.written
 			.writeLine()
 			.writeLine()
-			.write(printed.pathType())
-			.writeLine()
-			.write(printed.path())
-			.writeLine()
-			.write(printed.size())
-			.flush();
+			.write(new PrintedPathProtocol(pathInfo).print())
+			.flush();		
 	}
-
 }
