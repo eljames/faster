@@ -23,9 +23,10 @@ public class PtPathTest {
 		);
 		
 		assertEquals(
+			path,
 			new PtPath(
 				new PtType(token), token
-			).path(), path
+			).path()
 		);
 		
 	}

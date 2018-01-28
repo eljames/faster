@@ -31,7 +31,7 @@ public class PtSizeTest {
 				token
 			);
 		
-		assertEquals(pathInfo.size(), size);
+		assertEquals(size, pathInfo.size());
 	}
 	
 	@Test(expected = ProtocolSyntaxErrorException.class)

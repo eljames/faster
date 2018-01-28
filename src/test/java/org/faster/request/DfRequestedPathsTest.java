@@ -41,7 +41,7 @@ public class DfRequestedPathsTest {
 		while(items.next()) {
 			n++;
 		}
-		assertEquals(n, 4);
+		assertEquals(4, n);
 	}
 
 }

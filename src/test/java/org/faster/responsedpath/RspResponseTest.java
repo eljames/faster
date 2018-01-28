@@ -41,7 +41,7 @@ public class RspResponseTest {
 				"/pics"
 			)
 		);
-		assertEquals(strWriter.toString(), expected);
+		assertEquals(expected, strWriter.toString());
 	}
 
 }

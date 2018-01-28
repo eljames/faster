@@ -17,7 +17,7 @@ public class DfPathItemsTest {
 		PathItems items = createPathItems();
 		
 		items.next();
-		assertEquals(items.pathInfo().isDirectory(), false);
+		assertEquals(false, items.pathInfo().isDirectory());
 	}
 	
 	@Test

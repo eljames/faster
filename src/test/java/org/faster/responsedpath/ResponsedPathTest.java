@@ -39,7 +39,7 @@ public class ResponsedPathTest {
 				"/pics"
 			)
 		);
-		assertEquals(strWriter.toString(), expected);
+		assertEquals(expected, strWriter.toString());
 	}
 
 }
