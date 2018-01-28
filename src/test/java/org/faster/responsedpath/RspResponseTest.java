@@ -3,6 +3,7 @@ package org.faster.responsedpath;
 import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.faster.pathinfo.request.PathItemsToken;
@@ -28,7 +29,11 @@ public class RspResponseTest {
 			Paths.get(
 				new ResourcePath().get(this.getClass()) + "/root"),
 				new DfSentPath(new DfWritten(strWriter)
-			)
+			), new ResponsedPath() {
+				
+				@Override
+				public void respond(Path relativePath) throws IOException {}
+			}
 		);
 		
 		responsed.respond(
