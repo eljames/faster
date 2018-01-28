@@ -19,10 +19,12 @@ public class RspResponse implements ResponsedPath {
 	
 	private final Path root;
 	private final SentPath sent;
+	private final ResponsedPath responsed;
 	
-	public RspResponse(final Path rootPath, final SentPath sentPath) {
+	public RspResponse(final Path rootPath, final SentPath sentPath, final ResponsedPath responsedPath) {
 		this.root = rootPath;
 		this.sent = sentPath;
+		this.responsed = responsedPath;
 	}
 
 	@Override
@@ -32,6 +34,8 @@ public class RspResponse implements ResponsedPath {
 		
 		while(paths.hasNext())
 			sent.send(new PtResponse(this.root, paths.next()));
+		
+		this.responsed.respond(relativePath);
 		
 	}
 	
