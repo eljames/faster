@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import org.faster.written.Written;
 
 /**
- * Responsible to write the 'end' stream. The end stream show that all the paths was sent and there's nothing to send anymore.
+ * Responsible to write the 'end' stream. The end stream shows that all paths was sent and there's nothing to send anymore.
  * @author Eli James
  *
  */
