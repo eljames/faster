@@ -1,9 +1,7 @@
 package org.faster.requestedpath;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.net.UnknownHostException;
 import java.nio.channels.Channels;
 import java.nio.charset.StandardCharsets;
