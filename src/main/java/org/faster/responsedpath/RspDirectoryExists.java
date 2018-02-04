@@ -6,7 +6,12 @@ import java.nio.file.Path;
 
 import org.faster.written.Written;
 
-public class RspRequest implements ResponsedPath {
+/**
+ * Checks for the directory existence. If directory exists, it will be delegated by decorator.
+ * @author Eli James
+ *
+ */
+public class RspDirectoryExists implements ResponsedPath {
 	
 	private final ResponsedPath response;
 	private final Path root;
@@ -14,13 +19,16 @@ public class RspRequest implements ResponsedPath {
 	
 	private static final String ERROR =  "err";
 	
-	public RspRequest(final ResponsedPath response, final Path rootPath, final Written written) {
+	public RspDirectoryExists(final ResponsedPath response, final Path rootPath, final Written written) {
 		
 		this.response = response;
 		this.root = rootPath;
 		this.written = written;
 	}
 
+	/**
+	 * Checks for the directory existence. If directory exists, it will be delegated by decorator.
+	 */
 	@Override
 	public void respond(Path relativePath) throws IOException {
 		
@@ -30,10 +38,19 @@ public class RspRequest implements ResponsedPath {
 			return;
 		}
 		
-		// If there's no problem with the given relative path, it will delegated by a decorator.
+		// If file exists, it will delegated by a decorator.
 		this.response.respond(relativePath);
 	}
 	
+	/*
+	 * This method writes that:
+	 * --
+	 * err
+	 * dnf
+	 * --
+	 * Don't count the dashes.
+	 * The responded peer must understand that the given path is not available to download files.
+	 */
 	private void writeError() throws IOException {
 		
 		this.written

@@ -27,7 +27,7 @@ public class RspRequestTest {
 		Writer writer = new StringWriter();
 		Written written = new DfWritten(writer);
 		
-		ResponsedPath responsed = new RspRequest(
+		ResponsedPath responsed = new RspDirectoryExists(
 			new ResponsedPath() {
 				@Override
 				public void respond(Path relativePath) throws IOException {}
