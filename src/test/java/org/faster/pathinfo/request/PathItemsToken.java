@@ -12,6 +12,11 @@ public class PathItemsToken {
 		this(new StringBuilder());
 	}
 	
+	public PathItemsToken ok() {
+		this.sb.append("k");
+		return this;
+	}
+	
 	public PathItemsToken append(boolean directory, String path, long size) {
 		
 		this.sb.append("\n\n");
