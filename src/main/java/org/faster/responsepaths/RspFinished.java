@@ -1,4 +1,4 @@
-package org.faster.responsedpath;
+package org.faster.responsepaths;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -10,7 +10,7 @@ import org.faster.written.Written;
  * @author Eli James
  *
  */
-public class RspFinished implements ResponsedPath {
+public class RspFinished implements ResponsePaths {
 	
 	private final Written written;
 	

@@ -1,4 +1,4 @@
-package org.faster.responsedpath;
+package org.faster.responsepaths;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -6,7 +6,7 @@ import java.nio.file.Path;
 /**
  * @author Eli James
  */
-public interface ResponsedPath {
+public interface ResponsePaths {
 	
 	/**
 	 * Respond with path's collection according to the requested path. The path must be a directory.

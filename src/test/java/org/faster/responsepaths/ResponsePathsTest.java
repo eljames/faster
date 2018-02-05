@@ -1,4 +1,4 @@
-package org.faster.responsedpath;
+package org.faster.responsepaths;
 
 import static org.junit.Assert.assertEquals;
 
@@ -7,12 +7,15 @@ import java.io.StringWriter;
 import java.nio.file.Paths;
 
 import org.faster.pathinfo.request.PathItemsToken;
+import org.faster.responsepaths.ResponsePaths;
+import org.faster.responsepaths.RspFinished;
+import org.faster.responsepaths.RspResponse;
 import org.faster.sentpath.DfSentPath;
 import org.faster.written.DfWritten;
 import org.faster.written.Written;
 import org.junit.Test;
 
-public class ResponsedPathTest {
+public class ResponsePathsTest {
 	
 	@Test
 	public void returnsPathItemsWithEnd() throws IOException {
@@ -28,7 +31,7 @@ public class ResponsedPathTest {
 		StringWriter strWriter = new StringWriter();
 		Written written = new DfWritten(strWriter); 
 		
-		ResponsedPath responsed = new RspResponse(
+		ResponsePaths responsed = new RspResponse(
 			Paths.get(new ResourcePath().get(this.getClass()) + "/root"),
 			new DfSentPath(written),
 			new RspFinished(written)

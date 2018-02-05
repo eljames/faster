@@ -1,4 +1,4 @@
-package org.faster.responsedpath;
+package org.faster.responsepaths;
 
 public class ResourcePath {
 	

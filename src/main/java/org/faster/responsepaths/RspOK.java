@@ -1,16 +1,16 @@
-package org.faster.responsedpath;
+package org.faster.responsepaths;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
 import org.faster.written.Written;
 
-public class RspOK implements ResponsedPath {
+public class RspOK implements ResponsePaths {
 	
-	private final ResponsedPath response;
+	private final ResponsePaths response;
 	private final Written written;
 
-	public RspOK(final ResponsedPath resp, final Written wrt) {
+	public RspOK(final ResponsePaths resp, final Written wrt) {
 		this.response = resp;
 		this.written = wrt;
 	}

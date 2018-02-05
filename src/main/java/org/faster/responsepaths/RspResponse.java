@@ -1,4 +1,4 @@
-package org.faster.responsedpath;
+package org.faster.responsepaths;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,13 +15,13 @@ import org.faster.sentpath.SentPath;
  *
  */
 
-public class RspResponse implements ResponsedPath {
+public class RspResponse implements ResponsePaths {
 	
 	private final Path root;
 	private final SentPath sent;
-	private final ResponsedPath responsed;
+	private final ResponsePaths responsed;
 	
-	public RspResponse(final Path rootPath, final SentPath sentPath, final ResponsedPath responsedPath) {
+	public RspResponse(final Path rootPath, final SentPath sentPath, final ResponsePaths responsedPath) {
 		this.root = rootPath;
 		this.sent = sentPath;
 		this.responsed = responsedPath;

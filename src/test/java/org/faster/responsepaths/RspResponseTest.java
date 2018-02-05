@@ -1,4 +1,4 @@
-package org.faster.responsedpath;
+package org.faster.responsepaths;
 
 import static org.junit.Assert.assertEquals;
 import java.io.IOException;
@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.faster.pathinfo.request.PathItemsToken;
+import org.faster.responsepaths.ResponsePaths;
+import org.faster.responsepaths.RspResponse;
 import org.faster.sentpath.DfSentPath;
 import org.faster.written.DfWritten;
 import org.junit.Test;
@@ -25,11 +27,11 @@ public class RspResponseTest {
 		
 		StringWriter strWriter = new StringWriter();
 		
-		ResponsedPath responsed = new RspResponse(
+		ResponsePaths responsed = new RspResponse(
 			Paths.get(
 				new ResourcePath().get(this.getClass()) + "/root"),
 				new DfSentPath(new DfWritten(strWriter)
-			), new ResponsedPath() {
+			), new ResponsePaths() {
 				
 				@Override
 				public void respond(Path relativePath) throws IOException {}

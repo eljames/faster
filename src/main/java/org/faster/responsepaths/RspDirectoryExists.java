@@ -1,4 +1,4 @@
-package org.faster.responsedpath;
+package org.faster.responsepaths;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,15 +11,15 @@ import org.faster.written.Written;
  * @author Eli James
  *
  */
-public class RspDirectoryExists implements ResponsedPath {
+public class RspDirectoryExists implements ResponsePaths {
 	
-	private final ResponsedPath response;
+	private final ResponsePaths response;
 	private final Path root;
 	private final Written written;
 	
 	private static final String ERROR =  "err";
 	
-	public RspDirectoryExists(final ResponsedPath response, final Path rootPath, final Written written) {
+	public RspDirectoryExists(final ResponsePaths response, final Path rootPath, final Written written) {
 		
 		this.response = response;
 		this.root = rootPath;

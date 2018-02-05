@@ -1,4 +1,4 @@
-package org.faster.responsedpath;
+package org.faster.responsepaths;
 
 import static org.junit.Assert.assertEquals;
 
@@ -8,6 +8,8 @@ import java.io.Writer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.faster.responsepaths.ResponsePaths;
+import org.faster.responsepaths.RspDirectoryExists;
 import org.faster.written.DfWritten;
 import org.faster.written.Written;
 import org.junit.Test;
@@ -27,8 +29,8 @@ public class RspRequestTest {
 		Writer writer = new StringWriter();
 		Written written = new DfWritten(writer);
 		
-		ResponsedPath responsed = new RspDirectoryExists(
-			new ResponsedPath() {
+		ResponsePaths responsed = new RspDirectoryExists(
+			new ResponsePaths() {
 				@Override
 				public void respond(Path relativePath) throws IOException {}
 			},
