@@ -20,6 +20,7 @@ public class ResponsePathsTest {
 	@Test
 	public void returnsPathItemsWithEnd() throws IOException {
 		String expected = new PathItemsToken()
+				.ok()
 				.append(false, "/pics/me.txt", 55)
 				.append(true, "/pics/travel", -1)
 				.append(false, "/pics/file_test.txt", 25)
@@ -31,10 +32,13 @@ public class ResponsePathsTest {
 		StringWriter strWriter = new StringWriter();
 		Written written = new DfWritten(strWriter); 
 		
-		ResponsePaths responsed = new RspResponse(
-			Paths.get(new ResourcePath().get(this.getClass()) + "/root"),
-			new DfSentPath(written),
-			new RspFinished(written)
+		ResponsePaths responsed = new RspOK(
+			new RspResponse(
+				Paths.get(new ResourcePath().get(this.getClass()) + "/root"),
+				new DfSentPath(written),
+				new RspFinished(written)
+			),
+			written
 		);
 		
 		responsed.respond(
