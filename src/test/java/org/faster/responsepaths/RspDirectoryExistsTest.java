@@ -14,7 +14,7 @@ import org.faster.written.DfWritten;
 import org.faster.written.Written;
 import org.junit.Test;
 
-public class RspRequestTest {
+public class RspDirectoryExistsTest {
 	
 	
 	@Test
