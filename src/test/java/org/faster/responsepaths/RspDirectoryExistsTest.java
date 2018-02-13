@@ -34,7 +34,7 @@ public class RspDirectoryExistsTest {
 				@Override
 				public void respond(Path relativePath) throws IOException {}
 			},
-			Paths.get(new ResourcePath().get(this.getClass()) + "/root"),
+			new DmFake(false),
 			written
 		);
 		

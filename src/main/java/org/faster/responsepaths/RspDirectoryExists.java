@@ -1,9 +1,9 @@
 package org.faster.responsepaths;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 
+import org.faster.dirmap.DirMap;
 import org.faster.written.Written;
 
 /**
@@ -14,15 +14,15 @@ import org.faster.written.Written;
 public class RspDirectoryExists implements ResponsePaths {
 	
 	private final ResponsePaths response;
-	private final Path root;
+	private final DirMap dirMap;
 	private final Written written;
 	
 	private static final String ERROR =  "err";
 	
-	public RspDirectoryExists(final ResponsePaths response, final Path rootPath, final Written written) {
+	public RspDirectoryExists(final ResponsePaths response, final DirMap map, final Written written) {
 		
 		this.response = response;
-		this.root = rootPath;
+		this.dirMap = map;
 		this.written = written;
 	}
 
@@ -33,7 +33,7 @@ public class RspDirectoryExists implements ResponsePaths {
 	public void respond(Path relativePath) throws IOException {
 		
 		// If it's not directory, returns error to the requester.
-		if( ! Files.isDirectory(root.resolve(relativePath.toString()))) {
+		if( !this.dirMap.has(relativePath.toString())) {
 			writeError();
 			return;
 		}
