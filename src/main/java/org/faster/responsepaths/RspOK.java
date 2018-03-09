@@ -1,8 +1,6 @@
 package org.faster.responsepaths;
 
 import java.io.IOException;
-import java.nio.file.Path;
-
 import org.faster.written.Written;
 
 public class RspOK implements ResponsePaths {
@@ -19,7 +17,7 @@ public class RspOK implements ResponsePaths {
 	 * Sends the a ok token to the responded peer.
 	 */
 	@Override
-	public void respond(Path relativePath) throws IOException {
+	public void respond(CharSequence relativePath) throws IOException {
 		written.write("k");
 		response.respond(relativePath);
 	}

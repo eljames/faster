@@ -1,8 +1,6 @@
 package org.faster.responsepaths;
 
 import java.io.IOException;
-import java.nio.file.Path;
-
 import org.faster.dirmap.DirMap;
 import org.faster.written.Written;
 
@@ -30,10 +28,10 @@ public class RspDirectoryExists implements ResponsePaths {
 	 * Checks for the directory existence. If directory exists, it will be delegated by decorator.
 	 */
 	@Override
-	public void respond(Path relativePath) throws IOException {
+	public void respond(CharSequence relativePath) throws IOException {
 		
 		// If it's not directory, returns error to the requester.
-		if( !this.dirMap.has(relativePath.toString())) {
+		if( !this.dirMap.has(relativePath)) {
 			writeError();
 			return;
 		}

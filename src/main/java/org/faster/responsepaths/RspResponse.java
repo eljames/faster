@@ -19,23 +19,23 @@ public class RspResponse implements ResponsePaths {
 	
 	private final Path root;
 	private final SentPath sent;
-	private final ResponsePaths responsed;
+	private final ResponsePaths response;
 	
-	public RspResponse(final Path rootPath, final SentPath sentPath, final ResponsePaths responsedPath) {
+	public RspResponse(final Path rootPath, final SentPath sentPath, final ResponsePaths responsePath) {
 		this.root = rootPath;
 		this.sent = sentPath;
-		this.responsed = responsedPath;
+		this.response = responsePath;
 	}
 
 	@Override
-	public void respond(Path relativePath) throws IOException {
+	public void respond(CharSequence relativePath) throws IOException {
 
-		Iterator<Path> paths = Files.list(absolute(relativePath)).iterator();
+		Iterator<Path> paths = Files.list(absolute(Paths.get(relativePath.toString()))).iterator();
 		
 		while(paths.hasNext())
 			sent.send(new PtResponse(this.root, paths.next()));
 		
-		this.responsed.respond(relativePath);
+		this.response.respond(relativePath);
 		
 	}
 	

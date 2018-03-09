@@ -16,7 +16,7 @@ public interface DirMap {
 	 * @param path
 	 * @return true if directory exists and it's not a regular file, false, otherwise.
 	 */
-	boolean has(String path);
+	boolean has(CharSequence path);
 	
 	/**
 	 * Returns all virtual paths referred to the given {@code path}

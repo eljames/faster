@@ -5,9 +5,6 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import org.faster.responsepaths.ResponsePaths;
 import org.faster.responsepaths.RspDirectoryExists;
 import org.faster.written.DfWritten;
@@ -32,13 +29,13 @@ public class RspDirectoryExistsTest {
 		ResponsePaths responsed = new RspDirectoryExists(
 			new ResponsePaths() {
 				@Override
-				public void respond(Path relativePath) throws IOException {}
+				public void respond(CharSequence relativePath) throws IOException {}
 			},
 			new DmFake(false),
 			written
 		);
 		
-		responsed.respond(Paths.get("/ABC"));
+		responsed.respond("/ABC");
 		
 		assertEquals(expected, writer.toString());
 		

@@ -1,7 +1,6 @@
 package org.faster.responsepaths;
 
 import java.io.IOException;
-import java.nio.file.Path;
 
 /**
  * @author Eli James
@@ -13,6 +12,6 @@ public interface ResponsePaths {
 	 * @param relativePath The relative path sent by requester. This path must be a directory.
 	 */
 
-	void respond(Path relativePath) throws IOException;
+	void respond(CharSequence relativePath) throws IOException;
 
 }

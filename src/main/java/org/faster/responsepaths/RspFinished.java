@@ -1,8 +1,6 @@
 package org.faster.responsepaths;
 
 import java.io.IOException;
-import java.nio.file.Path;
-
 import org.faster.written.Written;
 
 /**
@@ -19,7 +17,7 @@ public class RspFinished implements ResponsePaths {
 	}
 
 	@Override
-	public void respond(Path relativePath) throws IOException {
+	public void respond(CharSequence relativePath) throws IOException {
 		this.written
 		.write("\n")
 		.write("e");

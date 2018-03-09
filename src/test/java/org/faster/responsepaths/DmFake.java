@@ -14,7 +14,7 @@ public class DmFake implements DirMap {
 	}
 
 	@Override
-	public boolean has(String path) {
+	public boolean has(CharSequence path) {
 		return dir;
 	}
 

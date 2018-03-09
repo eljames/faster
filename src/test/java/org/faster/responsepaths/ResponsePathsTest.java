@@ -41,11 +41,7 @@ public class ResponsePathsTest {
 			written
 		);
 		
-		responsed.respond(
-			Paths.get(
-				"/pics"
-			)
-		);
+		responsed.respond("/pics");
 		assertEquals(expected, strWriter.toString());
 	}
 
