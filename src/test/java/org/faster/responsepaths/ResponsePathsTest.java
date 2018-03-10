@@ -4,8 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.io.StringWriter;
-import java.nio.file.Paths;
-
 import org.faster.pathinfo.request.PathItemsToken;
 import org.faster.responsepaths.ResponsePaths;
 import org.faster.responsepaths.RspFinished;
@@ -34,7 +32,7 @@ public class ResponsePathsTest {
 		
 		ResponsePaths responsed = new RspOK(
 			new RspResponse(
-				Paths.get(new ResourcePath().get(this.getClass()) + "/root"),
+				new DmFake("/root"),
 				new DfSentPath(written),
 				new RspFinished(written)
 			),
