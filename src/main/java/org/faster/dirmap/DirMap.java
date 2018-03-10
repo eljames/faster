@@ -23,6 +23,6 @@ public interface DirMap {
 	 * @param path
 	 * @return
 	 */
-	Collection<PathInfo> paths(String path);
+	Collection<PathInfo> paths(CharSequence path);
 
 }
