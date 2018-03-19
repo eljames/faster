@@ -19,7 +19,7 @@ public interface DirMap {
 	boolean has(CharSequence path);
 	
 	/**
-	 * Returns all virtual paths referred to the given {@code path}
+	 * Returns all virtual paths referred to the given directory {@code path}.
 	 * @param path
 	 * @return
 	 */
