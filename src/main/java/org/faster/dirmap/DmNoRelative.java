@@ -32,7 +32,7 @@ public class DmNoRelative implements DirMap {
 	@Override
 	public Collection<PathInfo> paths(final CharSequence path) {
 		if(!this.has(path)) {
-			throw new IllegalArgumentException("The path must not have relative instructions, like double period before slash. Eg: /documents/../");
+			throw new IllegalArgumentException("The path must not have relative instructions, like double period. Eg: /documents/../");
 		}
 		return this.origin.paths(path);
 	}
