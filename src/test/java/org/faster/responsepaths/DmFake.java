@@ -40,15 +40,16 @@ public class DmFake implements DirMap {
 	@Override
 	public Collection<PathInfo> paths(CharSequence path) {
 		
-		Path absoluteRoot = Paths.get(new ResourcePath().get(this.getClass()) + this.root);
+		/*Path absoluteRoot = Paths.get(new ResourcePath().get(this.getClass()) + this.root);
 		Path relativePath = Paths.get("/").relativize(Paths.get(path.toString()));
 		
 		File[] paths = absoluteRoot.resolve(relativePath).toFile().listFiles();
 		List<PathInfo> pathInfoList = new ArrayList<PathInfo>();
 		for(File file : paths) {
-			pathInfoList.add(new PtResponse(absoluteRoot, file));
+			pathInfoList.add(new PtResponse(Paths.get("/media"), absoluteRoot, file));
 		}
-		return pathInfoList;
+		return pathInfoList;*/
+		return null;
 	}
 
 
