@@ -1,36 +1,31 @@
 package org.faster.pathinfo.response;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import org.faster.pathinfo.PathInfo;
+import org.faster.virtualpath.VirtualPath;
 
 public class PtResponse implements PathInfo {
 	
-	private final Path rootPath;
-	private final File file;
+	private final VirtualPath virtual;
 	
-	public PtResponse(final Path rootPath, final File filePath) {
-		this.rootPath = rootPath;
-		this.file = filePath;
+	public PtResponse(final VirtualPath virtual) {
+		this.virtual = virtual;
 	}
 
 	@Override
-	public boolean isDirectory() {
-		return this.file.isDirectory();
+	public boolean isDirectory() throws IOException {
+		return !this.virtual.isDirectory();
 	}
 
 	@Override
 	public CharSequence path() {
-		return "/" + this.rootPath
-				.relativize(this.file.toPath())
-				.toString();
+		return this.virtual.path();
 	}
 
 	@Override
 	public long size() throws IOException {
 		if(isDirectory()) return -1;
-		return this.file.length();
+		return this.virtual.real().length();
 	}
 
 }
