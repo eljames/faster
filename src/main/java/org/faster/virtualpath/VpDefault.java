@@ -22,7 +22,7 @@ public class VpDefault implements VirtualPath {
 	@Override
 	public CharSequence path() {
 		return this.virtualRoot.resolve(
-				this.realRoot.relativize(this.realFile.toPath())
+			this.realRoot.relativize(this.realFile.toPath())
 		).toString();
 	}
 
