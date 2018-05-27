@@ -42,6 +42,9 @@ public class PmDefault implements PathMap {
 	@Override
 	public boolean has(CharSequence path) {
 		try {
+			if(path.equals("/")) {
+				return true;
+			}
 			Path filePath = new RealPath(this.dirs).asReal(Paths.get(path.toString()));
 			return filePath.toFile().exists();
 		} catch (FileNotFoundException e) {
