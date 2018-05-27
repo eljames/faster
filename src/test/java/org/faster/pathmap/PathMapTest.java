@@ -3,15 +3,11 @@ package org.faster.pathmap;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
+import org.faster.responsepaths.CreatedPathMap;
 import org.faster.responsepaths.ResourcePath;
 import org.faster.responsepaths.ResponsePaths;
 import org.faster.virtualpath.VirtualPath;
@@ -21,27 +17,14 @@ public class PathMapTest {
 	
 	@Test
 	public void getsRealPath() throws IOException {
-		Map<String, Path> dirs = new HashMap<>();
 		String path = new ResourcePath().get(ResponsePaths.class) + "/root";
-		dirs.put("media", Paths.get(path));
-		PathMap map = new PmNoRelative(
-			new PmDefault(dirs)
-		);
 		
-		System.out.println(map.get("/media").real());
-		
-		assertTrue(map.get("/media").real().getAbsolutePath().equals(path));
+		assertTrue(new CreatedPathMap().create("/org/faster/responsepaths/root").get("/media").real().getAbsolutePath().equals(path));
 	}
 	
 	@Test
 	public void virtualPathCorrect() throws IOException {
-		Map<String, Path> dirs = new HashMap<>();
-		String path = new ResourcePath().get(ResponsePaths.class) + "/root/pics";
-		dirs.put("media", Paths.get(path));
-		PathMap map = new PmNoRelative(
-			new PmDefault(dirs)
-		);
-		VirtualPath virtual = map.get("/media");
+		VirtualPath virtual = new CreatedPathMap().create("/org/faster/responsepaths/root/pics").get("/media");
 		List<VirtualPath> list = new ArrayList<>(virtual.paths());
 		Collections.sort(list, new VirtualComparator());
 		assertTrue(list.get(0).path().equals("/media/file_test.txt"));
