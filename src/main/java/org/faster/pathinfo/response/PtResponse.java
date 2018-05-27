@@ -14,7 +14,7 @@ public class PtResponse implements PathInfo {
 
 	@Override
 	public boolean isDirectory() throws IOException {
-		return !this.virtual.isDirectory();
+		return this.virtual.isDirectory();
 	}
 
 	@Override
