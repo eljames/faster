@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.io.StringWriter;
+
+import org.faster.dirmap.DmDefault;
 import org.faster.pathinfo.request.PathItemsToken;
 import org.faster.responsepaths.ResponsePaths;
 import org.faster.responsepaths.RspFinished;
@@ -19,9 +21,9 @@ public class ResponsePathsTest {
 	public void returnsPathItemsWithEnd() throws IOException {
 		String expected = new PathItemsToken()
 				.ok()
-				.append(false, "/pics/me.txt", 55)
-				.append(true, "/pics/travel", -1)
-				.append(false, "/pics/file_test.txt", 25)
+				.append(false, "/media/pics/me.txt", 55)
+				.append(true, "/media/pics/travel", -1)
+				.append(false, "/media/pics/file_test.txt", 25)
 				.builder()
 				.append("\n")
 				.append("e")
@@ -32,14 +34,14 @@ public class ResponsePathsTest {
 		
 		ResponsePaths responsed = new RspOK(
 			new RspResponse(
-				new DmFake("/root"),
+				new DmDefault(new CreatedPathMap().create("/org/faster/responsepaths/root")),
 				new DfSentPath(written),
 				new RspFinished(written)
 			),
 			written
 		);
 		
-		responsed.respond("/pics");
+		responsed.respond("/media/pics");
 		assertEquals(expected, strWriter.toString());
 	}
 

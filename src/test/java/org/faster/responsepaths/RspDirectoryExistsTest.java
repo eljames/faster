@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+
+import org.faster.dirmap.DmDefault;
 import org.faster.responsepaths.ResponsePaths;
 import org.faster.responsepaths.RspDirectoryExists;
 import org.faster.written.DfWritten;
@@ -31,7 +33,7 @@ public class RspDirectoryExistsTest {
 				@Override
 				public void respond(CharSequence relativePath) throws IOException {}
 			},
-			new DmFake(false),
+			new DmDefault(new CreatedPathMap().create("org/faster/responsepaths/root")),
 			written
 		);
 		
