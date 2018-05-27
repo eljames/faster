@@ -20,7 +20,7 @@ public class DmDefault implements DirMap {
 	@Override
 	public boolean has(CharSequence path) {
 		try {
-			return !this.map.get(path.toString()).isDirectory();
+			return this.map.get(path.toString()).isDirectory();
 		} catch (IOException e) {
 			return false;
 		}
