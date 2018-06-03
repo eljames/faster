@@ -7,7 +7,7 @@ import org.faster.dirmap.DmDefault;
 import org.faster.pathinfo.request.PathItemsToken;
 import org.faster.responsepaths.ResponsePaths;
 import org.faster.responsepaths.RspResponse;
-import org.faster.sentpath.DfSentPath;
+import org.faster.sentpath.SpDefault;
 import org.faster.written.DfWritten;
 import org.junit.Test;
 
@@ -27,7 +27,7 @@ public class RspResponseTest {
 		
 		ResponsePaths responsed = new RspResponse(
 			new DmDefault(new CreatedPathMap().create("/org/faster/responsepaths/root")),
-			new DfSentPath(new DfWritten(strWriter)),
+			new SpDefault(new DfWritten(strWriter)),
 			new ResponsePaths() {
 				
 				@Override
