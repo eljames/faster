@@ -10,7 +10,7 @@ import org.faster.pathinfo.request.PathItemsToken;
 import org.faster.responsepaths.ResponsePaths;
 import org.faster.responsepaths.RspFinished;
 import org.faster.responsepaths.RspResponse;
-import org.faster.sentpath.DfSentPath;
+import org.faster.sentpath.SpDefault;
 import org.faster.written.DfWritten;
 import org.faster.written.Written;
 import org.junit.Test;
@@ -35,7 +35,7 @@ public class ResponsePathsTest {
 		ResponsePaths responsed = new RspOK(
 			new RspResponse(
 				new DmDefault(new CreatedPathMap().create("/org/faster/responsepaths/root")),
-				new DfSentPath(written),
+				new SpDefault(written),
 				new RspFinished(written)
 			),
 			written
