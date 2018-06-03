@@ -6,12 +6,12 @@ import org.faster.pathinfo.PathInfo;
 import org.faster.pathinfo.PrintedPathProtocol;
 import org.faster.written.Written;
 
-public class DfSentPath implements SentPath {
+public class SpDefault implements SentPath {
 	
 	
 	private final Written written;
 
-	public DfSentPath(final Written written) {
+	public SpDefault(final Written written) {
 		this.written = written;
 	}
 

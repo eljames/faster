@@ -9,7 +9,7 @@ import org.faster.pathinfo.request.PathInfoToken;
 import org.faster.written.DfWritten;
 import org.junit.Test;
 
-public class DfSentPathTest {
+public class SpDefaultTest {
 	
 	
 	@Test
@@ -21,7 +21,7 @@ public class DfSentPathTest {
 		
 		StringWriter strWriter = new StringWriter();
 		
-		SentPath sent = new DfSentPath(
+		SentPath sent = new SpDefault(
 			new DfWritten(
 				strWriter
 			)
