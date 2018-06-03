@@ -2,15 +2,12 @@ package org.faster.virtualpath;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import org.faster.pathinfo.PathInfo;
 
 public class VpMap implements VirtualPath {
 	
@@ -53,23 +50,4 @@ public class VpMap implements VirtualPath {
 		return true;
 	}
 
-}
-
-class RootPath implements PathInfo {
-
-	@Override
-	public boolean isDirectory() throws IOException {
-		return true;
-	}
-
-	@Override
-	public CharSequence path() throws IOException {
-		return "/";
-	}
-
-	@Override
-	public long size() throws IOException {
-		return -1;
-	}
-	
 }
