@@ -38,6 +38,22 @@ public class PathMapTest {
 		assertTrue(list.get(2).path().equals("/media/travel"));
 	}
 	
+	@Test
+	public void virtualPathCheckType() throws IOException {
+		VirtualPath virtual = new CreatedPathMap().create("/org/faster/responsepaths/root/pics").get("/media");
+		List<VirtualPath> list = new ArrayList<>(virtual.paths());
+		Collections.sort(list, new VirtualComparator());
+		
+		// /media/file_test.txt
+		assertTrue(!list.get(0).isDirectory());
+		
+		// /media/me.txt
+		assertTrue(!list.get(1).isDirectory());
+		
+		// /media/travel
+		assertTrue(list.get(2).isDirectory());
+	}
+	
 	
 	@Test
 	public void listRoot() throws IOException {
