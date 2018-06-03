@@ -12,7 +12,7 @@ public interface PathMap {
 	
 	/**
 	 * @param path is the virtual path mapped on a {@code PathMap} instance.
-	 * @return Returns the real path according to the given {@code path} parameter.
+	 * @return Returns the virtual path according to the given {@code path} parameter.
 	 * @throws FileNotFoundException if there is no file that corresponds the given {@path}
 	 */
 	VirtualPath get(final CharSequence path) throws FileNotFoundException;
