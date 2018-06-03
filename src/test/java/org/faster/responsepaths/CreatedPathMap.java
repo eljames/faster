@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.faster.path.TestPath;
 import org.faster.pathmap.PathMap;
 import org.faster.pathmap.PmDefault;
 import org.faster.pathmap.PmNoRelative;
@@ -12,7 +13,7 @@ import org.faster.pathmap.PmNoRelative;
 public class CreatedPathMap {
 	public PathMap create(String resourcePath) {
 		Map<String, Path> dirs = new HashMap<>();
-		String path = System.getProperty("user.dir") + "/src/test/resources" + resourcePath;
+		String path = new TestPath().resources() + resourcePath;
 		dirs.put("media", Paths.get(path));
 		return new PmNoRelative(
 			new PmDefault(dirs)
