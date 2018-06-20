@@ -11,16 +11,16 @@ import java.nio.charset.StandardCharsets;
 import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.pathinfo.request.PathItemsToken;
 import org.faster.pathitems.PathItems;
-import org.faster.requestedpath.DfRequestedPaths;
+import org.faster.requestedpath.RpDefault;
 import org.faster.requestedpath.RequestedPaths;
 import org.junit.Test;
 
-public class DfRequestedPathsTest {
+public class RpDefaultTest {
 	
 	
 	@Test
 	public void shouldReturnsFourPaths() throws UnknownHostException, IOException, ProtocolSyntaxErrorException {
-		RequestedPaths req = new DfRequestedPaths(
+		RequestedPaths req = new RpDefault(
 			new FakeConnection(new ByteArrayOutputStream(), new ByteArrayInputStream(
 					(
 						"k" +

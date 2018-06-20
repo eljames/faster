@@ -13,14 +13,14 @@ import org.faster.pathitems.PathItems;
 import org.faster.token.DfTokenPathInfo;
 import org.faster.written.DfWritten;
 
-public class DfRequestedPaths implements RequestedPaths {
+public class RpDefault implements RequestedPaths {
 	
 	private final Connection con;
 	private final RequestedPaths requested;
 	private static final int BUFFER = 4096;
 	
 	
-	public DfRequestedPaths(Connection connection) throws UnknownHostException, IOException {
+	public RpDefault(Connection connection) throws UnknownHostException, IOException {
 		
 		this.con = connection;
 		
