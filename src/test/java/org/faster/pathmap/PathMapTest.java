@@ -54,6 +54,17 @@ public class PathMapTest {
 		assertTrue(list.get(2).isDirectory());
 	}
 	
+	@Test
+	public void getThirdLevelPathFiles() throws IOException {
+		VirtualPath virtual = new CreatedPathMap().create("/org/faster/responsepaths/root/pics").get("/media");
+		List<VirtualPath> list = new ArrayList<>(virtual.paths());
+		Collections.sort(list, new VirtualComparator());
+		
+		// /media/travel/italy.txt
+		VirtualPath path = list.get(2).paths().iterator().next();
+		assertEquals("/media/travel/italy.txt", path.path());
+	}
+	
 	
 	@Test
 	public void listRoot() throws IOException {
