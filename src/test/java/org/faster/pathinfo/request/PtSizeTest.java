@@ -8,7 +8,7 @@ import org.faster.pathinfo.PathInfo;
 import org.faster.pathinfo.request.PtPath;
 import org.faster.pathinfo.request.PtSize;
 import org.faster.pathinfo.request.PtType;
-import org.faster.token.TokenPathInfo;
+import org.faster.token.LineToken;
 import org.junit.Test;
 
 public class PtSizeTest {
@@ -19,7 +19,7 @@ public class PtSizeTest {
 		
 		
 		long size = 1024;
-		TokenPathInfo token = new FakeTokenPathInfo(
+		LineToken token = new FakeTokenPathInfo(
 			new PathInfoToken().create(false, "/abc/pic.jpg", size)
 		);
 		
@@ -38,7 +38,7 @@ public class PtSizeTest {
 	public void throwsIfNotNumber() throws IOException, ProtocolSyntaxErrorException {
 		
 		String sizeStream = "notNumber\n";
-		TokenPathInfo token = new FakeTokenPathInfo("f\n" + sizeStream + "\n");
+		LineToken token = new FakeTokenPathInfo("f\n" + sizeStream + "\n");
 		
 		new PtSize(
 			new PtType(token),
@@ -50,7 +50,7 @@ public class PtSizeTest {
 	public void throwsIfPartialNumber() throws IOException, ProtocolSyntaxErrorException {
 		
 		String sizeStream = "1234b\n";
-		TokenPathInfo token = new FakeTokenPathInfo("f\n" + sizeStream + "\n");
+		LineToken token = new FakeTokenPathInfo("f\n" + sizeStream + "\n");
 		
 		new PtSize(
 			new PtType(token),
@@ -62,7 +62,7 @@ public class PtSizeTest {
 	public void returnsNegativeSizeIfDirectory() throws IOException, ProtocolSyntaxErrorException {
 		
 		String sizeStream = "1234b\n";
-		TokenPathInfo token = new FakeTokenPathInfo("d\n" + sizeStream + "\n");
+		LineToken token = new FakeTokenPathInfo("d\n" + sizeStream + "\n");
 		
 		PathInfo pathInfo = new PtSize(
 			new PtType(token),

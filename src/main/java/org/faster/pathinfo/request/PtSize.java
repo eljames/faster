@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.pathinfo.PathInfo;
-import org.faster.token.TokenPathInfo;
+import org.faster.token.LineToken;
 
 /**
  * Decorator, for file size.
@@ -16,7 +16,7 @@ public class PtSize implements PathInfo {
 	private final long size;
 	private final PathInfo path;
 
-	public PtSize(PathInfo pathInfo, TokenPathInfo tokenPathInfo) throws IOException, ProtocolSyntaxErrorException {
+	public PtSize(PathInfo pathInfo, LineToken tokenPathInfo) throws IOException, ProtocolSyntaxErrorException {
 		
 		this.size = parseSize(pathInfo, tokenPathInfo);
 		this.path = pathInfo;
@@ -38,7 +38,7 @@ public class PtSize implements PathInfo {
 		return this.path.isDirectory();
 	}
 	
-	private long parseSize(PathInfo pathInfo, TokenPathInfo tokenPathInfo) throws ProtocolSyntaxErrorException, IOException {
+	private long parseSize(PathInfo pathInfo, LineToken tokenPathInfo) throws ProtocolSyntaxErrorException, IOException {
 		
 		// If it's a directory, there's no size to show.
 		if(pathInfo.isDirectory()) {

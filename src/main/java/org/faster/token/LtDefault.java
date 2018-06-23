@@ -2,11 +2,11 @@ package org.faster.token;
 
 import java.util.Scanner;
 
-public class DfTokenPathInfo implements TokenPathInfo {
+public class LtDefault implements LineToken {
 	
 	private final Scanner scanner;
 
-	public DfTokenPathInfo(Scanner scanner) {
+	public LtDefault(Scanner scanner) {
 		scanner.useDelimiter("\\n");
 		this.scanner = scanner;
 	}

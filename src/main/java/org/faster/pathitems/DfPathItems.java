@@ -7,7 +7,7 @@ import org.faster.pathinfo.PathInfo;
 import org.faster.pathinfo.request.PtPath;
 import org.faster.pathinfo.request.PtSize;
 import org.faster.pathinfo.request.PtType;
-import org.faster.token.TokenPathInfo;
+import org.faster.token.LineToken;
 
 /**
  * Decorator for 'Separator' token verification.
@@ -17,13 +17,13 @@ import org.faster.token.TokenPathInfo;
  */
 public class DfPathItems implements PathItems {
 	
-	private final TokenPathInfo token;
+	private final LineToken token;
 	private final Cache<Boolean> next;
 	private final Cache<PathInfo> path;
 	
 	private static final String END_TOKEN = "e";
 	
-	public DfPathItems(final TokenPathInfo tokenPath) {
+	public DfPathItems(final LineToken tokenPath) {
 		this.token = tokenPath;
 		this.next = new Cache<Boolean>(true);
 		this.path = new Cache<PathInfo>(PathInfo.NO_PATH_INFO);

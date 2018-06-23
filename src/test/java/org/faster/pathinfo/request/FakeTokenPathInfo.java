@@ -4,16 +4,16 @@ import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-import org.faster.token.DfTokenPathInfo;
-import org.faster.token.TokenPathInfo;
+import org.faster.token.LtDefault;
+import org.faster.token.LineToken;
 
-public class FakeTokenPathInfo implements TokenPathInfo {
+public class FakeTokenPathInfo implements LineToken {
 	
-	private final TokenPathInfo token;
+	private final LineToken token;
 	
 	public FakeTokenPathInfo(String stream) {
 		this.token =
-			new DfTokenPathInfo(
+			new LtDefault(
 				new Scanner(
 					new ByteArrayInputStream(
 						stream.getBytes(StandardCharsets.UTF_8)

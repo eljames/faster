@@ -7,7 +7,7 @@ import java.io.IOException;
 import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.pathinfo.request.PtPath;
 import org.faster.pathinfo.request.PtType;
-import org.faster.token.TokenPathInfo;
+import org.faster.token.LineToken;
 import org.junit.Test;
 
 public class PtPathTest {
@@ -18,7 +18,7 @@ public class PtPathTest {
 		
 		String path = "/abc/cde";
 		
-		TokenPathInfo token = new FakeTokenPathInfo(
+		LineToken token = new FakeTokenPathInfo(
 			new PathInfoToken().create(false, path, -1)
 		);
 		
@@ -35,7 +35,7 @@ public class PtPathTest {
 	public void returnsSize() throws IOException, ProtocolSyntaxErrorException {
 		String path = "/abc/cde";
 		
-		TokenPathInfo token = new FakeTokenPathInfo(
+		LineToken token = new FakeTokenPathInfo(
 			new PathInfoToken().create(false, path, 2)
 		);
 		

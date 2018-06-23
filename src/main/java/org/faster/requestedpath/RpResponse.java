@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.pathitems.DfPathItems;
 import org.faster.pathitems.PathItems;
-import org.faster.token.TokenPathInfo;
+import org.faster.token.LineToken;
 
 
 /**
@@ -15,11 +15,11 @@ import org.faster.token.TokenPathInfo;
  */
 public class RpResponse implements RequestedPaths {
 	
-	private final TokenPathInfo token;
+	private final LineToken token;
 	
 	private static final String OK = "k";
 
-	public RpResponse(TokenPathInfo token) {
+	public RpResponse(LineToken token) {
 		this.token = token;
 	}
 

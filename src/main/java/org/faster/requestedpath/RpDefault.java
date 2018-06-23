@@ -10,7 +10,7 @@ import java.util.Scanner;
 import org.faster.connection.Connection;
 import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.pathitems.PathItems;
-import org.faster.token.DfTokenPathInfo;
+import org.faster.token.LtDefault;
 import org.faster.written.DfWritten;
 
 public class RpDefault implements RequestedPaths {
@@ -28,7 +28,7 @@ public class RpDefault implements RequestedPaths {
 				
 			// Decorator to get the host's response (Note that host does not mean server here)
 			new RpResponse(
-				new DfTokenPathInfo(
+				new LtDefault(
 					new Scanner(
 						new BufferedInputStream(this.con.input(), BUFFER), StandardCharsets.UTF_8.name()
 					)

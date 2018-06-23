@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.pathinfo.PathInfo;
 import org.faster.pathinfo.PathType;
-import org.faster.token.TokenPathInfo;
+import org.faster.token.LineToken;
 
 /**
  * Decorator for path type.
@@ -19,7 +19,7 @@ public class PtType implements PathInfo {
 	private static final String FILE = "f";
 	private static final String DIR = "d";
 	
-	public PtType(TokenPathInfo token) throws IOException, ProtocolSyntaxErrorException {
+	public PtType(LineToken token) throws IOException, ProtocolSyntaxErrorException {
 		this.pathType = objectPathType(token.next());
 	}
 

@@ -1,7 +1,7 @@
 package org.faster.token;
 
 
-public interface TokenPathInfo extends AutoCloseable {
+public interface LineToken extends AutoCloseable {
 	
 	String next();
 	void close();

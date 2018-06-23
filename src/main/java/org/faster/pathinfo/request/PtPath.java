@@ -3,7 +3,7 @@ package org.faster.pathinfo.request;
 import java.io.IOException;
 
 import org.faster.pathinfo.PathInfo;
-import org.faster.token.TokenPathInfo;
+import org.faster.token.LineToken;
 
 
 /**
@@ -16,7 +16,7 @@ public class PtPath implements PathInfo {
 	private final PathInfo pathInfo;
 	private final String path;
 	
-	public PtPath(PathInfo pathInfo, TokenPathInfo token) throws IOException {
+	public PtPath(PathInfo pathInfo, LineToken token) throws IOException {
 		this.path = token.next();
 		this.pathInfo = pathInfo;
 	}
