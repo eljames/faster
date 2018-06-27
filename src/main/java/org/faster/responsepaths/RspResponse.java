@@ -19,7 +19,7 @@ public class RspResponse implements ResponsePaths {
 	private final SentPath sent;
 	private final ResponsePaths response;
 	
-	public RspResponse(final DirMap dirMap, final SentPath sentPath, final ResponsePaths responsePath) {
+	public RspResponse(final ResponsePaths responsePath, final DirMap dirMap, final SentPath sentPath) {
 		this.dir = dirMap;
 		this.sent = sentPath;
 		this.response = responsePath;

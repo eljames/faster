@@ -11,7 +11,7 @@ import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.pathitems.PathItems;
 import org.faster.requestedpath.RequestedPaths;
 import org.faster.requestedpath.RpRequest;
-import org.faster.written.DfWritten;
+import org.faster.written.WtDefault;
 import org.junit.Test;
 
 public class RpRequestTest {
@@ -36,7 +36,7 @@ public class RpRequestTest {
 			},
 			
 			// Wrapper for Writer.
-			new DfWritten(
+			new WtDefault(
 				Channels.newWriter(
 					Channels.newChannel(out),
 					StandardCharsets.UTF_8.newEncoder(),

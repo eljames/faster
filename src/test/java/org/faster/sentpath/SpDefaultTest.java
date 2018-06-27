@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 
 import org.faster.pathinfo.request.PathInfoToken;
-import org.faster.written.DfWritten;
+import org.faster.written.WtDefault;
 import org.junit.Test;
 
 public class SpDefaultTest {
@@ -22,7 +22,7 @@ public class SpDefaultTest {
 		StringWriter strWriter = new StringWriter();
 		
 		SentPath sent = new SpDefault(
-			new DfWritten(
+			new WtDefault(
 				strWriter
 			)
 		);

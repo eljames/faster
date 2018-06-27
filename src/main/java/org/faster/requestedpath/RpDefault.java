@@ -11,7 +11,7 @@ import org.faster.connection.Connection;
 import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.pathitems.PathItems;
 import org.faster.token.LtDefault;
-import org.faster.written.DfWritten;
+import org.faster.written.WtDefault;
 
 public class RpDefault implements RequestedPaths {
 	
@@ -36,7 +36,7 @@ public class RpDefault implements RequestedPaths {
 			),
 			
 			// It's a wrapper for Writer
-			new DfWritten(
+			new WtDefault(
 				Channels.newWriter(
 					Channels.newChannel(this.con.output()),
 					StandardCharsets.UTF_8.newEncoder(),

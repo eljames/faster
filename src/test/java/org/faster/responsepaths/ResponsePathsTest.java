@@ -11,7 +11,7 @@ import org.faster.responsepaths.ResponsePaths;
 import org.faster.responsepaths.RspFinished;
 import org.faster.responsepaths.RspResponse;
 import org.faster.sentpath.SpDefault;
-import org.faster.written.DfWritten;
+import org.faster.written.WtDefault;
 import org.faster.written.Written;
 import org.junit.Test;
 
@@ -30,13 +30,13 @@ public class ResponsePathsTest {
 				.toString();
 		
 		StringWriter strWriter = new StringWriter();
-		Written written = new DfWritten(strWriter); 
+		Written written = new WtDefault(strWriter); 
 		
 		ResponsePaths responsed = new RspOK(
 			new RspResponse(
+				new RspFinished(written),
 				new DmDefault(new CreatedPathMap().create("/org/faster/responsepaths/root")),
-				new SpDefault(written),
-				new RspFinished(written)
+				new SpDefault(written)
 			),
 			written
 		);

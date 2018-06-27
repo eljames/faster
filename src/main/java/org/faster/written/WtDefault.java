@@ -3,11 +3,11 @@ package org.faster.written;
 import java.io.IOException;
 import java.io.Writer;
 
-public class DfWritten implements Written {
+public class WtDefault implements Written {
 	
 	private final Writer writer;
 	
-	public DfWritten(final Writer writer) {
+	public WtDefault(final Writer writer) {
 		this.writer = writer;
 	}
 	

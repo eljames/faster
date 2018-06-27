@@ -8,7 +8,7 @@ import org.faster.pathinfo.request.PathItemsToken;
 import org.faster.responsepaths.ResponsePaths;
 import org.faster.responsepaths.RspResponse;
 import org.faster.sentpath.SpDefault;
-import org.faster.written.DfWritten;
+import org.faster.written.WtDefault;
 import org.junit.Test;
 
 public class RspResponseTest {
@@ -26,13 +26,14 @@ public class RspResponseTest {
 		StringWriter strWriter = new StringWriter();
 		
 		ResponsePaths responsed = new RspResponse(
-			new DmDefault(new CreatedPathMap().create("/org/faster/responsepaths/root")),
-			new SpDefault(new DfWritten(strWriter)),
 			new ResponsePaths() {
 				
 				@Override
 				public void respond(CharSequence relativePath) throws IOException {}
-			}
+			},
+			new DmDefault(new CreatedPathMap().create("/org/faster/responsepaths/root")),
+			new SpDefault(new WtDefault(strWriter))
+			
 		);
 		
 		responsed.respond("/media/pics");

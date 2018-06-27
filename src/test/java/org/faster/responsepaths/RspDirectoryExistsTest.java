@@ -9,7 +9,7 @@ import java.io.Writer;
 import org.faster.dirmap.DmDefault;
 import org.faster.responsepaths.ResponsePaths;
 import org.faster.responsepaths.RspDirectoryExists;
-import org.faster.written.DfWritten;
+import org.faster.written.WtDefault;
 import org.faster.written.Written;
 import org.junit.Test;
 
@@ -26,7 +26,7 @@ public class RspDirectoryExistsTest {
 		String expected = "err\ndnf";
 		
 		Writer writer = new StringWriter();
-		Written written = new DfWritten(writer);
+		Written written = new WtDefault(writer);
 		
 		ResponsePaths responsed = new RspDirectoryExists(
 			new ResponsePaths() {
