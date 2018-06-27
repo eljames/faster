@@ -1,6 +1,5 @@
 package org.faster.requestedpath;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.nio.channels.Channels;
@@ -17,8 +16,6 @@ public class RpDefault implements RequestedPaths {
 	
 	private final Connection con;
 	private final RequestedPaths requested;
-	private static final int BUFFER = 4096;
-	
 	
 	public RpDefault(Connection connection) throws UnknownHostException, IOException {
 		
@@ -30,7 +27,7 @@ public class RpDefault implements RequestedPaths {
 			new RpResponse(
 				new LtDefault(
 					new Scanner(
-						new BufferedInputStream(this.con.input(), BUFFER), StandardCharsets.UTF_8.name()
+						this.con.input(), StandardCharsets.UTF_8.name()
 					)
 				)
 			),
@@ -39,8 +36,7 @@ public class RpDefault implements RequestedPaths {
 			new WtDefault(
 				Channels.newWriter(
 					Channels.newChannel(this.con.output()),
-					StandardCharsets.UTF_8.newEncoder(),
-					BUFFER
+					StandardCharsets.UTF_8.name()
 				)
 			)
 		);
