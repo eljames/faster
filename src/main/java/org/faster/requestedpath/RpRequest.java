@@ -11,7 +11,6 @@ public class RpRequest implements RequestedPaths {
 	private final Written written;
 	
 	private static final String PATH_ITEMS = "pi";
-	private static final String LINEBREAK = "\n";
 
 	public RpRequest(RequestedPaths requestedPaths, Written writenStream) {
 		this.req = requestedPaths;
@@ -23,8 +22,9 @@ public class RpRequest implements RequestedPaths {
 		
 		this.written
 			.write(PATH_ITEMS)
-			.write(LINEBREAK)
+			.writeLine()
 			.write(path.toString())
+			.writeLine()
 			.flush();
 
 		return req.request(path);
