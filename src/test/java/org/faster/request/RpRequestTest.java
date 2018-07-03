@@ -20,7 +20,7 @@ public class RpRequestTest {
 	public void returnsRequest() throws IOException, ProtocolSyntaxErrorException {
 		
 		String path = "/abc/music";
-		String resp = "pi\n" + path;
+		String resp = "pi\n" + path + "\n";
 		
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		
