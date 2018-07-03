@@ -1,8 +1,8 @@
 package org.faster.requestedpath;
 
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.UnknownHostException;
-import java.nio.channels.Channels;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
@@ -34,10 +34,7 @@ public class RpDefault implements RequestedPaths {
 			
 			// It's a wrapper for Writer
 			new WtDefault(
-				Channels.newWriter(
-					Channels.newChannel(this.con.output()),
-					StandardCharsets.UTF_8.name()
-				)
+				new OutputStreamWriter(this.con.output())
 			)
 		);
 		
