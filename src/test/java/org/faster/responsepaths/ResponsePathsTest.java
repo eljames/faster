@@ -27,6 +27,7 @@ public class ResponsePathsTest {
 				.builder()
 				.append("\n")
 				.append("e")
+				.append("\n")
 				.toString();
 		
 		StringWriter strWriter = new StringWriter();
