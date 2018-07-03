@@ -6,9 +6,9 @@ public class LtDefault implements LineToken {
 	
 	private final Scanner scanner;
 
-	public LtDefault(Scanner scanner) {
-		scanner.useDelimiter("\\n");
+	public LtDefault(final Scanner scanner) {
 		this.scanner = scanner;
+		this.scanner.useDelimiter("\\n");
 	}
 
 	@Override
