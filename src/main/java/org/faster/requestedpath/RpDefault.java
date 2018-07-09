@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
-
 import org.faster.connection.Connection;
 import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.pathitems.PathItems;
@@ -26,15 +24,13 @@ public class RpDefault implements RequestedPaths {
 			// Decorator to get the host's response (Note that host does not mean server here)
 			new RpResponse(
 				new LtDefault(
-					new Scanner(
-						this.con.input(), StandardCharsets.UTF_8.name()
-					)
+					this.con.input()
 				)
 			),
 			
 			// It's a wrapper for Writer
 			new WtDefault(
-				new OutputStreamWriter(this.con.output())
+				new OutputStreamWriter(this.con.output(), StandardCharsets.UTF_8.name())
 			)
 		);
 		

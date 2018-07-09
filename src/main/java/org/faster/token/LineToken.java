@@ -1,9 +1,9 @@
 package org.faster.token;
 
+import java.io.IOException;
 
-public interface LineToken extends AutoCloseable {
+public interface LineToken {
 	
-	String next();
-	void close();
+	String next() throws IOException;
 
 }

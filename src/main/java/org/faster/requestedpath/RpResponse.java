@@ -33,7 +33,7 @@ public class RpResponse implements RequestedPaths {
 		throw new ProtocolSyntaxErrorException("The server has not been responded with ok.");
 	}
 	
-	private boolean tokenOk() {
+	private boolean tokenOk() throws IOException {
 		return this.token.next().equals(OK);
 	}
 
