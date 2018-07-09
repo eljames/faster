@@ -55,6 +55,7 @@ public class RspDirectoryExists implements ResponsePaths {
 			.write(ERROR)
 			.writeLine()
 			.write("dnf") // Directory Not found or it's a regular file.
+			.writeLine()
 			.flush();
 	}
 
