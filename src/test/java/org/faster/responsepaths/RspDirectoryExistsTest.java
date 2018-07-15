@@ -23,7 +23,7 @@ public class RspDirectoryExistsTest {
 		 * err
 		 * dnf
 		 */
-		String expected = "err\ndnf";
+		String expected = "err\ndnf\n";
 		
 		Writer writer = new StringWriter();
 		Written written = new WtDefault(writer);
