@@ -3,7 +3,7 @@ package org.faster.requestedpath;
 import java.io.IOException;
 
 import org.faster.exception.ProtocolSyntaxErrorException;
-import org.faster.pathitems.DfPathItems;
+import org.faster.pathitems.PiDefault;
 import org.faster.pathitems.PathItems;
 import org.faster.token.LineToken;
 
@@ -27,7 +27,7 @@ public class RpResponse implements RequestedPaths {
 	public PathItems request(CharSequence path) throws IOException, ProtocolSyntaxErrorException {
 		
 		if(tokenOk()) {
-			return new DfPathItems(token);
+			return new PiDefault(token);
 		}
 		
 		throw new ProtocolSyntaxErrorException("The server has not been responded with ok.");

@@ -106,7 +106,7 @@ public class DfPathItemsTest {
 
 	
 	private PathItems createPathItems() {
-		return new DfPathItems(new FakeTokenPathInfo("\n"
+		return new PiDefault(new FakeTokenPathInfo("\n"
 				+ "f\n"
 				+ "/audio/voice.mp3\n"
 				+ "2017\n"
@@ -117,7 +117,7 @@ public class DfPathItemsTest {
 	}
 	
 	private PathItems createPathItemsInvalidToken() {
-		return new DfPathItems(new FakeTokenPathInfo("\n"
+		return new PiDefault(new FakeTokenPathInfo("\n"
 				+ "f\n"
 				+ "/audio/voice.mp3\n"
 				+ "2017\n"

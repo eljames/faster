@@ -15,7 +15,7 @@ import org.faster.token.LineToken;
  * @author Eli James Aguiar
  *
  */
-public class DfPathItems implements PathItems {
+public class PiDefault implements PathItems {
 	
 	private final LineToken token;
 	private final Cache<Boolean> next;
@@ -23,7 +23,7 @@ public class DfPathItems implements PathItems {
 	
 	private static final String END_TOKEN = "e";
 	
-	public DfPathItems(final LineToken tokenPath) {
+	public PiDefault(final LineToken tokenPath) {
 		this.token = tokenPath;
 		this.next = new Cache<Boolean>(true);
 		this.path = new Cache<PathInfo>(PathInfo.NO_PATH_INFO);
