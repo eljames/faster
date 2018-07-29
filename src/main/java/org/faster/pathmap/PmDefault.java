@@ -30,9 +30,10 @@ public class PmDefault implements PathMap {
 			throw new FileNotFoundException(noVirtualPathMessage(path));
 		}
 		return new VpDefault(
-				new TransformedPath(virtual).rootLevel().asPath(),
-				new RealPath(this.dirs).realRoot(virtual),
-				realFile);
+			new TransformedPath(virtual).rootLevel().asPath(),
+			new RealPath(this.dirs).realRoot(virtual),
+			realFile
+		);
 	}
 	
 	private String noVirtualPathMessage(CharSequence virtualRoot) {
