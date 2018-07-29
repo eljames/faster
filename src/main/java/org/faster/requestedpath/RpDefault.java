@@ -5,6 +5,8 @@ import java.io.OutputStreamWriter;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import org.faster.connection.Connection;
+import org.faster.errors.Errors;
+import org.faster.errors.ErsNothing;
 import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.pathitems.PathItems;
 import org.faster.token.LtDefault;
@@ -15,7 +17,7 @@ public class RpDefault implements RequestedPaths {
 	private final Connection con;
 	private final RequestedPaths requested;
 	
-	public RpDefault(Connection connection) throws UnknownHostException, IOException {
+	public RpDefault(Connection connection,  Errors error) throws UnknownHostException, IOException {
 		
 		this.con = connection;
 		
@@ -25,7 +27,8 @@ public class RpDefault implements RequestedPaths {
 			new RpResponse(
 				new LtDefault(
 					this.con.input()
-				)
+				),
+				error
 			),
 			
 			// It's a wrapper for Writer
@@ -34,6 +37,10 @@ public class RpDefault implements RequestedPaths {
 			)
 		);
 		
+	}
+	
+	public RpDefault(Connection connection) throws UnknownHostException, IOException {
+		this(connection, new ErsNothing());
 	}
 
 	@Override
