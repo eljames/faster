@@ -17,8 +17,8 @@ public class DirectoryNotFound implements Error {
 	}
 
 	@Override
-	public void execute(CharSequence error, CharSequence path) {
-		this.handled.handle(error, path);
+	public void execute(CharSequence path) {
+		this.handled.handle(this.name(), path);
 	}
 
 }

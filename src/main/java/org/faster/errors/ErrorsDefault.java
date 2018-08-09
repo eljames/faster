@@ -31,7 +31,7 @@ public class ErrorsDefault implements Errors {
 	public void handle(final CharSequence name, final CharSequence path) {
 		for(final Error error : this.list) {
 			if(error.name().equals(name)) {
-				error.execute(name, path);
+				error.execute(path);
 				return;
 			}
 		}

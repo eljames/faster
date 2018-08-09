@@ -11,6 +11,6 @@ public class ErNothing implements Error{
 	}
 
 	@Override
-	public void execute(CharSequence error, CharSequence path) {/* Nothing */}
+	public void execute(CharSequence path) {/* Nothing */}
 
 }
