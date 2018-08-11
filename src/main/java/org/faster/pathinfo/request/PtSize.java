@@ -17,10 +17,12 @@ public class PtSize implements PathInfo {
 	private final PathInfo path;
 
 	public PtSize(PathInfo pathInfo, LineToken tokenPathInfo) throws IOException, ProtocolSyntaxErrorException {
-		
-		this.size = parseSize(pathInfo, tokenPathInfo);
+		this(pathInfo, tokenPathInfo, false);
+	}
+	
+	public PtSize(PathInfo pathInfo, LineToken tokenPathInfo, boolean directorySize) throws IOException, ProtocolSyntaxErrorException {
+		this.size = parseSize(pathInfo, tokenPathInfo, directorySize);
 		this.path = pathInfo;
-
 	}
 
 	@Override
@@ -38,11 +40,13 @@ public class PtSize implements PathInfo {
 		return this.path.isDirectory();
 	}
 	
-	private long parseSize(PathInfo pathInfo, LineToken tokenPathInfo) throws ProtocolSyntaxErrorException, IOException {
+	private long parseSize(PathInfo pathInfo, LineToken tokenPathInfo, boolean directorySize) throws ProtocolSyntaxErrorException, IOException {
 		
 		// If it's a directory, there's no size to show.
 		if(pathInfo.isDirectory()) {
-			return -1; 
+			if(!directorySize) {
+				return -1; 
+			}
 		}
 		
 		String sizeStream = tokenPathInfo.next();
