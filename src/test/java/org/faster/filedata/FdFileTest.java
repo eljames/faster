@@ -30,6 +30,7 @@ public class FdFileTest {
 		new FdFile(
 			token, byteIn, new FileDeliveredNotConsumed(delivered)
 		).download();
+		System.out.println(delivered.expected());
 		assertEquals(delivered.expected(), "this example must end here because this is a test.");
 	}
 	
