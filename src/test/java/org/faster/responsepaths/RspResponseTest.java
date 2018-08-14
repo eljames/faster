@@ -1,8 +1,9 @@
 package org.faster.responsepaths;
 
 import static org.junit.Assert.assertEquals;
+
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.StringWriter;
 import org.faster.dirmap.DmDefault;
 import org.faster.pathinfo.request.PathItemsToken;
 import org.faster.responsepaths.ResponsePaths;
@@ -23,7 +24,7 @@ public class RspResponseTest {
 				.builder()
 				.toString();
 		
-		StringWriter strWriter = new StringWriter();
+		ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
 		
 		ResponsePaths responsed = new RspResponse(
 			new ResponsePaths() {
@@ -32,12 +33,12 @@ public class RspResponseTest {
 				public void respond(CharSequence relativePath) throws IOException {}
 			},
 			new DmDefault(new CreatedPathMap().create("/org/faster/responsepaths/root")),
-			new SpDefault(new WtDefault(strWriter))
+			new SpDefault(new WtDefault(byteOut))
 			
 		);
 		
 		responsed.respond("/media/pics");
-		assertEquals(expected, strWriter.toString());
+		assertEquals(expected, new String(byteOut.toByteArray()));
 	}
 
 }

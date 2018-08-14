@@ -2,10 +2,8 @@ package org.faster.responsepaths;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.StringWriter;
-import java.io.Writer;
-
 import org.faster.dirmap.DmDefault;
 import org.faster.responsepaths.ResponsePaths;
 import org.faster.responsepaths.RspDirectoryExists;
@@ -25,8 +23,8 @@ public class RspDirectoryExistsTest {
 		 */
 		String expected = "err\ndnf\n";
 		
-		Writer writer = new StringWriter();
-		Written written = new WtDefault(writer);
+		ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+		Written written = new WtDefault(byteOut);
 		
 		ResponsePaths responsed = new RspDirectoryExists(
 			new ResponsePaths() {
@@ -39,7 +37,7 @@ public class RspDirectoryExistsTest {
 		
 		responsed.respond("/ABC");
 		
-		assertEquals(expected, writer.toString());
+		assertEquals(expected, new String(byteOut.toByteArray()));
 		
 	}
 

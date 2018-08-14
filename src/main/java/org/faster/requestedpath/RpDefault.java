@@ -1,9 +1,7 @@
 package org.faster.requestedpath;
 
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.net.UnknownHostException;
-import java.nio.charset.StandardCharsets;
 import org.faster.connection.Connection;
 import org.faster.errors.Errors;
 import org.faster.errors.ErsNothing;
@@ -32,9 +30,8 @@ public class RpDefault implements RequestedPaths {
 			),
 			
 			// It's a wrapper for Writer
-			new WtDefault(
-				new OutputStreamWriter(this.con.output(), StandardCharsets.UTF_8.name())
-			)
+			new WtDefault(this.con.output())
+			
 		);
 		
 	}

@@ -1,14 +1,17 @@
 package org.faster.written;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 
 public class WtDefault implements Written {
 	
 	private final Writer writer;
 	
-	public WtDefault(final Writer writer) {
-		this.writer = writer;
+	public WtDefault(final OutputStream out) {
+		this.writer = new OutputStreamWriter(out, StandardCharsets.UTF_8);
 	}
 	
 	/* (non-Javadoc)

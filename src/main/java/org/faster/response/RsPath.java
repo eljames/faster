@@ -1,7 +1,6 @@
 package org.faster.response;
 
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import org.faster.connection.Connection;
 import org.faster.dirmap.DirMap;
 import org.faster.responsepaths.ResponsePaths;
@@ -48,7 +47,7 @@ public class RsPath implements Response {
 	
 	private Written written(Connection connection) throws IOException {
 		return new WtDefault(
-			new OutputStreamWriter(connection.output())
+			connection.output()
 		);
 	}
 	

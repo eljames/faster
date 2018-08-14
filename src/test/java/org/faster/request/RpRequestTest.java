@@ -4,7 +4,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.nio.channels.Channels;
 import java.nio.charset.StandardCharsets;
 
 import org.faster.exception.ProtocolSyntaxErrorException;
@@ -36,13 +35,7 @@ public class RpRequestTest {
 			},
 			
 			// Wrapper for Writer.
-			new WtDefault(
-				Channels.newWriter(
-					Channels.newChannel(out),
-					StandardCharsets.UTF_8.newEncoder(),
-					4096
-				)
-			)
+			new WtDefault(out)
 		).request(path);
 		
 		assertTrue(out.toString(StandardCharsets.UTF_8.name()).equals(resp));
