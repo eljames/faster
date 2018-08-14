@@ -12,48 +12,52 @@ import org.faster.token.LtDefault;
 
 public class FdDefault implements FileData {
 	
+	private final InputStream input;
 	private final FileDelivered delivered;
 	
-	public FdDefault(final FileDelivered deliv) {
+	public FdDefault(final InputStream in, final FileDelivered deliv) {
+		this.input = in;
 		this.delivered = new FileDeliveredNotConsumed(deliv);
 	}
 	
 	@Override
-	public void download(final InputStream input) throws IOException, ProtocolSyntaxErrorException {
-		LineToken token = new LtDefault(input);
+	public void download() throws IOException, ProtocolSyntaxErrorException {
+		LineToken token = new LtDefault(this.input);
 		boolean directorySize = true;
 		treatment(
 			new PtSize(
 				new PtPath(
 					new PtType(token),token
 				), token, directorySize
-			), token, input
+			), token
 		);
 	}
 	
-	private void treatment(PathInfo info, LineToken token, InputStream input) throws IOException, ProtocolSyntaxErrorException {
+	private void treatment(final PathInfo info, final LineToken token) throws IOException, ProtocolSyntaxErrorException {
 		if(info.isDirectory()) {
-			new FdIterable(token, this.delivered).download(input);
+			new FdIterable(token, this.input, this.delivered).download();
 			return;
 		}
-		this.delivered.delivery(new SingleFileStream(input, info.size()), info);
+		this.delivered.delivery(new SingleFileStream(this.input, info.size()), info);
 	}
 	
 	static class FdIterable implements FileData {
 		
 		private final LineToken token;
+		private final InputStream input;
 		private final FileDelivered delivered;
 		
-		public FdIterable(final LineToken tok, final FileDelivered deliv) {
+		public FdIterable(final LineToken tok, InputStream in, final FileDelivered deliv) {
 			this.token = tok;
+			this.input = in;
 			this.delivered = deliv;
 		}
 
 		@Override
-		public void download(InputStream input) throws IOException, ProtocolSyntaxErrorException {
+		public void download() throws IOException, ProtocolSyntaxErrorException {
 			String line = this.token.next();
 			while(line.equals("")) {
-				new FdFile(this.delivered, this.token).download(input);
+				new FdFile(this.token, this.input, this.delivered).download();
 				line = this.token.next();
 			}
 			if(!line.equals("e")) {

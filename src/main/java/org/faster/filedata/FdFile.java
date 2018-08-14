@@ -11,18 +11,20 @@ import org.faster.token.LineToken;
 
 public class FdFile implements FileData {
 	
-	private final FileDelivered delivered;
 	private final LineToken token;
+	private final InputStream input;
+	private final FileDelivered delivered;
 
-	public FdFile(final FileDelivered deliv, final LineToken tok) {
-		this.delivered = deliv;
+	public FdFile(final LineToken tok, InputStream in,final FileDelivered deliv) {
 		this.token = tok;
+		this.input = in;
+		this.delivered = deliv;
 	}
 
 	@Override
-	public void download(InputStream input) throws IOException, ProtocolSyntaxErrorException {
+	public void download() throws IOException, ProtocolSyntaxErrorException {
 		PathInfo info = path(this.token);
-		this.delivered.delivery(new SingleFileStream(input, info.size()), info);
+		this.delivered.delivery(new SingleFileStream(this.input, info.size()), info);
 	}
 	
 	private PathInfo path(LineToken token) throws IOException, ProtocolSyntaxErrorException {

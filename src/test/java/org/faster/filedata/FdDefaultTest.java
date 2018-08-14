@@ -34,10 +34,9 @@ public class FdDefaultTest {
 			.append("\n")
 			.append(new Stream(new FileInputStream(file2)).asString())
 			.append("e\n");
-		System.out.println(builder.toString());
 		ByteArrayInputStream byteIn = new ByteArrayInputStream(builder.toString().getBytes());
 		FileDeliveredMany delivered = new FileDeliveredMany();
-		new FdDefault(delivered).download(byteIn);
+		new FdDefault(byteIn, delivered).download();
 		assertEquals(delivered.expected().get(0), "this example must end here because this is a test.");
 		assertEquals(delivered.expected().get(1), "this file is the second file.");
 	}

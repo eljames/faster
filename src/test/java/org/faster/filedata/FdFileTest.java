@@ -28,8 +28,8 @@ public class FdFileTest {
 		LineToken token = new LtDefault(byteIn);
 		FileDeliveredContent delivered = new FileDeliveredContent();
 		new FdFile(
-			new FileDeliveredNotConsumed(delivered), token
-		).download(byteIn);
+			token, byteIn, new FileDeliveredNotConsumed(delivered)
+		).download();
 		assertEquals(delivered.expected(), "this example must end here because this is a test.");
 	}
 	
