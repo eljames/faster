@@ -1,9 +1,6 @@
 package org.faster.responsefiles;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Collection;
 
@@ -14,20 +11,35 @@ import org.faster.pathinfo.response.PtResponse;
 import org.faster.pathmap.PathMap;
 import org.faster.virtualpath.VirtualPath;
 import org.faster.written.Written;
+import org.faster.written.WtDefault;
 
 public class ResponseFilesDefault implements ResponseFiles {
 	
 	private final PathMap pathmap;
-	private final InputStream input;
+	private final OutputStream output;
+	private final SentData sent;
 	
-	public ResponseFilesDefault(final PathMap map, final InputStream in) {
+	public ResponseFilesDefault(final PathMap map, final OutputStream out, final SentData snd) {
 		this.pathmap = map;
-		this.input = in;
+		this.output = out;
+		this.sent = snd;
 	}
 
 	@Override
 	public void send(CharSequence path) throws IOException {
-		
+		Written written = new WtDefault(this.output);
+		new RfFileNotFound(
+			new RfOK(
+				new RfFiles(
+					new RfFinished(written),
+					this.pathmap,
+					written,
+					sent
+				), written
+			),
+			pathmap,
+			written
+		);
 	}
 	
 	static class RfFileNotFound implements ResponseFiles {
@@ -146,8 +158,8 @@ public class ResponseFilesDefault implements ResponseFiles {
 			filedata(virtual);
 		}
 
-		private void filedata(final VirtualPath virtual) throws FileNotFoundException {
-			this.sentdata.send(new FileOutputStream(virtual.real()));
+		private void filedata(final VirtualPath virtual) throws IOException {
+			this.sentdata.send(virtual);
 		}
 	}
 	
@@ -162,17 +174,9 @@ public class ResponseFilesDefault implements ResponseFiles {
 		@Override
 		public void send(CharSequence path) throws IOException {
 			this.written
-			.write("e")
-			.writeLine()
-			.flush();
-		}
-	}
-	
-	static class SdDefault implements SentData {
-
-		@Override
-		public void send(final OutputStream out) {
-			
+				.write("e")
+				.writeLine()
+				.flush();
 		}
 	}
 }

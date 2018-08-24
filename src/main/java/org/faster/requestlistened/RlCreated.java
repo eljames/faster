@@ -6,7 +6,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.faster.dirmap.DmDefault;
+import org.faster.feedback.FileFeedBack;
 import org.faster.pathmap.PathMap;
+import org.faster.response.RsDownload;
 import org.faster.response.RsPath;
 import org.faster.responselist.ResponseList;
 import org.faster.responselist.ResponseListDefault;
@@ -14,11 +16,13 @@ import org.faster.responselist.ResponseListDefault;
 public class RlCreated implements RequestListened {
 	
 	private final PathMap pathmap;
+	private final FileFeedBack feed;
 	private final int port;
 	
-	public RlCreated(final PathMap map, final int port) {
+	public RlCreated(final PathMap map, final FileFeedBack fd, final int port) {
 		this.pathmap = map;
 		this.port = port;
+		this.feed = fd;
 	}
 
 	@Override
@@ -41,8 +45,13 @@ public class RlCreated implements RequestListened {
 	
 	private ResponseList responselist() {
 		return new ResponseListDefault()
-		.add(new RsPath(
+		.add(
+			new RsPath(
 				new DmDefault(this.pathmap)
+			)
+		).add(
+			new RsDownload(
+				this.pathmap, this.feed
 			)
 		);
 	}

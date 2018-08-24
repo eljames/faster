@@ -1,7 +1,9 @@
 package org.faster.responsefiles;
 
-import java.io.OutputStream;
+import java.io.IOException;
+
+import org.faster.virtualpath.VirtualPath;
 
 public interface SentData {
-	void send(OutputStream out);
+	void send(VirtualPath virtual) throws IOException;
 }
