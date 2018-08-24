@@ -37,7 +37,8 @@ public class DownloadDefault implements Download {
 			new DownloadResponse(
 				token,
 				new FdDefault(input, this.delivered),
-				this.errors),
+				this.errors
+			),
 			written
 		);
 		download.download(path);
