@@ -21,8 +21,12 @@ public class RlCreated implements RequestListened {
 	
 	public RlCreated(final PathMap map, final FileFeedBack fd, final int port) {
 		this.pathmap = map;
-		this.port = port;
 		this.feed = fd;
+		this.port = port;
+	}
+	
+	public RlCreated(final PathMap map, final int port) {
+		this(map, FileFeedBack.NOTHING, port);
 	}
 
 	@Override
