@@ -10,4 +10,15 @@ public interface FileFeedBack {
 	 * @return
 	 */
 	BufferFeedBack create(PathInfo info);
+	
+	public static final FileFeedBack NOTHING = new FileFeedBackNothing();
+	
+	static class FileFeedBackNothing implements FileFeedBack {
+
+		@Override
+		public BufferFeedBack create(PathInfo info) {
+			return BufferFeedBack.NOTHING;
+		}
+		
+	}
 }
