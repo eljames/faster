@@ -24,15 +24,6 @@ public class WtDefault implements Written {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.faster.written.Written#write(long)
-	 */
-	@Override
-	public Written write(long num) throws IOException {
-		this.writer.write(Long.toString(num));
-		return this;
-	}
-	
-	/* (non-Javadoc)
 	 * @see org.faster.written.Written#writeLine()
 	 */
 	@Override

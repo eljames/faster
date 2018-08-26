@@ -11,7 +11,6 @@ public interface Written {
 	
 	
 	Written write(CharSequence charSeq) throws IOException;
-	Written write(long num) throws IOException;
 	
 	/**
 	 *  Must write a Unix line ending "\n"
