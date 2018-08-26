@@ -39,7 +39,7 @@ public class ResponseFilesDefault implements ResponseFiles {
 			),
 			pathmap,
 			written
-		);
+		).send(path);
 	}
 	
 	static class RfFileNotFound implements ResponseFiles {
