@@ -1,6 +1,6 @@
 package org.faster.feedback;
 
-public interface BufferFeedBack {
+public interface BufferFeedback {
 	
 	/**
 	 * This method says to a BufferFeedBack object that a byte has been written, and the byte written is the {@code data} parameter.
@@ -11,7 +11,7 @@ public interface BufferFeedBack {
 	
 	public static final BufferFeedBackNothing NOTHING = new BufferFeedBackNothing();
 	
-	static class BufferFeedBackNothing implements BufferFeedBack {
+	static class BufferFeedBackNothing implements BufferFeedback {
 
 		@Override
 		public void feed(long data) {

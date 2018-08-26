@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import org.faster.connection.Connection;
-import org.faster.feedback.FileFeedBack;
+import org.faster.feedback.FileFeedback;
 import org.faster.pathmap.PathMap;
 import org.faster.responsefiles.ResponseFiles;
 import org.faster.responsefiles.ResponseFilesDefault;
@@ -14,9 +14,9 @@ import org.faster.token.LtDefault;
 public class RsDownload implements Response {
 	
 	private final PathMap map;
-	private final FileFeedBack feed;
+	private final FileFeedback feed;
 	
-	public RsDownload(final PathMap mp, final FileFeedBack fd) {
+	public RsDownload(final PathMap mp, final FileFeedback fd) {
 		this.map = mp;
 		this.feed = fd;
 	}

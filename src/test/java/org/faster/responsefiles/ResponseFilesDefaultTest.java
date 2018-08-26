@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import org.faster.feedback.FileFeedBack;
+import org.faster.feedback.FileFeedback;
 import org.faster.filedata.SingleFileStream;
 import org.faster.pathmap.CreatedMap;
 import org.faster.pathmap.PathMap;
@@ -27,7 +27,7 @@ public class ResponseFilesDefaultTest {
 		new ResponseFilesDefault(
 			pathmap,
 			new ByteArrayOutputStream(),
-			new SdDefault(out, FileFeedBack.NOTHING)
+			new SdDefault(out, FileFeedback.NOTHING)
 		).send("aaa");
 		assertEquals("this example must end here because this is a test.", new String(out.toByteArray()));
 	}
@@ -44,7 +44,7 @@ public class ResponseFilesDefaultTest {
 		new ResponseFilesDefault(
 			pathmap,
 			new ByteArrayOutputStream(),
-			new SdDefault(out, FileFeedBack.NOTHING)
+			new SdDefault(out, FileFeedback.NOTHING)
 		).send("aaa");
 		assertEquals(
 			new StringBuilder()
