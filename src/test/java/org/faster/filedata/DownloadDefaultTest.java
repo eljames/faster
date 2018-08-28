@@ -24,14 +24,13 @@ public class DownloadDefaultTest {
 		String stream = new StringBuilder()
 			.append("k\n")
 			.append(new PathInfoToken().create(false, "/abc", file.length()))
-			.append("\n")
 			.append(new Stream(new FileInputStream(file)).asString())
 			.toString();
 		ByteArrayInputStream byteIn = new ByteArrayInputStream(stream.getBytes());
 		FileDeliveredContent delivered = new FileDeliveredContent();
 		Download download = new DownloadDefault(new FakeConnection(byteOut, byteIn), delivered);
 		download.download("/abc");
-		assertEquals(delivered.expected(), "this example must end here because this is a test.");
+		assertEquals("this example must end here because this is a test.", delivered.result());
 	}
 
 }
