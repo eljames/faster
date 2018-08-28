@@ -23,14 +23,14 @@ public class FdFileTest {
 		String filepath = new ResourcePath().get(SingleFileStream.class) + "/file.txt";
 		File file = new File(filepath);
 		String stream = new PathInfoToken().create(false, "/abc", file.length());
-		stream += "\n" + new Stream(new FileInputStream(file)).asString();
+		stream += new Stream(new FileInputStream(file)).asString();
 		ByteArrayInputStream byteIn = new ByteArrayInputStream(stream.getBytes());
 		LineToken token = new LtDefault(byteIn);
 		FileDeliveredContent delivered = new FileDeliveredContent();
 		new FdFile(
 			token, byteIn, new FileDeliveredNotConsumed(delivered)
 		).download();
-		assertEquals(delivered.expected(), "this example must end here because this is a test.");
+		assertEquals("this example must end here because this is a test.", delivered.result());
 	}
 	
 	static class FileDeliveredContent implements FileDelivered {
@@ -41,7 +41,7 @@ public class FdFileTest {
 			this.content = new Stream(input).asString();
 		}
 		
-		public String expected() {
+		public String result() {
 			return this.content;
 		}
 	}
