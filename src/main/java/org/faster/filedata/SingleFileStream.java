@@ -17,9 +17,26 @@ public class SingleFileStream extends InputStream {
 	public int read() throws IOException {
 		if(this.size == 0)
 			return -1;
-		int read = this.input.read();
+		int data = input.read();
 		this.size--;
-		return read;
+		return data;
+	}
+	
+	@Override
+	public int read(byte[] bytes) throws IOException {
+		if(this.size == 0)
+			return -1;
+		int buffer = bytes.length;
+		if(buffer > this.size) {
+			return extract(bytes, (int)this.size);
+		}
+		return extract(bytes, buffer);
+	}
+	
+	private int extract(byte[] bytes, int buffer) throws IOException {
+		int bytesRead = this.input.read(bytes, 0, buffer);
+		this.size = this.size - bytesRead;
+		return bytesRead;
 	}
 
 }

@@ -1,12 +1,13 @@
 package org.faster.responsefiles;
 
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 
 import org.faster.feedback.BufferFeedback;
 import org.faster.feedback.FileFeedback;
+import org.faster.filedata.CdDefault;
 import org.faster.pathinfo.response.PtResponse;
 import org.faster.virtualpath.VirtualPath;
 
@@ -22,14 +23,11 @@ public class SdDefault implements SentData {
 
 	@Override
 	public void send(final VirtualPath path) throws IOException {
-		copy(new FileInputStream(path.real()), this.feedback.create(new PtResponse(path)));
-	}
-	
-	private void copy(final InputStream in, final BufferFeedback feed) throws IOException {
-		int i = -1;
-		while((i = in.read()) != -1) {
-			this.output.write(i);
-			feed.feed(i);
-		}
+		BufferFeedback bufferfeed = this.feedback.create(new PtResponse(path));
+		BufferedInputStream input = new BufferedInputStream(new FileInputStream(path.real()));
+		new CdDefault(
+			this.output,
+			bufferfeed
+		).copy(input);
 	}
 }
