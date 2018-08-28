@@ -10,7 +10,12 @@ import org.faster.pathmap.PathMap;
 import org.faster.pathmap.PmDefault;
 import org.faster.pathmap.PmNoRelative;
 
-public class CreatedPathMap {
+/**
+ * Create a {@link PathMap} for teste resource.
+ * @author Eli James Aguiar
+ *
+ */
+public class CreatedPathMapRes {
 	public PathMap create(String resourcePath) {
 		Map<String, Path> dirs = new HashMap<>();
 		String path = new TestPath().resources() + resourcePath;
