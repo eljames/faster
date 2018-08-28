@@ -24,7 +24,6 @@ public class ResponsePathsTest {
 				.append(true, "/media/pics/travel", -1)
 				.append(false, "/media/pics/file_test.txt", 25)
 				.builder()
-				.append("\n")
 				.append("e")
 				.append("\n")
 				.toString();
@@ -35,7 +34,7 @@ public class ResponsePathsTest {
 		ResponsePaths responsed = new RspOK(
 			new RspResponse(
 				new RspFinished(written),
-				new DmDefault(new CreatedPathMap().create("/org/faster/responsepaths/root")),
+				new DmDefault(new CreatedPathMapRes().create("/org/faster/responsepaths/root")),
 				new SpDefault(written)
 			),
 			written

@@ -23,7 +23,6 @@ public class SpDefault implements SentPath {
 		
 		this.written
 			.writeLine()
-			.writeLine()
 			.write(new PrintedPathProtocol(pathInfo).print())
 			.flush();		
 	}

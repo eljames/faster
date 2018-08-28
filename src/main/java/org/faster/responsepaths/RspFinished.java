@@ -19,7 +19,6 @@ public class RspFinished implements ResponsePaths {
 	@Override
 	public void respond(CharSequence relativePath) throws IOException {
 		this.written
-		.writeLine()
 		.write("e")
 		.writeLine()
 		.flush();

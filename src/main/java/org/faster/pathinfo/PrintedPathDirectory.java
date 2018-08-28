@@ -40,7 +40,6 @@ public class PrintedPathDirectory implements PrintedPath {
 		
 		return new StringBuilder()
 			.append(this.origin.print())
-			.append("\n")
 			.append(this.size())
 			.toString();
 	}

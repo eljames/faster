@@ -8,8 +8,8 @@ public class PathInfoToken {
 	
 	public String create(boolean directory, String path, long size, boolean folderSize) {
 		return (directory ? "d" : "f") + "\n" +
-				path +
-				(size != -1 || folderSize ? "\n" + size : "");
+				path + "\n" +
+				(size != -1 || folderSize ? size + "\n" : "");
 	}
 
 }

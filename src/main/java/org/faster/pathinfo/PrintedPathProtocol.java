@@ -32,8 +32,8 @@ public class PrintedPathProtocol implements PrintedPath {
 		.append(this.pathType())
 		.append("\n")
 		.append(this.path())
-		.append(this.path.isDirectory() ? "" : "\n")
-		.append(this.size())
+		.append("\n")
+		.append(this.path.isDirectory() ? "" : this.size() + "\n")
 		.toString();
 	}
 

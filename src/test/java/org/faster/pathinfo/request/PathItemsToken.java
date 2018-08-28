@@ -13,20 +13,20 @@ public class PathItemsToken {
 	}
 	
 	public PathItemsToken ok() {
-		this.sb.append("k");
+		this.sb.append("k").append("\n");
 		return this;
 	}
 	
 	public PathItemsToken append(boolean directory, String path, long size) {
 		
-		this.sb.append("\n\n");
+		this.sb.append("\n");
 		this.sb.append(new PathInfoToken().create(directory, path, size));
 		
 		return this;
 	}
 	
 	public String end() {
-		return sb.toString() + "\ne";
+		return sb.toString() + "e\n";
 	}
 	
 	public StringBuilder builder() {

@@ -25,11 +25,11 @@ public class RpDefaultTest {
 	
 	
 	@Test
-	public void shouldReturnsFourPaths() throws UnknownHostException, IOException, ProtocolSyntaxErrorException {
+	public void shouldReturnFourPaths() throws UnknownHostException, IOException, ProtocolSyntaxErrorException {
 		RequestedPaths req = new RpDefault(
 			new FakeConnection(new ByteArrayOutputStream(), new ByteArrayInputStream(
 					(
-						"k" +
+						"k\n" +
 						new PathItemsToken(new StringBuilder())
 						.append(false, "/aaa/bbb.jpg", 4096)
 						.append(true, "/aaa/ccc", -1)

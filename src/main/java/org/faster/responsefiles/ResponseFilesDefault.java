@@ -153,7 +153,6 @@ public class ResponseFilesDefault implements ResponseFiles {
 			).print();
 			this.written
 				.write(printed)
-				.write("\n")
 				.flush();
 			filedata(virtual);
 		}

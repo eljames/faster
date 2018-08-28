@@ -18,7 +18,7 @@ public class RspOK implements ResponsePaths {
 	 */
 	@Override
 	public void respond(CharSequence relativePath) throws IOException {
-		written.write("k");
+		written.write("k").writeLine();
 		response.respond(relativePath);
 	}
 
