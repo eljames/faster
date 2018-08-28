@@ -3,18 +3,18 @@ package org.faster.feedback;
 public interface BufferFeedback {
 	
 	/**
-	 * This method says to a BufferFeedBack object that a byte has been written, and the byte written is the {@code data} parameter.
-	 * For instance, it can be used to notify each byte already written to a file. If the file has 2000 bytes in total, and 305 bytes
-	 * has been already written, then this method should be called 305 times.
+	 * This method says to a BufferFeedBack object that a amount of bytes {@code read} has been written.
+	 * For instance, it can be used to notify each piece of data already written to a file. For instance, if this method was called 5 times
+	 * , and each time {@code read} was 20, it means that was read 5 x 20 bytes = 100 bytes already read.
 	 */ 
-	void feed(long data);
+	void feed(int read);
 	
 	public static final BufferFeedBackNothing NOTHING = new BufferFeedBackNothing();
 	
 	static class BufferFeedBackNothing implements BufferFeedback {
 
 		@Override
-		public void feed(long data) {
+		public void feed(int read) {
 			// Nothing
 		}
 		
