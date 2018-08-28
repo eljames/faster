@@ -13,9 +13,10 @@ public class Stream {
 	
 	public String asString() throws IOException {
 		StringBuilder builder = new StringBuilder();
-		int i = 0;
-		while((i = this.input.read()) != -1) {
-			builder.append((char)i);
+		int read = 0;
+		byte[] bytes = new byte[8*1024];
+		while((read = this.input.read(bytes)) != -1) {
+			builder.append(new String(bytes, 0, read));
 		}
 		return builder.toString();
 	}
