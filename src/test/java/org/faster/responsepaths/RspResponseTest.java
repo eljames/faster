@@ -32,7 +32,7 @@ public class RspResponseTest {
 				@Override
 				public void respond(CharSequence relativePath) throws IOException {}
 			},
-			new DmDefault(new CreatedPathMap().create("/org/faster/responsepaths/root")),
+			new DmDefault(new CreatedPathMapRes().create("/org/faster/responsepaths/root")),
 			new SpDefault(new WtDefault(byteOut))
 			
 		);

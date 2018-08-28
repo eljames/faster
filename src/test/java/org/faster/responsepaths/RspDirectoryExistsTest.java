@@ -31,7 +31,7 @@ public class RspDirectoryExistsTest {
 				@Override
 				public void respond(CharSequence relativePath) throws IOException {}
 			},
-			new DmDefault(new CreatedPathMap().create("org/faster/responsepaths/root")),
+			new DmDefault(new CreatedPathMapRes().create("org/faster/responsepaths/root")),
 			written
 		);
 		

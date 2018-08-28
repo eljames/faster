@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.faster.path.TestPath;
-import org.faster.responsepaths.CreatedPathMap;
+import org.faster.responsepaths.CreatedPathMapRes;
 import org.faster.responsepaths.ResourcePath;
 import org.faster.responsepaths.ResponsePaths;
 import org.faster.virtualpath.VirtualPath;
@@ -25,12 +25,12 @@ public class PathMapTest {
 	public void getsRealPath() throws IOException {
 		String path = new ResourcePath().get(ResponsePaths.class) + "/root";
 		
-		assertTrue(new CreatedPathMap().create("/org/faster/responsepaths/root").get("/media").real().getAbsolutePath().equals(path));
+		assertTrue(new CreatedPathMapRes().create("/org/faster/responsepaths/root").get("/media").real().getAbsolutePath().equals(path));
 	}
 	
 	@Test
 	public void virtualPathCorrect() throws IOException {
-		VirtualPath virtual = new CreatedPathMap().create("/org/faster/responsepaths/root/pics").get("/media");
+		VirtualPath virtual = new CreatedPathMapRes().create("/org/faster/responsepaths/root/pics").get("/media");
 		List<VirtualPath> list = new ArrayList<>(virtual.paths());
 		Collections.sort(list, new VirtualComparator());
 		assertTrue(list.get(0).path().equals("/media/file_test.txt"));
@@ -40,7 +40,7 @@ public class PathMapTest {
 	
 	@Test
 	public void virtualPathCheckType() throws IOException {
-		VirtualPath virtual = new CreatedPathMap().create("/org/faster/responsepaths/root/pics").get("/media");
+		VirtualPath virtual = new CreatedPathMapRes().create("/org/faster/responsepaths/root/pics").get("/media");
 		List<VirtualPath> list = new ArrayList<>(virtual.paths());
 		Collections.sort(list, new VirtualComparator());
 		
@@ -56,7 +56,7 @@ public class PathMapTest {
 	
 	@Test
 	public void getThirdLevelPathFiles() throws IOException {
-		VirtualPath virtual = new CreatedPathMap().create("/org/faster/responsepaths/root/pics").get("/media");
+		VirtualPath virtual = new CreatedPathMapRes().create("/org/faster/responsepaths/root/pics").get("/media");
 		List<VirtualPath> list = new ArrayList<>(virtual.paths());
 		Collections.sort(list, new VirtualComparator());
 		

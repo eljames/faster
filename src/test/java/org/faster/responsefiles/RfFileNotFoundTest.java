@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import org.faster.responsepaths.CreatedPathMap;
+import org.faster.responsepaths.CreatedPathMapRes;
 import org.faster.written.Written;
 import org.faster.written.WtDefault;
 import org.junit.Test;
@@ -18,7 +18,7 @@ public class RfFileNotFoundTest {
 		Written written = new WtDefault(byteOut);
 		ResponseFiles response = new ResponseFilesDefault.RfFileNotFound(
 			new ReponseFilesNone(),
-			new CreatedPathMap().create("/org/faster/filedata"),
+			new CreatedPathMapRes().create("/org/faster/filedata"),
 			written
 		);
 		response.send("not-exists");
