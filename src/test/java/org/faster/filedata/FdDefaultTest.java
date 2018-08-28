@@ -24,14 +24,12 @@ public class FdDefaultTest {
 		File file = new File(folder + "/file.txt");
 		File file2 = new File(folder + "/file2.txt");
 		StringBuilder builder = new StringBuilder()
-			.append(new PathInfoToken().create(true, "/abc", -1, true) + "\n")
+			.append(new PathInfoToken().create(true, "/abc", -1, true))
 			.append("\n")
 			.append(new PathInfoToken().create(false, "/file.txt", file.length()))
-			.append("\n")
 			.append(new Stream(new FileInputStream(file)).asString())
 			.append("\n")
 			.append(new PathInfoToken().create(false, "/file2.txt", file2.length()))
-			.append("\n")
 			.append(new Stream(new FileInputStream(file2)).asString())
 			.append("e\n");
 		ByteArrayInputStream byteIn = new ByteArrayInputStream(builder.toString().getBytes());
