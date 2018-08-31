@@ -12,12 +12,14 @@ import org.faster.token.LtDefault;
 
 public class FdDefault implements FileData {
 	
+	private final FileData directory;
 	private final InputStream input;
 	private final FileDelivered delivered;
 	
-	public FdDefault(final InputStream in, final FileDelivered deliv) {
+	public FdDefault(final FileData dir, final InputStream in, final FileDelivered deliv) {
+		this.directory = dir;
 		this.input = in;
-		this.delivered = new FileDeliveredNotConsumed(deliv);
+		this.delivered = deliv;
 	}
 	
 	@Override
@@ -35,7 +37,8 @@ public class FdDefault implements FileData {
 	
 	private void treatment(final PathInfo info, final LineToken token) throws IOException, ProtocolSyntaxErrorException {
 		if(info.isDirectory()) {
-			new FdIterable(token, this.input, this.delivered).download();
+			this.delivered.directory(info);
+			this.directory.download();
 			return;
 		}
 		this.delivered.delivery(new SingleFileStream(this.input, info.size()), info);
@@ -47,7 +50,7 @@ public class FdDefault implements FileData {
 		private final InputStream input;
 		private final FileDelivered delivered;
 		
-		public FdIterable(final LineToken tok, InputStream in, final FileDelivered deliv) {
+		public FdIterable(final LineToken tok, final InputStream in, final FileDelivered deliv) {
 			this.token = tok;
 			this.input = in;
 			this.delivered = deliv;

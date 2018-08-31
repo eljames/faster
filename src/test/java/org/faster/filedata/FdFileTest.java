@@ -44,5 +44,11 @@ public class FdFileTest {
 		public String result() {
 			return this.content;
 		}
+
+		@Override
+		public void directory(PathInfo info) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 }

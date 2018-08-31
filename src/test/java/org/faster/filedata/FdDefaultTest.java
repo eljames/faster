@@ -14,6 +14,7 @@ import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.pathinfo.PathInfo;
 import org.faster.pathinfo.request.PathInfoToken;
 import org.faster.responsepaths.ResourcePath;
+import org.faster.token.LtDefault;
 import org.junit.Test;
 
 public class FdDefaultTest {
@@ -34,7 +35,7 @@ public class FdDefaultTest {
 			.append("e\n");
 		ByteArrayInputStream byteIn = new ByteArrayInputStream(builder.toString().getBytes());
 		FileDeliveredMany delivered = new FileDeliveredMany();
-		new FdDefault(byteIn, delivered).download();
+		new FdDefault(new FdDefault.FdIterable(new LtDefault(byteIn), byteIn, delivered), byteIn, delivered).download();
 		assertEquals(delivered.expected().get(0), "this example must end here because this is a test.");
 		assertEquals(delivered.expected().get(1), "this file is the second file.");
 	}
@@ -53,6 +54,12 @@ public class FdDefaultTest {
 		
 		public List<String> expected() {
 			return this.content;
+		}
+
+		@Override
+		public void directory(PathInfo info) {
+			// TODO Auto-generated method stub
+			
 		}
 	}
 

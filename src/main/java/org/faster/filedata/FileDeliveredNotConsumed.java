@@ -26,4 +26,9 @@ public class FileDeliveredNotConsumed implements FileDelivered {
 		}
 	}
 
+	@Override
+	public void directory(PathInfo info) {
+		this.origin.directory(info);
+	}
+
 }

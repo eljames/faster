@@ -24,19 +24,27 @@ public class DownloadDefault implements Download {
 	
 	public DownloadDefault(final Connection con, final FileDelivered deliv, Errors err) {
 		this.connection = con;
-		this.delivered = deliv;
+		this.delivered = new FileDeliveredNotConsumed(deliv);
 		this.errors = err;
 	}
 
 	@Override
 	public void download(final CharSequence path) throws ProtocolSyntaxErrorException, IOException {
-		InputStream input = this.connection.input();
-		LineToken token = new LtDefault(input);
-		Written written = new WtDefault(this.connection.output());
+		final InputStream input = this.connection.input();
+		final LineToken token = new LtDefault(input);
+		final Written written = new WtDefault(this.connection.output());
 		Download download = new DownloadRequest(
 			new DownloadResponse(
 				token,
-				new FdDefault(input, this.delivered),
+				new FdDefault(
+					new FdDefault.FdIterable(
+						token,
+						input,
+						this.delivered
+					),
+					input,
+					this.delivered
+				),
 				this.errors
 			),
 			written
