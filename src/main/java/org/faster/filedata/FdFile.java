@@ -13,18 +13,18 @@ public class FdFile implements FileData {
 	
 	private final LineToken token;
 	private final InputStream input;
-	private final FileDelivered delivered;
+	private final HandledFile handled;
 
-	public FdFile(final LineToken tok, InputStream in,final FileDelivered deliv) {
+	public FdFile(final LineToken tok, InputStream in,final HandledFile hdl) {
 		this.token = tok;
 		this.input = in;
-		this.delivered = deliv;
+		this.handled = hdl;
 	}
 
 	@Override
 	public void download() throws IOException, ProtocolSyntaxErrorException {
 		PathInfo info = path(this.token);
-		this.delivered.delivery(new SingleFileStream(this.input, info.size()), info);
+		this.handled.handle(new SingleFileStream(this.input, info.size()), info);
 	}
 	
 	private PathInfo path(LineToken token) throws IOException, ProtocolSyntaxErrorException {

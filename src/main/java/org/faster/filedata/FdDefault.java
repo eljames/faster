@@ -12,14 +12,12 @@ import org.faster.token.LtDefault;
 
 public class FdDefault implements FileData {
 	
-	private final FileData directory;
 	private final InputStream input;
 	private final FileDelivered delivered;
 	
-	public FdDefault(final FileData dir, final InputStream in, final FileDelivered deliv) {
-		this.directory = dir;
+	public FdDefault(final InputStream in, final FileDelivered deliv) {
 		this.input = in;
-		this.delivered = deliv;
+		this.delivered = new FileDeliveredNotConsumed(deliv);
 	}
 	
 	@Override
@@ -37,8 +35,8 @@ public class FdDefault implements FileData {
 	
 	private void treatment(final PathInfo info, final LineToken token) throws IOException, ProtocolSyntaxErrorException {
 		if(info.isDirectory()) {
-			this.delivered.directory(info);
-			this.directory.download();
+			HandledFile handled = new HandledFileNotConsumed(delivered.directory(info));
+			new FdIterable(token, this.input, handled).download();
 			return;
 		}
 		this.delivered.delivery(new SingleFileStream(this.input, info.size()), info);
@@ -48,19 +46,19 @@ public class FdDefault implements FileData {
 		
 		private final LineToken token;
 		private final InputStream input;
-		private final FileDelivered delivered;
+		private final HandledFile handled;
 		
-		public FdIterable(final LineToken tok, final InputStream in, final FileDelivered deliv) {
+		public FdIterable(final LineToken tok, final InputStream in, final HandledFile hdl) {
 			this.token = tok;
 			this.input = in;
-			this.delivered = deliv;
+			this.handled = hdl;
 		}
 
 		@Override
 		public void download() throws IOException, ProtocolSyntaxErrorException {
 			String line = this.token.next();
 			while(line.equals("")) {
-				new FdFile(this.token, this.input, this.delivered).download();
+				new FdFile(this.token, this.input, this.handled).download();
 				line = this.token.next();
 			}
 			if(!line.equals("e")) {

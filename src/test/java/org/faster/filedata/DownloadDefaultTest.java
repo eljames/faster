@@ -7,8 +7,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+
 import org.faster.exception.ProtocolSyntaxErrorException;
-import org.faster.filedata.FdFileTest.FileDeliveredContent;
+import org.faster.pathinfo.PathInfo;
 import org.faster.pathinfo.request.PathInfoToken;
 import org.faster.request.FakeConnection;
 import org.faster.responsepaths.ResourcePath;
@@ -31,6 +33,26 @@ public class DownloadDefaultTest {
 		Download download = new DownloadDefault(new FakeConnection(byteOut, byteIn), delivered);
 		download.download("/abc");
 		assertEquals("this example must end here because this is a test.", delivered.result());
+	}
+	
+	class FileDeliveredContent implements FileDelivered {
+		
+		private String content;
+		
+		@Override
+		public void delivery(InputStream input, PathInfo info) throws IOException {
+			content = new Stream(input).asString();
+		}
+		
+		@Override
+		public HandledFile directory(PathInfo info) {
+			return HandledFile.NOTHING;
+		}
+		
+		public String result() {
+			return this.content;
+		}
+		
 	}
 
 }

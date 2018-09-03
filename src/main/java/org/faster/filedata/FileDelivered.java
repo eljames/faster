@@ -18,8 +18,10 @@ public interface FileDelivered {
 	/**
 	 * If a entire directory will be downloaded (its files e files of sub-directories), this method will be called with
 	 * {@code PathInfo}. If the size is not supported because server don't provide it, the {@code PathInfo.size()} must be -1.
-	 * If the server supports return directory size, this must return the total size of files and sub-directories files.
+	 * If the server supports return directory size, PathInfo must return the total size of files and sub-directories files.
 	 * @param info
+	 * @return HandledFile This object will be called (by HandledFile.handled() method) for each file that belongs to the directory requested.
+	 * @throws IOException 
 	 */
-	void directory(PathInfo info);
+	HandledFile directory(PathInfo info) throws IOException;
 }

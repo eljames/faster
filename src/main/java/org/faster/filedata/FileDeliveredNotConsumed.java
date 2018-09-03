@@ -27,8 +27,8 @@ public class FileDeliveredNotConsumed implements FileDelivered {
 	}
 
 	@Override
-	public void directory(PathInfo info) {
-		this.origin.directory(info);
+	public HandledFile directory(PathInfo info) throws IOException {
+		return this.origin.directory(info);
 	}
 
 }

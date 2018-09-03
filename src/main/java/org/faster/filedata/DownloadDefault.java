@@ -37,11 +37,6 @@ public class DownloadDefault implements Download {
 			new DownloadResponse(
 				token,
 				new FdDefault(
-					new FdDefault.FdIterable(
-						token,
-						input,
-						this.delivered
-					),
 					input,
 					this.delivered
 				),
