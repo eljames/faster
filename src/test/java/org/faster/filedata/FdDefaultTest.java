@@ -47,7 +47,7 @@ public class FdDefaultTest {
 		}
 		
 		@Override
-		public void delivery(InputStream input, PathInfo info) throws IOException {
+		public void file(InputStream input, PathInfo info) throws IOException {
 			this.content.add(new Stream(input).asString());
 		}
 		

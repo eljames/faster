@@ -40,7 +40,7 @@ public class DownloadDefaultTest {
 		private String content;
 		
 		@Override
-		public void delivery(InputStream input, PathInfo info) throws IOException {
+		public void file(InputStream input, PathInfo info) throws IOException {
 			content = new Stream(input).asString();
 		}
 		

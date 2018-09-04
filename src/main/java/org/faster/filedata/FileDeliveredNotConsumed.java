@@ -19,8 +19,8 @@ public class FileDeliveredNotConsumed implements FileDelivered {
 	}
 
 	@Override
-	public void delivery(InputStream input, PathInfo info) throws IOException {
-		this.origin.delivery(input, info);
+	public void file(InputStream input, PathInfo info) throws IOException {
+		this.origin.file(input, info);
 		if(input.read() != -1) {
 			throw new IOException("The 'input' parameter must be all consumed before 'delivery' method finishes.");
 		}

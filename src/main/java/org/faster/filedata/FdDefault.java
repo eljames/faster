@@ -39,7 +39,7 @@ public class FdDefault implements FileData {
 			new FdIterable(token, this.input, handled).download();
 			return;
 		}
-		this.delivered.delivery(new SingleFileStream(this.input, info.size()), info);
+		this.delivered.file(new SingleFileStream(this.input, info.size()), info);
 	}
 	
 	static class FdIterable implements FileData {
