@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import org.faster.feedback.FileFeedback;
 import org.faster.filedata.SingleFileStream;
-import org.faster.pathmap.CpmDefault;
+import org.faster.pathmap.CreatedPathMap;
 import org.faster.pathmap.PathMap;
 import org.faster.responsepaths.ResourcePath;
 import org.junit.Test;
@@ -17,7 +17,7 @@ public class ResponseFilesDefaultTest {
 	@Test
 	public void sendFile() throws IOException {
 		String filepath = new ResourcePath().get(SingleFileStream.class) + "/file.txt";
-		PathMap pathmap = new CpmDefault()
+		PathMap pathmap = new CreatedPathMap()
 			.add("aaa", filepath)
 			.map();
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -32,7 +32,7 @@ public class ResponseFilesDefaultTest {
 	@Test
 	public void sendFilesFromDirectory() throws IOException {
 		String dirpath = new ResourcePath().get(SingleFileStream.class);
-		PathMap pathmap = new CpmDefault()
+		PathMap pathmap = new CreatedPathMap()
 				.add("aaa", dirpath)
 				.map();
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
