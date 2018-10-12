@@ -33,14 +33,14 @@ public class RlCreated implements RequestListened {
 	public void start() throws IOException {
 		ExecutorService executor = Executors.newFixedThreadPool(5);
 		ResponseList responses = responselist();
-			while(true) {
-				RequestListened request = new RlThread(
-					executor,
-					this.server.accept(),
-					responses
-				);
-				request.start();
-			}
+		while(true) {
+			RequestListened request = new RlThread(
+				executor,
+				this.server.accept(),
+				responses
+			);
+			request.start();
+		}
 	}
 	
 	private ResponseList responselist() {
