@@ -4,12 +4,14 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 import org.faster.feedback.FileFeedback;
 import org.faster.filedata.SingleFileStream;
 import org.faster.pathmap.CpmDefault;
 import org.faster.pathmap.PathMap;
 import org.faster.responsepaths.ResourcePath;
+import org.faster.virtualpath.VirtualPath;
 import org.junit.Test;
 
 public class ResponseFilesDefaultTest {
@@ -24,7 +26,18 @@ public class ResponseFilesDefaultTest {
 		new ResponseFilesDefault(
 			pathmap,
 			new ByteArrayOutputStream(),
-			new SdDefault(out, FileFeedback.NOTHING)
+			new CreatedSentData() {
+				
+				@Override
+				public SentData file(VirtualPath dir, OutputStream out) {
+					return new SdDefault(out, FileFeedback.NOTHING);
+				}
+				
+				@Override
+				public SentData directory(VirtualPath dir, OutputStream out) {
+					return new SdDefault(out, FileFeedback.NOTHING);
+				}
+			}
 		).send("aaa");
 		assertEquals("this example must end here because this is a test.", new String(out.toByteArray()));
 	}
@@ -39,7 +52,18 @@ public class ResponseFilesDefaultTest {
 		new ResponseFilesDefault(
 			pathmap,
 			new ByteArrayOutputStream(),
-			new SdDefault(out, FileFeedback.NOTHING)
+			new CreatedSentData() {
+				
+				@Override
+				public SentData file(VirtualPath dir, OutputStream out) {
+					return new SdDefault(out, FileFeedback.NOTHING);
+				}
+				
+				@Override
+				public SentData directory(VirtualPath dir, OutputStream out) {
+					return new SdDefault(out, FileFeedback.NOTHING);
+				}
+			}
 		).send("aaa");
 		assertEquals(
 			new StringBuilder()

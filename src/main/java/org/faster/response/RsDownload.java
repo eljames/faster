@@ -4,21 +4,20 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import org.faster.connection.Connection;
-import org.faster.feedback.FileFeedback;
 import org.faster.pathmap.PathMap;
+import org.faster.responsefiles.CreatedSentData;
 import org.faster.responsefiles.ResponseFiles;
 import org.faster.responsefiles.ResponseFilesDefault;
-import org.faster.responsefiles.SdDefault;
 import org.faster.token.LtDefault;
 
 public class RsDownload implements Response {
 	
 	private final PathMap map;
-	private final FileFeedback feed;
+	private final CreatedSentData sent;
 	
-	public RsDownload(final PathMap mp, final FileFeedback fd) {
+	public RsDownload(final PathMap mp, final CreatedSentData created) {
 		this.map = mp;
-		this.feed = fd;
+		this.sent = created;
 	}
 
 	@Override
@@ -27,10 +26,7 @@ public class RsDownload implements Response {
 		ResponseFiles response = new ResponseFilesDefault(
 			map,
 			out,
-			new SdDefault(
-				out,
-				feed
-			)
+			this.sent
 		);
 		response.send(new LtDefault(connection.input()).next());
 	}

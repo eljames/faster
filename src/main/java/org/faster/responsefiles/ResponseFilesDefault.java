@@ -17,12 +17,12 @@ public class ResponseFilesDefault implements ResponseFiles {
 	
 	private final PathMap pathmap;
 	private final OutputStream output;
-	private final SentData sent;
+	private final CreatedSentData sent;
 	
-	public ResponseFilesDefault(final PathMap map, final OutputStream out, final SentData snd) {
+	public ResponseFilesDefault(final PathMap map, final OutputStream out, final CreatedSentData created) {
 		this.pathmap = map;
 		this.output = out;
-		this.sent = snd;
+		this.sent = created;
 	}
 
 	@Override
@@ -34,7 +34,8 @@ public class ResponseFilesDefault implements ResponseFiles {
 					new RfFinished(written),
 					this.pathmap,
 					written,
-					sent
+					sent,
+					this.output
 				), written
 			),
 			pathmap,
@@ -98,28 +99,30 @@ public class ResponseFilesDefault implements ResponseFiles {
 		private final ResponseFiles origin;
 		private final PathMap pathmap;
 		private final Written written;
-		private final SentData sentdata;
+		private final CreatedSentData sent;
+		private final OutputStream output;
 		
-		public RfFiles(final ResponseFiles response, final PathMap map, final Written wt, final SentData sent) {
+		public RfFiles(final ResponseFiles response, final PathMap map, final Written wt, final CreatedSentData created, final OutputStream out) {
 			this.pathmap = map;
 			this.origin = response;
 			this.written = wt;
-			this.sentdata = sent;
+			this.sent = created;
+			this.output = out;
 		}
 
 		@Override
 		public void send(CharSequence path) throws IOException {
 			VirtualPath virtual = this.pathmap.get(path);
 			if(virtual.isDirectory()) {
-				this.directory(virtual);
+				this.directory(virtual, this.sent.directory(virtual, this.output));
 			}
 			else {
-				this.singlefile(virtual);
+				this.singlefile(virtual, this.sent.directory(virtual, this.output));
 			}
 			this.origin.send(path);
 		}
 		
-		private void directory(final VirtualPath virtual) throws IOException {
+		private void directory(final VirtualPath virtual, final SentData sentdata) throws IOException {
 			PrintedPath printed = new PrintedPathDirectory(
 				new PrintedPathProtocol(
 					new PtResponse(virtual)
@@ -130,35 +133,35 @@ public class ResponseFilesDefault implements ResponseFiles {
 				.write(printed.print())
 				.writeLine()
 				.flush();
-			this.recursive(virtual);
+			this.recursive(virtual, sentdata);
 		}
 		
-		private void recursive(final VirtualPath virtual) throws IOException {
+		private void recursive(final VirtualPath virtual, final SentData sentdata) throws IOException {
 			Collection<VirtualPath> paths = virtual.paths();
 			for(VirtualPath item : paths) {
 				if(item.isDirectory()) {
-					this.recursive(item);
+					this.recursive(item, sentdata);
 				} else {
 					this.written
 						.writeLine()
 						.flush();
-					this.singlefile(item);
+					this.singlefile(item, sentdata);
 				}
 			}
 		}
 		
-		private void singlefile(final VirtualPath virtual) throws IOException {
+		private void singlefile(final VirtualPath virtual, final SentData sentdata) throws IOException {
 			String printed = new PrintedPathProtocol(
 				new PtResponse(virtual)
 			).print();
 			this.written
 				.write(printed)
 				.flush();
-			filedata(virtual);
+			filedata(virtual, sentdata);
 		}
 
-		private void filedata(final VirtualPath virtual) throws IOException {
-			this.sentdata.send(virtual);
+		private void filedata(final VirtualPath virtual, final SentData sentdata) throws IOException {
+			sentdata.send(virtual);
 		}
 	}
 	
