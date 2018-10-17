@@ -36,19 +36,19 @@ public class FdDefault implements FileData {
 	private void treatment(final PathInfo info, final LineToken token) throws IOException, ProtocolSyntaxErrorException {
 		if(info.isDirectory()) {
 			HandledFile handled = new HandledFileNotConsumed(delivered.directory(info));
-			new FdIterable(token, this.input, handled).download();
+			new FdDirectoryIterable(token, this.input, handled).download();
 			return;
 		}
 		this.delivered.file(new SingleFileStream(this.input, info.size()), info);
 	}
 	
-	static class FdIterable implements FileData {
+	static class FdDirectoryIterable implements FileData {
 		
 		private final LineToken token;
 		private final InputStream input;
 		private final HandledFile handled;
 		
-		public FdIterable(final LineToken tok, final InputStream in, final HandledFile hdl) {
+		public FdDirectoryIterable(final LineToken tok, final InputStream in, final HandledFile hdl) {
 			this.token = tok;
 			this.input = in;
 			this.handled = hdl;
