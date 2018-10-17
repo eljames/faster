@@ -48,7 +48,7 @@ public class DownloadDefault implements Download {
 	}
 	
 	/**
-	 * Sends file request to server according to given path.
+	 * Sends requested file to server according to given path.
 	 * @author Eli James Aguiar
 	 *
 	 */
