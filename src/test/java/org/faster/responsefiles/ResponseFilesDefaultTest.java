@@ -22,7 +22,7 @@ public class ResponseFilesDefaultTest {
 		PathMap pathmap = new CpmDefault()
 			.add("aaa", filepath)
 			.map();
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		ByteArrayOutputStream fileout = new ByteArrayOutputStream();
 		new ResponseFilesDefault(
 			pathmap,
 			new ByteArrayOutputStream(),
@@ -30,16 +30,16 @@ public class ResponseFilesDefaultTest {
 				
 				@Override
 				public SentData file(VirtualPath dir, OutputStream out) {
-					return new SdDefault(out, FileFeedback.NOTHING);
+					return new SdDefault(fileout, FileFeedback.NOTHING);
 				}
 				
 				@Override
 				public SentData directory(VirtualPath dir, OutputStream out) {
-					return new SdDefault(out, FileFeedback.NOTHING);
+					return new SdDefault(fileout, FileFeedback.NOTHING);
 				}
 			}
 		).send("aaa");
-		assertEquals("this example must end here because this is a test.", new String(out.toByteArray()));
+		assertEquals("this example must end here because this is a test.", new String(fileout.toByteArray()));
 	}
 	
 	@Test
@@ -48,7 +48,7 @@ public class ResponseFilesDefaultTest {
 		PathMap pathmap = new CpmDefault()
 				.add("aaa", dirpath)
 				.map();
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		ByteArrayOutputStream fileout = new ByteArrayOutputStream();
 		new ResponseFilesDefault(
 			pathmap,
 			new ByteArrayOutputStream(),
@@ -56,12 +56,12 @@ public class ResponseFilesDefaultTest {
 				
 				@Override
 				public SentData file(VirtualPath dir, OutputStream out) {
-					return new SdDefault(out, FileFeedback.NOTHING);
+					return new SdDefault(fileout, FileFeedback.NOTHING);
 				}
 				
 				@Override
 				public SentData directory(VirtualPath dir, OutputStream out) {
-					return new SdDefault(out, FileFeedback.NOTHING);
+					return new SdDefault(fileout, FileFeedback.NOTHING);
 				}
 			}
 		).send("aaa");
@@ -70,7 +70,7 @@ public class ResponseFilesDefaultTest {
 				.append("this file is the second file.")
 				.append("this example must end here because this is a test.")
 				.toString(),
-			new String(out.toByteArray())
+			new String(fileout.toByteArray())
 		);
 	}
 
