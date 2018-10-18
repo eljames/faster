@@ -117,7 +117,7 @@ public class ResponseFilesDefault implements ResponseFiles {
 				this.directory(virtual, this.sent.directory(virtual, this.output));
 			}
 			else {
-				this.singlefile(virtual, this.sent.directory(virtual, this.output));
+				this.singlefile(virtual, this.sent.file(virtual, this.output));
 			}
 			this.origin.send(path);
 		}
