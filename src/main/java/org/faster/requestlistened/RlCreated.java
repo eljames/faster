@@ -34,14 +34,14 @@ public class RlCreated implements RequestListened {
 	public void start() throws IOException {
 		ExecutorService executor = Executors.newFixedThreadPool(5);
 		ResponseList responses = responselist();
-		while(true) {
-			RequestListened request = new RlThread(
-				executor,
-				this.server.accept(),
-				responses
-			);
-			request.start();
-		}
+		RequestListened request = new RlMultiUser(
+			new ChThread(
+				new ChDefault(responses),
+				executor
+			),
+			this.server
+		);
+		request.start();
 	}
 	
 	private ResponseList responselist() {
@@ -52,7 +52,8 @@ public class RlCreated implements RequestListened {
 			)
 		).add(
 			new RsDownload(
-				this.pathmap, this.sent
+				this.pathmap,
+				this.sent
 			)
 		);
 	}
