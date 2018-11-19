@@ -3,8 +3,8 @@ package org.faster.requestlistened;
 import java.io.IOException;
 import java.net.Socket;
 
-import org.faster.connection.CnDefault;
 import org.faster.connection.Connection;
+import org.faster.connection.CreatedConnection;
 import org.faster.responselist.ResponseList;
 import org.faster.token.LineToken;
 import org.faster.token.LtDefault;
@@ -19,11 +19,17 @@ public class ChDefault implements ConnectedHost {
 
 	@Override
 	public void connected(Socket socket) throws IOException {
-		Connection connection = new CnDefault(socket);
+		Connection connection = new CreatedConnection().connect(socket);
 		LineToken token = new LtDefault(
 			connection.input()
 		);
-		this.responses.get(token.next()).execute(connection);
+		while(true) {
+			final String command = token.next();
+			if(command.equals("")) {
+				break;
+			}
+			this.responses.get(command).execute(connection);
+		}
 	}
 
 }
