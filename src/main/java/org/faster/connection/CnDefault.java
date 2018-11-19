@@ -27,4 +27,9 @@ public final class CnDefault implements Connection {
 	public InputStream input() throws IOException {
 		return this.socket.getInputStream();
 	}
+
+	@Override
+	public Socket socket() throws IOException {
+		return this.socket;
+	}
 }

@@ -3,6 +3,8 @@ package org.faster.request;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.Socket;
+
 import org.faster.connection.Connection;
 
 public class FakeConnection implements Connection {
@@ -31,6 +33,11 @@ public class FakeConnection implements Connection {
 	@Override
 	public InputStream input() throws IOException {
 		return this.in;
+	}
+
+	@Override
+	public Socket socket() throws IOException {
+		throw new UnsupportedOperationException();
 	}
 
 }

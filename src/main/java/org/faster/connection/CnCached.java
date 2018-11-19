@@ -3,6 +3,7 @@ package org.faster.connection;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.Socket;
 
 public class CnCached implements Connection {
 	
@@ -29,6 +30,11 @@ public class CnCached implements Connection {
 	@Override
 	public InputStream input() throws IOException {
 		return this.input;
+	}
+
+	@Override
+	public Socket socket() throws IOException {
+		return this.origin.socket();
 	}
 
 }

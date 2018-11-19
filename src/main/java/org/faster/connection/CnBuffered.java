@@ -5,6 +5,7 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.Socket;
 
 /**
  * Buffered connection decorator
@@ -32,6 +33,11 @@ public class CnBuffered implements Connection {
 	@Override
 	public InputStream input() throws IOException {
 		return new BufferedInputStream(this.origin.input(), 8192);
+	}
+
+	@Override
+	public Socket socket() throws IOException {
+		return this.origin.socket();
 	}
 
 }
