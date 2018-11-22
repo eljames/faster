@@ -1,16 +1,14 @@
 package org.faster.pathinfo;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import org.faster.virtualpath.VirtualPath;
 
 public class PrintedPathDirectory implements PrintedPath {
 	
 	private final PrintedPath origin;
-	private final File directory;
+	private final VirtualPath directory;
 	
-	public PrintedPathDirectory(final PrintedPath printed, final File dir) {
+	public PrintedPathDirectory(final PrintedPath printed, final VirtualPath dir) {
 		this.origin = printed;
 		this.directory = dir;
 	}
@@ -27,12 +25,7 @@ public class PrintedPathDirectory implements PrintedPath {
 
 	@Override
 	public String size() throws IOException {
-		Path folder = this.directory.toPath();
-	    long size = Files.walk(folder)
-	      .filter(p -> p.toFile().isFile())
-	      .mapToLong(p -> p.toFile().length())
-	      .sum();
-	    return String.valueOf(size);
+	    return String.valueOf(this.directory.size());
 	}
 
 	@Override

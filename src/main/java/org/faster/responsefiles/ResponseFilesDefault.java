@@ -1,5 +1,7 @@
 package org.faster.responsefiles;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Collection;
@@ -114,20 +116,25 @@ public class ResponseFilesDefault implements ResponseFiles {
 		public void send(CharSequence path) throws IOException {
 			VirtualPath virtual = this.pathmap.get(path);
 			if(virtual.isDirectory()) {
-				this.directory(virtual, this.sent.directory(virtual, this.output));
+				final SentData sentdata = this.sent.directory(virtual, this.output);
+				this.directory(virtual, sentdata);
+				sentdata.finished();
 			}
 			else {
-				this.singlefile(virtual, this.sent.file(virtual, this.output));
+				final SentData sentdata = this.sent.file(virtual, this.output);
+				this.singlefile(virtual, sentdata);
+				sentdata.finished();
 			}
 			this.origin.send(path);
 		}
 		
 		private void directory(final VirtualPath virtual, final SentData sentdata) throws IOException {
+			VirtualPath cached = new VpCachedSize(virtual, virtual.size());
 			PrintedPath printed = new PrintedPathDirectory(
 				new PrintedPathProtocol(
 					new PtResponse(virtual)
 				),
-				virtual.real()
+				cached
 			);
 			this.written
 				.write(printed.print())
@@ -179,6 +186,42 @@ public class ResponseFilesDefault implements ResponseFiles {
 				.write("e")
 				.writeLine()
 				.flush();
+		}
+	}
+	
+	static class VpCachedSize implements VirtualPath {
+		
+		private final VirtualPath origin;
+		private final long size;
+		
+		public VpCachedSize(final VirtualPath path, final long size) {
+			this.origin = path;
+			this.size = size;
+		}
+
+		@Override
+		public CharSequence path() {
+			return this.origin.path();
+		}
+
+		@Override
+		public Collection<VirtualPath> paths() throws IOException {
+			return this.origin.paths();
+		}
+
+		@Override
+		public File real() throws FileNotFoundException {
+			return this.origin.real();
+		}
+
+		@Override
+		public boolean isDirectory() {
+			return this.origin.isDirectory();
+		}
+
+		@Override
+		public long size() throws IOException {
+			return this.size;
 		}
 	}
 }

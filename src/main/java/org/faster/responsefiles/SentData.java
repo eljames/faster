@@ -6,4 +6,5 @@ import org.faster.virtualpath.VirtualPath;
 
 public interface SentData {
 	void send(VirtualPath virtual) throws IOException;
+	void finished();
 }

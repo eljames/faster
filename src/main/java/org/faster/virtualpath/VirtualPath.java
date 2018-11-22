@@ -39,5 +39,13 @@ public interface VirtualPath {
 	 */
 	boolean isDirectory();
 	
+	/**
+	 * Returns the size of this {@link VirtualPath}. It can return a directory size (recursive calculation) if this is a directory, or return a regular file size.
+	 * If the size is not supported, it will return -1. 
+	 * @return
+	 * @throws IOException
+	 */
+	long size() throws IOException;
+	
 
 }

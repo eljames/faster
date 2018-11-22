@@ -2,6 +2,7 @@ package org.faster.virtualpath;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -48,6 +49,11 @@ public class VpMap implements VirtualPath {
 	@Override
 	public boolean isDirectory() {
 		return true;
+	}
+
+	@Override
+	public long size() throws IOException {
+		return -1;
 	}
 
 }

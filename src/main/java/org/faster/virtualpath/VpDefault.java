@@ -3,6 +3,7 @@ package org.faster.virtualpath;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -51,6 +52,16 @@ public class VpDefault implements VirtualPath {
 	@Override
 	public boolean isDirectory() {
 		return this.realFile.isDirectory();
+	}
+
+	@Override
+	public long size() throws IOException {
+		Path folder = this.realFile.toPath();
+	    long size = Files.walk(folder)
+	      .filter(p -> p.toFile().isFile())
+	      .mapToLong(p -> p.toFile().length())
+	      .sum();
+	    return size;
 	}
 
 }
