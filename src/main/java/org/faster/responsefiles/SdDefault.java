@@ -16,19 +16,10 @@ public class SdDefault implements SentData {
 	
 	private final OutputStream output;
 	private final FileFeedback feedback;
-	private final Action action;
-	
-	public SdDefault(final OutputStream out, final FileFeedback feed, final Action act) {
-		this.output = out;
-		this.feedback = feed;
-		this.action = act;
-	}
 	
 	public SdDefault(final OutputStream out, final FileFeedback feed) {
-		this(out, feed, new Action() {
-			@Override
-			public void act() {}
-		});
+		this.output = out;
+		this.feedback = feed;
 	}
 
 	@Override
@@ -44,6 +35,6 @@ public class SdDefault implements SentData {
 
 	@Override
 	public void finished() {
-		this.action.act();
+		this.feedback.finished();
 	}
 }

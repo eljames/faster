@@ -13,6 +13,10 @@ public interface FileFeedback {
 	 * @throws IOException 
 	 */
 	BufferFeedback create(PathInfo info) throws IOException;
+	/**
+	 * Method Called when download is finished.
+	 */
+	void finished();
 	
 	public static final FileFeedback NOTHING = new FileFeedBackNothing();
 	
@@ -21,6 +25,11 @@ public interface FileFeedback {
 		@Override
 		public BufferFeedback create(PathInfo info) {
 			return BufferFeedback.NOTHING;
+		}
+
+		@Override
+		public void finished() {
+			// Do nothing
 		}
 		
 	}
