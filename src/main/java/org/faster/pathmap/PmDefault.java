@@ -112,7 +112,7 @@ public class PmDefault implements PathMap {
 		 * @return
 		 */
 		public TransformedPath firstLevel() {
-			return new TransformedPath(this.path.getName(0));
+			return new TransformedPath(Paths.get("/").resolve(this.path.getName(0)));
 		}
 		
 		public TransformedPath rootLevel() {
