@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 
 import org.faster.dirmap.DmDefault;
 import org.faster.pathmap.PathMap;
@@ -30,7 +31,14 @@ public class RlCreated implements RequestListened {
 
 	@Override
 	public void start() throws IOException {
-		ExecutorService executor = Executors.newFixedThreadPool(5);
+		ExecutorService executor = Executors.newFixedThreadPool(5, new ThreadFactory() {
+			@Override
+			public Thread newThread(Runnable r) {
+				Thread thread = new Thread(r);
+				thread.setDaemon(true);
+				return thread;
+			}
+		});
 		ResponseList responses = responselist();
 		RequestListened request = new RlMultiUser(
 			new ChThread(
