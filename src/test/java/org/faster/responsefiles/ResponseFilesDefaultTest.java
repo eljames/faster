@@ -6,7 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import org.faster.feedback.FileFeedback;
+import org.faster.feedback.BufferFeedback;
 import org.faster.filedata.SingleFileStream;
 import org.faster.pathmap.CpmDefault;
 import org.faster.pathmap.PathMap;
@@ -30,12 +30,12 @@ public class ResponseFilesDefaultTest {
 				
 				@Override
 				public SentData file(VirtualPath dir, OutputStream out) {
-					return new SdDefault(fileout, FileFeedback.NOTHING);
+					return new SdDefault(fileout, BufferFeedback.NOTHING);
 				}
 				
 				@Override
 				public SentData directory(VirtualPath dir, OutputStream out) {
-					return new SdDefault(fileout, FileFeedback.NOTHING);
+					return new SdDefault(fileout, BufferFeedback.NOTHING);
 				}
 			}
 		).send("aaa");
@@ -56,12 +56,12 @@ public class ResponseFilesDefaultTest {
 				
 				@Override
 				public SentData file(VirtualPath dir, OutputStream out) {
-					return new SdDefault(fileout, FileFeedback.NOTHING);
+					return new SdDefault(fileout, BufferFeedback.NOTHING);
 				}
 				
 				@Override
 				public SentData directory(VirtualPath dir, OutputStream out) {
-					return new SdDefault(fileout, FileFeedback.NOTHING);
+					return new SdDefault(fileout, BufferFeedback.NOTHING);
 				}
 			}
 		).send("aaa");
