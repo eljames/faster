@@ -20,7 +20,7 @@ public class ResponseFilesDefaultTest {
 	public void sendFile() throws IOException {
 		String filepath = new ResourcePath().get(SingleFileStream.class) + "/file.txt";
 		PathMap pathmap = new CpmDefault()
-			.add("aaa", filepath)
+			.add("/aaa", filepath)
 			.map();
 		ByteArrayOutputStream fileout = new ByteArrayOutputStream();
 		new ResponseFilesDefault(
@@ -38,7 +38,7 @@ public class ResponseFilesDefaultTest {
 					return new SdDefault(fileout, BufferFeedback.NOTHING);
 				}
 			}
-		).send("aaa");
+		).send("/aaa");
 		assertEquals("this example must end here because this is a test.", new String(fileout.toByteArray()));
 	}
 	
@@ -46,7 +46,7 @@ public class ResponseFilesDefaultTest {
 	public void sendFilesFromDirectory() throws IOException {
 		String dirpath = new ResourcePath().get(SingleFileStream.class);
 		PathMap pathmap = new CpmDefault()
-				.add("aaa", dirpath)
+				.add("/aaa", dirpath)
 				.map();
 		ByteArrayOutputStream fileout = new ByteArrayOutputStream();
 		new ResponseFilesDefault(
@@ -64,7 +64,7 @@ public class ResponseFilesDefaultTest {
 					return new SdDefault(fileout, BufferFeedback.NOTHING);
 				}
 			}
-		).send("aaa");
+		).send("/aaa");
 		assertEquals(
 			new StringBuilder()
 				.append("this file is the second file.")

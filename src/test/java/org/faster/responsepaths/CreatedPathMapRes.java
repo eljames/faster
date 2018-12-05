@@ -19,7 +19,7 @@ public class CreatedPathMapRes {
 	public PathMap create(String resourcePath) {
 		Map<String, Path> dirs = new HashMap<>();
 		String path = new TestPath().resources() + resourcePath;
-		dirs.put("media", Paths.get(path));
+		dirs.put("/media", Paths.get(path));
 		return new PmNoRelative(
 			new PmDefault(dirs)
 		);

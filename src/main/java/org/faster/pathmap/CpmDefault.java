@@ -1,5 +1,7 @@
 package org.faster.pathmap;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -13,7 +15,10 @@ public class CpmDefault implements CreatedPathMap {
 		this.map = new HashMap<>();
 	}
 	
-	public CreatedPathMap add(String virtual, String real) {
+	public CreatedPathMap add(String virtual, String real) throws IOException {
+		if(!new File(virtual).isAbsolute()) {
+			throw new IOException("The new virtual path must be a absolute path. Eg: /audio/music insead of audio/music");
+		}
 		this.map.put(virtual, Paths.get(real));
 		return this;
 	}
