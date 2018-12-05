@@ -64,7 +64,7 @@ public class RlCreated implements RequestListened {
 				this.configuration.download(
 					new RsDownload(
 						this.pathmap,
-						this.configuration.sent()
+						this.configuration
 					)
 				)
 			);

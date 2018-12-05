@@ -5,7 +5,7 @@ import java.io.OutputStream;
 
 import org.faster.connection.Connection;
 import org.faster.pathmap.PathMap;
-import org.faster.responsefiles.CreatedSentData;
+import org.faster.requestlistened.ListenedConfiguration;
 import org.faster.responsefiles.ResponseFiles;
 import org.faster.responsefiles.ResponseFilesDefault;
 import org.faster.token.LtDefault;
@@ -13,11 +13,11 @@ import org.faster.token.LtDefault;
 public class RsDownload implements Response {
 	
 	private final PathMap map;
-	private final CreatedSentData sent;
+	private final ListenedConfiguration configuration;
 	
-	public RsDownload(final PathMap mp, final CreatedSentData created) {
+	public RsDownload(final PathMap mp, final ListenedConfiguration config) {
 		this.map = mp;
-		this.sent = created;
+		this.configuration = config;
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public class RsDownload implements Response {
 		ResponseFiles response = new ResponseFilesDefault(
 			map,
 			out,
-			this.sent
+			this.configuration.sent(connection)
 		);
 		response.send(new LtDefault(connection.input()).next());
 	}

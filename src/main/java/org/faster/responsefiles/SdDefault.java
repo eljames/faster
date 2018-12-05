@@ -19,6 +19,10 @@ public class SdDefault implements SentData {
 		this.output = out;
 		this.feedback = feed;
 	}
+	
+	public SdDefault(final OutputStream out) {
+		this(out, BufferFeedback.NOTHING);
+	}
 
 	@Override
 	public void send(final VirtualPath path) throws IOException {
