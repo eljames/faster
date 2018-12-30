@@ -4,10 +4,10 @@ import org.faster.feedback.BufferFeedback;
 
 public class BfbDefault implements BufferFeedback {
 	
-	private final TotalUploaded uploaded;
+	private final TotalTransfer uploaded;
 	private final Ticker ticker;
 	
-	public BfbDefault(final TotalUploaded totup, final Ticker tckr) {
+	public BfbDefault(final TotalTransfer totup, final Ticker tckr) {
 		this.uploaded = totup;
 		this.ticker = tckr;
 	}
