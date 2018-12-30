@@ -1,6 +1,6 @@
 package org.faster.feedback.transfer;
 
-public interface TotalTransfer {
+public interface UpdatedTransferSize {
 	public void update();
 	public void add(int buffer);
 }
