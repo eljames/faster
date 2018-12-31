@@ -1,6 +1,6 @@
 package org.faster.server.uploads.creation;
 
-public interface DownloadedFeedback {
+public interface TransferedFeedback {
 	
 	/**
 	 * Get the size already downloaded, in bytes.

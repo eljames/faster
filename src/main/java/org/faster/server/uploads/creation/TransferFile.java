@@ -9,7 +9,7 @@ public interface TransferFile {
 	 * when the total size of all files is reached.
 	 * @param downloaded
 	 */
-	void downloaded(final DownloadedFeedback downloaded);
+	void downloaded(final TransferedFeedback downloaded);
 	
 	/**
 	 * Sends to {@link UploadElement} object the upload timeleft. The timeleft is in milliseconds.  
