@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
@@ -30,7 +29,7 @@ public class VpMap implements VirtualPath {
 		for(Entry<String, Path> path : this.map.entrySet()) {
 			virtualCollection.add(
 				new VpDefault(
-					Paths.get("/" + path.getKey()),
+					"/" + path.getKey(),
 					path.getValue(),
 					path.getValue().toFile()
 				)

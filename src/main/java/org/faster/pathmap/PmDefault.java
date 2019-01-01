@@ -23,15 +23,14 @@ public class PmDefault implements PathMap {
 		if(path.equals("/")) {
 			return new VpMap(this.dirs);
 		}
-		Path virtual = Paths.get(path.toString());
-		Path realPath = new RealPath(dirs).asReal(virtual);
+		Path realPath = new RealPath(dirs).asReal(path.toString());
 		File realFile = realPath.toFile();
 		if(!realFile.exists()) {
 			throw new FileNotFoundException(noVirtualPathMessage(path));
 		}
 		return new VpDefault(
-			new TransformedPath(virtual).rootLevel().asPath(),
-			new RealPath(this.dirs).realRoot(virtual),
+			new TransformedPath(path.toString()).rootLevel().asPath(),
+			new RealPath(this.dirs).realRoot(path.toString()),
 			realFile
 		);
 	}
@@ -46,7 +45,7 @@ public class PmDefault implements PathMap {
 			if(path.equals("/")) {
 				return true;
 			}
-			Path filePath = new RealPath(this.dirs).asReal(Paths.get(path.toString()));
+			Path filePath = new RealPath(this.dirs).asReal(path.toString());
 			return filePath.toFile().exists();
 		} catch (FileNotFoundException e) {
 			return false;
@@ -67,31 +66,25 @@ public class PmDefault implements PathMap {
 		 * @return
 		 * @throws FileNotFoundException 
 		 */
-		public Path asReal(Path virtualPath) throws FileNotFoundException {
-			
+		public Path asReal(String virtualPath) throws FileNotFoundException {
 			TransformedPath transformed = new TransformedPath(virtualPath);
-			
-			String virtualRoot = transformed.firstLevel().asPath().toString();
-			
+			String virtualRoot = "/" + transformed.firstLevel().asPath();
 			if(!this.dirs.containsKey(virtualRoot)) {
 				throw new FileNotFoundException(noVirtualPathMessage(virtualRoot));
 			}
 			return concat(virtualRoot, transformed.fromSecond().asPath());
 		}
 		
-		public Path realRoot(Path virtualPath) throws FileNotFoundException {
+		public Path realRoot(String virtualPath) throws FileNotFoundException {
 			TransformedPath transformed = new TransformedPath(virtualPath);
-			
-			String virtualRoot = transformed.firstLevel().asPath().toString();
-			
+			String virtualRoot = "/" + transformed.firstLevel().asPath();
 			if(!this.dirs.containsKey(virtualRoot)) {
 				throw new FileNotFoundException(noVirtualPathMessage(virtualRoot));
 			}
-			
-			return Paths.get("/").resolve(this.dirs.get(virtualRoot));
+			return this.dirs.get(virtualRoot);
 		}
 		
-		private Path concat(String virtualRootKey, Path rest) {
+		private Path concat(String virtualRootKey, String rest) {
 			return this.dirs.get(virtualRootKey).resolve(rest);
 		}
 		
@@ -99,24 +92,24 @@ public class PmDefault implements PathMap {
 	
 	final class TransformedPath {
 		
-		private final Path path;
+		private final String path;
 		
-		public TransformedPath(final Path path) {
+		public TransformedPath(final String path) {
 			this.path = path;
 		}
 		
 		/**
 		 * Get the first level from path.
-		 * If the path is /home/doc/pdf, the first level is /home.
+		 * If the path is /home/doc/pdf, the first level is home.
 		 * Considering that the level zero is root '/'.
 		 * @return
 		 */
 		public TransformedPath firstLevel() {
-			return new TransformedPath(Paths.get("/").resolve(this.path.getName(0)));
+			return new TransformedPath(Paths.get(this.path).getName(0).toString());
 		}
 		
 		public TransformedPath rootLevel() {
-			return new TransformedPath(Paths.get("/").resolve(this.firstLevel().asPath()));
+			return new TransformedPath("/" + this.firstLevel().asPath());
 		}
 		
 		/**
@@ -128,12 +121,13 @@ public class PmDefault implements PathMap {
 		 * @return
 		 */
 		public TransformedPath fromSecond() {
-			if(this.path.getNameCount() > 1)
-				return new TransformedPath(this.path.subpath(1, this.path.getNameCount()));
-			return new TransformedPath(Paths.get(""));
+			Path pathobj = Paths.get(this.path);
+			if(pathobj.getNameCount() > 1)
+				return new TransformedPath(pathobj.subpath(1, pathobj.getNameCount()).toString());
+			return new TransformedPath("");
 		}
 		
-		public Path asPath() {
+		public String asPath() {
 			return this.path;
 		}
 	}

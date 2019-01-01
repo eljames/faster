@@ -5,16 +5,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 
 public class VpDefault implements VirtualPath {
 	
-	final Path virtualRoot;
+	final String virtualRoot;
 	final Path realRoot;
 	final File realFile;
 	
-	public VpDefault(final Path virtualRoot, Path realRoot, final File file) {
+	public VpDefault(final String virtualRoot, Path realRoot, final File file) {
 		this.virtualRoot = virtualRoot;
 		this.realRoot = realRoot;
 		this.realFile = file;
@@ -22,9 +23,9 @@ public class VpDefault implements VirtualPath {
 
 	@Override
 	public CharSequence path() {
-		return this.virtualRoot.resolve(
+		return Paths.get(this.virtualRoot).resolve(
 			this.realRoot.relativize(this.realFile.toPath())
-		).toString();
+		).toString().replace(File.separator, "/");
 	}
 
 	@Override

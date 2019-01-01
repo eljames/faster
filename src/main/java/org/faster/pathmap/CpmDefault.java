@@ -1,6 +1,5 @@
 package org.faster.pathmap;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,7 +15,7 @@ public class CpmDefault implements CreatedPathMap {
 	}
 	
 	public CreatedPathMap add(String virtual, String real) throws IOException {
-		if(!new File(virtual).isAbsolute()) {
+		if(!virtual.startsWith("/")) {
 			throw new IOException("The new virtual path must be a absolute path. Eg: /audio/music insead of audio/music");
 		}
 		this.map.put(virtual, Paths.get(real));
