@@ -12,9 +12,10 @@ public class Ticker {
 		this.interval = new Interval(System.currentTimeMillis());
 	}
 	
-	public void execute() {;
-		if(this.period >= this.interval.calculate()) {
+	public void execute() {
+		if(this.period < this.interval.time()) {
 			this.action.act(this.interval);
+			this.interval.restart();
 		}
 	}
 

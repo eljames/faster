@@ -11,7 +11,9 @@ public class TimeLeft {
 	}
 	
 	public long time() {
-		long timeleft = sizeleft.size() / (long)rate.rate();
-		return timeleft;
+		if(rate.rate() > 0) {
+			return sizeleft.size() / (long)rate.rate();
+		}
+		return Long.MAX_VALUE;
 	}
 }
