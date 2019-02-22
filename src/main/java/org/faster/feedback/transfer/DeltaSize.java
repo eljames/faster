@@ -12,8 +12,11 @@ public class DeltaSize {
 	
 	public long difference() {
 		long difference = recent.size() - this.initial;
-		this.initial = recent.size();
 		return difference;
+	}
+	
+	public void restart() {
+		this.initial = recent.size();
 	}
 
 }

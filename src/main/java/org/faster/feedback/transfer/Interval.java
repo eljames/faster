@@ -4,20 +4,16 @@ public class Interval {
 	
 	// Data bag
 	private long initial;
-	private long interval;
 	
 	public Interval(final long initial) {
 		this.initial = initial;
 	}
 
-	public long calculate() {
-		long end = System.currentTimeMillis();
-		this.interval = end - initial;
-		this.initial = end;
-		return interval;
+	public void restart() {
+		this.initial = System.currentTimeMillis();
 	}
 	
 	public long time() {
-		return this.interval;
+		return System.currentTimeMillis() - this.initial;
 	}
 }
