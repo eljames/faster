@@ -18,5 +18,8 @@ public class Ticker {
 			this.interval.restart();
 		}
 	}
-
+	
+	public void finished() {
+		this.action.act(this.interval);
+	}
 }

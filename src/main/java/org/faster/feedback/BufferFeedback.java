@@ -8,6 +8,7 @@ public interface BufferFeedback {
 	 * , and each time {@code read} was 20, it means that was read 5 x 20 bytes = 100 bytes already read.
 	 */ 
 	void feed(int read);
+	void finished();
 	
 	public static final BufferFeedBackNothing NOTHING = new BufferFeedBackNothing();
 	
@@ -17,7 +18,11 @@ public interface BufferFeedback {
 		public void feed(int read) {
 			// Nothing
 		}
-		
+
+		@Override
+		public void finished() {
+			// Nothing
+		}
 	}
 
 }
