@@ -12,7 +12,7 @@ public interface TransferFile {
 	void downloaded(final TransferedFeedback downloaded);
 	
 	/**
-	 * Sends to {@link UploadElement} object the upload timeleft. The timeleft is in milliseconds.  
+	 * Sends to {@link TransferElement} object the upload timeleft. The timeleft is in milliseconds.  
 	 * @param timeleft
 	 */
 	void timeleft(TimeLeft timeleft);
