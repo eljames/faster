@@ -19,25 +19,28 @@ public class DefaultHandledFile implements HandledFile {
 	private final File target;
 	private final TickerAction action;
 	private final TransferElement element;
+	private final TransferedSize tranfereddir;
 	
-	public DefaultHandledFile(final File target, final TickerAction act, final TransferElement elem) {
+	public DefaultHandledFile(final File target, final TickerAction act, final TransferElement elem, final TransferedSize tranfereddir) {
 		this.action = act;
 		this.target = target;
 		this.element = elem;
+		this.tranfereddir = tranfereddir;
 	}
 
 	@Override
 	public void handle(final InputStream input, final PathInfo info) throws IOException {
 		
 		final File file = new File(this.target.getAbsolutePath() + File.separator + info.path());
-		final TransferedSize transfered = new TransferedSize();
-		file.mkdirs();
+		if(!file.getParentFile().exists()) {
+			file.getParentFile().mkdirs();
+		}
 		FileOutputStream out = new FileOutputStream(file);
 		CopiedData copied = new CdDefault(
 			out,
 			new BufferFeedbackCreated(
 				this.element,
-				transfered,
+				this.tranfereddir,
 				this.action
 			).create(new VpPath(info))
 		);

@@ -19,48 +19,43 @@ import org.faster.virtualpath.VpPath;
 
 public class FileDeliveredDefault implements FileDelivered {
 
-	private final ChosenPath path;
+	private final ChosenPath chosen;
 	private final Transferences downloads;
 	private final Connection connection;
 	
 	public FileDeliveredDefault(final ChosenPath chosen, final Transferences downs, final Connection con) {
-		this.path = chosen;
+		this.chosen = chosen;
 		this.downloads = downs;
 		this.connection = con;
 	}
 	
 	@Override
 	public void file(InputStream input, PathInfo info) throws IOException {
-		this.directory(info);
+		this.download(info, this.chosen.get()).handle(input, info);
 	}
 
 	@Override
 	public HandledFile directory(PathInfo info) throws IOException {
+		return this.download(info, this.chosen.get());
+	}
+	
+	private HandledFile download(final PathInfo info, File finaldir) throws IOException {
 		final VirtualPath virtual = new VpPath(info);
-		final File targetdir = this.path.get();
-		final File finaldir = new File(targetdir.getAbsolutePath() + File.separator + name(info));
-		final TransferedSize transfered = new TransferedSize();
+		final TransferedSize transfereddir = new TransferedSize();
 		final TransferElement element = this.downloads.add(virtual, this.connection);
 		return new DefaultHandledFile(
 			finaldir,
 			new TaTotal(
 				element,
-				new DeltaSize(transfered),
+				new DeltaSize(transfereddir),
 				new SizeLeft(
-					transfered,
+					transfereddir,
 					info.size()
 				),
-				transfered
+				transfereddir
 			),
-			element
+			element,
+			transfereddir
 		);
-	}
-	
-	private String name(final PathInfo info) throws IOException {
-		if(info.isDirectory()) {
-			String[] paths = info.path().toString().split("/");
-			return paths[paths.length - 1];
-		}
-		return "";
 	}
 }
