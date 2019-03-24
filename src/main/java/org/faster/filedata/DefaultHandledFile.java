@@ -35,5 +35,4 @@ public class DefaultHandledFile implements HandledFile {
 		);
 		copied.copy(input);
 	}
-
 }
