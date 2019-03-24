@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.faster.connection.Connection;
+import org.faster.feedback.transfer.BufferFeedbackCreated;
 import org.faster.feedback.transfer.DeltaSize;
 import org.faster.feedback.transfer.SizeLeft;
 import org.faster.feedback.transfer.TaTotal;
@@ -45,17 +46,18 @@ public class FileDeliveredDefault implements FileDelivered {
 		final TransferElement element = this.downloads.add(virtual, this.connection);
 		return new DefaultHandledFile(
 			finaldir,
-			new TaTotal(
+			new BufferFeedbackCreated(
 				element,
-				new DeltaSize(transfereddir),
-				new SizeLeft(
-					transfereddir,
-					info.size()
-				),
-				transfereddir
-			),
-			element,
-			transfereddir
+				new TaTotal(
+					element,
+					new DeltaSize(transfereddir),
+					new SizeLeft(
+						transfereddir,
+						info.size()
+					),
+					transfereddir
+				)
+			)
 		);
 	}
 }

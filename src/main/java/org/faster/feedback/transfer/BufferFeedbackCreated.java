@@ -13,6 +13,12 @@ public class BufferFeedbackCreated {
 	private final TransferedSize transfereddir;
 	private final TickerAction action;
 	
+	public BufferFeedbackCreated(final TransferElement ue, final TickerAction act) {
+		this.upload = ue;
+		this.transfereddir = new TransferedSize();
+		this.action = act;
+	}
+	
 	public BufferFeedbackCreated(final TransferElement ue, final TransferedSize ts, final TickerAction act) {
 		this.upload = ue;
 		this.transfereddir = ts;

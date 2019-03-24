@@ -5,27 +5,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import org.faster.feedback.transfer.BufferFeedbackCreated;
-import org.faster.feedback.transfer.TickerAction;
-import org.faster.feedback.transfer.TransferedSize;
 import org.faster.filedata.CdDefault;
 import org.faster.filedata.CopiedData;
 import org.faster.filedata.HandledFile;
 import org.faster.pathinfo.PathInfo;
-import org.faster.server.uploads.creation.TransferElement;
 import org.faster.virtualpath.VpPath;
 
 public class DefaultHandledFile implements HandledFile {
 	
 	private final File target;
-	private final TickerAction action;
-	private final TransferElement element;
-	private final TransferedSize tranfereddir;
+	private final BufferFeedbackCreated createdbufferfb;
 	
-	public DefaultHandledFile(final File target, final TickerAction act, final TransferElement elem, final TransferedSize tranfereddir) {
-		this.action = act;
+	public DefaultHandledFile(final File target, final BufferFeedbackCreated cbfb) {
 		this.target = target;
-		this.element = elem;
-		this.tranfereddir = tranfereddir;
+		this.createdbufferfb = cbfb;
 	}
 
 	@Override
@@ -38,11 +31,7 @@ public class DefaultHandledFile implements HandledFile {
 		FileOutputStream out = new FileOutputStream(file);
 		CopiedData copied = new CdDefault(
 			out,
-			new BufferFeedbackCreated(
-				this.element,
-				this.tranfereddir,
-				this.action
-			).create(new VpPath(info))
+			this.createdbufferfb.create(new VpPath(info))
 		);
 		copied.copy(input);
 	}
