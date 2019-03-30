@@ -48,6 +48,7 @@ public class FileDeliveredDefault implements FileDelivered {
 			finaldir,
 			new BufferFeedbackCreated(
 				element,
+				transfereddir,
 				new TaTotal(
 					element,
 					new DeltaSize(transfereddir),
