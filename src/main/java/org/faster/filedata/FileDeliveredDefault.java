@@ -58,7 +58,8 @@ public class FileDeliveredDefault implements FileDelivered {
 					),
 					transfereddir
 				)
-			)
+			),
+			info
 		);
 	}
 }

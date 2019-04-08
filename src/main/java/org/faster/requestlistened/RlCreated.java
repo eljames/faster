@@ -36,6 +36,7 @@ public class RlCreated implements RequestListened {
 			public Thread newThread(Runnable r) {
 				Thread thread = new Thread(r);
 				thread.setDaemon(true);
+				thread.setName("Faster Server Request Thread");
 				return thread;
 			}
 		});

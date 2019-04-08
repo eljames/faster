@@ -26,7 +26,7 @@ public class BufferFeedbackCreated {
 			new BfbDefault(
 				this.transfereddir,
 				new Ticker(
-					100,
+					1000,
 					new TaUI(
 						this.action,
 						transferfile,

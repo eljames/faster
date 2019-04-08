@@ -34,6 +34,5 @@ public class CdDefault implements CopiedData {
 			this.output.write(bytes, 0, read);
 			feed.feed(read);
 		}
-		this.feed.finished();
 	}
 }

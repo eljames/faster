@@ -1,7 +1,9 @@
 package org.faster.token;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 public class LtDefault implements LineToken {
 	
@@ -13,14 +15,14 @@ public class LtDefault implements LineToken {
 
 	@Override
 	public String next() throws IOException {
-		StringBuilder sb = new StringBuilder();
+		ByteArrayOutputStream write = new ByteArrayOutputStream();
 		char ch = '\0';
 		int data = -1;
 		while((data = this.input.read()) != -1) {
 			ch = (char)data;
 			if(ch == '\n') break;
-			sb.append(ch);
+			write.write(ch);
 		}
-		return sb.toString();
+		return new String(write.toByteArray(), StandardCharsets.UTF_8);
 	}
 }
