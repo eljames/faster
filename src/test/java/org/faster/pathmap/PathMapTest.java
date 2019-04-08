@@ -33,7 +33,7 @@ public class PathMapTest {
 		VirtualPath virtual = new CreatedPathMapRes().create("/org/faster/responsepaths/root/pics").get("/media");
 		List<VirtualPath> list = new ArrayList<>(virtual.paths());
 		Collections.sort(list, new VirtualComparator());
-		assertTrue(list.get(0).path().equals("/media/file_test.txt"));
+		assertTrue(list.get(0).path().equals("/media/file_test_çã.txt"));
 		assertTrue(list.get(1).path().equals("/media/me.txt"));
 		assertTrue(list.get(2).path().equals("/media/travel"));
 	}

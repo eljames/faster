@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+
 import org.faster.dirmap.DmDefault;
 import org.faster.pathinfo.request.PathItemsToken;
 import org.faster.responsepaths.ResponsePaths;
@@ -18,9 +20,9 @@ public class RspResponseTest {
 	public void responsePath() throws IOException {
 		
 		String expected = new PathItemsToken()
+				.append(false, "/media/pics/file_test_çã.txt", 25)
 				.append(false, "/media/pics/me.txt", 55)
 				.append(true, "/media/pics/travel", -1)
-				.append(false, "/media/pics/file_test.txt", 25)
 				.builder()
 				.toString();
 		
@@ -38,7 +40,7 @@ public class RspResponseTest {
 		);
 		
 		responsed.respond("/media/pics");
-		assertEquals(expected, new String(byteOut.toByteArray()));
+		assertEquals(expected, new String(byteOut.toByteArray(), StandardCharsets.UTF_8));
 	}
 
 }
