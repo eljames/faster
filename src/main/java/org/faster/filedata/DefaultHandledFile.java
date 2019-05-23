@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.regex.Pattern;
 
 import org.faster.feedback.BufferFeedback;
 import org.faster.feedback.transfer.BufferFeedbackCreated;
@@ -30,8 +31,8 @@ public class DefaultHandledFile implements HandledFile {
 		
 		final File file = new CreatedTarget(
 			new RelativisedPath(
-				this.root.path().toString(),
-				info.path().toString()
+				this.root,
+				info
 			),
 			this.target
 		).target();
@@ -48,16 +49,26 @@ public class DefaultHandledFile implements HandledFile {
 
 class RelativisedPath {
 	
-	private final String first;
-	private final String all;
+	private final PathInfo root;
+	private final PathInfo file;
 	
-	public RelativisedPath(final String first, final String all) {
-		this.first = first;
-		this.all = all;
+	public RelativisedPath(final PathInfo root, final PathInfo info) {
+		this.root = root;
+		this.file = info;
 	}
 	
-	public String path() {
-		return this.all.replaceFirst(this.first, "");
+	public String path() throws IOException {
+		return last(this.root) +
+		this.file.path().toString().replaceFirst(
+			Pattern.quote(this.root.path().toString()),
+			""
+		);
+	}
+	
+	private String last(final PathInfo info) throws IOException {
+		final String[] parts = info.path().toString().split("/");
+		final String fileName = parts[parts.length - 1];
+		return fileName;
 	}
 }
 
@@ -71,11 +82,12 @@ class CreatedTarget {
 		this.target = target;
 	}
 	
-	public File target() {
+	public File target() throws IOException {
 		File file = new File(this.target.getAbsoluteFile() + File.separator + this.relative.path());
 		if(!file.getParentFile().exists()) {
 			file.getParentFile().mkdirs();
 		}
 		return file;
 	}
+
 }
