@@ -93,6 +93,10 @@ public class DownloadDefault implements Download {
 				this.filedata.download();
 				return;
 			}
+			error(response, path);
+		}
+		
+		private void error(final String response, CharSequence path) throws IOException, ProtocolSyntaxErrorException {
 			if(response.equals("err")) {
 				this.errors.handle(this.token.next(), path);
 				return;
