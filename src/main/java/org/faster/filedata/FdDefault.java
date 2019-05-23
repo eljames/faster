@@ -39,9 +39,20 @@ public class FdDefault implements FileData {
 			new FdDirectoryIterable(token, this.input, handled).download();
 			return;
 		}
-		this.delivered.file(new SingleFileStream(this.input, info.size()), info);
+		singleFile(info, token);
 	}
 	
+	private void singleFile(PathInfo info, LineToken token) throws IOException, ProtocolSyntaxErrorException {
+		this.delivered.file(new SingleFileStream(this.input, info.size()), info);
+		end(token.next());
+	}
+	
+	static void end(String line) throws ProtocolSyntaxErrorException {
+		if(!line.equals("e")) {
+			throw new ProtocolSyntaxErrorException("The token 'e' or [void token] expect");
+		}
+	}
+
 	static class FdDirectoryIterable implements FileData {
 		
 		private final LineToken token;
@@ -61,9 +72,7 @@ public class FdDefault implements FileData {
 				new FdFile(this.token, this.input, this.handled).download();
 				line = this.token.next();
 			}
-			if(!line.equals("e")) {
-				throw new ProtocolSyntaxErrorException("The token 'e' or [void token] expect");
-			}
+			end(line);
 		}
 		
 	}
