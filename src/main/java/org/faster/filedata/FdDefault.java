@@ -49,7 +49,7 @@ public class FdDefault implements FileData {
 	
 	static void end(String line) throws ProtocolSyntaxErrorException {
 		if(!line.equals("e")) {
-			throw new ProtocolSyntaxErrorException("The token 'e' or [void token] expect");
+			throw new ProtocolSyntaxErrorException("The token 'e' or [void token] expect. Actual: " + line);
 		}
 	}
 
