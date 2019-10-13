@@ -27,6 +27,7 @@ public class DownloadDefaultTest {
 			.append("k\n")
 			.append(new PathInfoToken().create(false, "/abc", file.length()))
 			.append(new Stream(new FileInputStream(file)).asString())
+			.append("e\n")
 			.toString();
 		ByteArrayInputStream byteIn = new ByteArrayInputStream(stream.getBytes());
 		FileDeliveredContent delivered = new FileDeliveredContent();
