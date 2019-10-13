@@ -16,7 +16,7 @@ public class CpmDefault implements CreatedPathMap {
 	
 	public CreatedPathMap add(String virtual, String real) throws IOException {
 		if(!virtual.startsWith("/")) {
-			throw new IOException("The new virtual path must be a absolute path. Eg: /audio/music insead of audio/music");
+			throw new IOException("The new virtual path must be a absolute path. Eg: /audio/music instead of audio/music");
 		}
 		this.map.put(virtual, Paths.get(real));
 		return this;
