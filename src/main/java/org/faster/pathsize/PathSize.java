@@ -33,7 +33,7 @@ public final class PathSize {
 	private void request(String virtualPath) throws IOException {
 		WtDefault written = new WtDefault(this.con.output());
 		written
-		.write("siz")
+		.write("sz")
 		.writeLine()
 		.write(virtualPath)
 		.writeLine()
