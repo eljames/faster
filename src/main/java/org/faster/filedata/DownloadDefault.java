@@ -9,8 +9,6 @@ import org.faster.errors.ErsNothing;
 import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.token.LineToken;
 import org.faster.token.LtDefault;
-import org.faster.written.Written;
-import org.faster.written.WtDefault;
 
 public class DownloadDefault implements Download {
 	
@@ -32,46 +30,15 @@ public class DownloadDefault implements Download {
 	public void download(final CharSequence path) throws ProtocolSyntaxErrorException, IOException {
 		final InputStream input = this.connection.input();
 		final LineToken token = new LtDefault(input);
-		final Written written = new WtDefault(this.connection.output());
-		Download download = new DownloadRequest(
-			new DownloadResponse(
-				token,
-				new FdDefault(
-					input,
-					this.delivered
-				),
-				this.errors
+		Download download = new DownloadResponse(
+			token,
+			new FdDefault(
+				input,
+				this.delivered
 			),
-			written
+			this.errors
 		);
 		download.download(path);
-	}
-	
-	/**
-	 * Sends requested file to server according to given path.
-	 * @author Eli James Aguiar
-	 *
-	 */
-	static class DownloadRequest implements Download {
-		
-		private final Download origin;
-		private final Written written;
-	
-		public DownloadRequest(final Download download, final Written wt) {
-			this.written = wt;
-			this.origin = download;
-		}
-
-		@Override
-		public void download(final CharSequence path) throws ProtocolSyntaxErrorException, IOException {
-			this.written
-				.write("fd")
-				.writeLine()
-				.write(path)
-				.writeLine()
-				.flush();
-			this.origin.download(path);
-		}
 	}
 	
 	static class DownloadResponse implements Download {
