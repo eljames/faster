@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import org.faster.connection.Connection;
 import org.faster.pathmap.PathMap;
 import org.faster.requestlistened.ListenedConfiguration;
+import org.faster.responsefiles.RespondAllFiles;
 import org.faster.responsefiles.ResponseFiles;
 import org.faster.responsefiles.ResponseFilesDefault;
 import org.faster.token.LtDefault;
@@ -22,13 +23,18 @@ public class RsDownload implements Response {
 
 	@Override
 	public void execute(Connection connection) throws IOException {
-		OutputStream out = connection.output();
-		ResponseFiles response = new ResponseFilesDefault(
-			map,
-			out,
-			this.configuration.sent(connection)
+		new RespondAllFiles(
+			connection,
+			() -> {
+				OutputStream out = connection.output();
+				ResponseFiles response = new ResponseFilesDefault(
+					map,
+					out,
+					this.configuration.sent(connection)
+				);
+				response.send(new LtDefault(connection.input()).next());
+			}
 		);
-		response.send(new LtDefault(connection.input()).next());
 	}
 
 	@Override
