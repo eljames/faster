@@ -2,6 +2,7 @@ package org.faster.filedata;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 import org.faster.connection.Connection;
 import org.faster.errors.Errors;
@@ -9,6 +10,8 @@ import org.faster.errors.ErsNothing;
 import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.token.LineToken;
 import org.faster.token.LtDefault;
+import org.faster.written.Written;
+import org.faster.written.WtDefault;
 
 public class DownloadDefault implements Download {
 	
@@ -29,16 +32,41 @@ public class DownloadDefault implements Download {
 	@Override
 	public void download(final CharSequence path) throws ProtocolSyntaxErrorException, IOException {
 		final InputStream input = this.connection.input();
+		final OutputStream output = this.connection.output();
 		final LineToken token = new LtDefault(input);
-		Download download = new DownloadResponse(
-			token,
-			new FdDefault(
-				input,
-				this.delivered
+		final Written written = new WtDefault(output);
+		Download download = new DownloadRequestPath(
+			new DownloadResponse(
+				token,
+				new FdDefault(
+					input,
+					this.delivered
+				),
+				this.errors
 			),
-			this.errors
+			written
 		);
 		download.download(path);
+	}
+	
+	static class DownloadRequestPath implements Download {
+		
+		private final Download origin;
+		private final Written written;
+	
+		public DownloadRequestPath(final Download download, final Written wt) {
+			this.written = wt;
+			this.origin = download;
+		}
+
+		@Override
+		public void download(final CharSequence path) throws ProtocolSyntaxErrorException, IOException {
+			this.written
+				.write(path)
+				.writeLine()
+				.flush();
+			this.origin.download(path);
+		}
 	}
 	
 	static class DownloadResponse implements Download {
