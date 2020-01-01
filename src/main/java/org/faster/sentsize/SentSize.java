@@ -37,7 +37,8 @@ public class SentSize {
 			.write("k")
 			.writeLine()
 			.write(String.valueOf(new RecursiveSize(virtual).size()))
-			.writeLine();
+			.writeLine()
+			.flush();
 	}
 
 
@@ -53,17 +54,16 @@ public class SentSize {
 			return recursiveSize(this.file);
 		}
 		
-		private long recursiveSize(VirtualPath file2) throws IOException {
-			long size = 0;
-			if(file.isDirectory()) {
-				Collection<VirtualPath> files = file.paths();
+		private long recursiveSize(VirtualPath fileRec) throws IOException {
+			if(fileRec.isDirectory()) {
+				long size = 0;
+				Collection<VirtualPath> files = fileRec.paths();
 				for(final VirtualPath oneFile : files) {
 					size = size + recursiveSize(oneFile);
 				}
-			} else {
-				size = size + file.size();
+				return size;
 			}
-			return size;
+			return fileRec.size();
 		}
 	}
 	
