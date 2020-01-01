@@ -27,10 +27,10 @@ public class SentSizeTest {
 		Connection con = new FakeConnection(out, in);
 		
 		PathMap map = new CpmDefault()
-				.add("/media", System.getProperty("user.dir") + requestath + "/org/faster/responsepaths")
+				.add("/media", requestath + "/org/faster/responsepaths")
 				.map();
 		
 		new SentSize(con, map).send();
-		assertEquals(new String(out.toByteArray()), "k\n85\n");
+		assertEquals("k\n85\n", new String(out.toByteArray()));
 	}
 }
