@@ -23,16 +23,17 @@ public class RsDownload implements Response {
 
 	@Override
 	public void execute(Connection connection) throws IOException {
+		final OutputStream out = connection.output();
+		final LtDefault linetoken = new LtDefault(connection.input());
 		new RespondAllFiles(
 			connection,
 			() -> {
-				OutputStream out = connection.output();
 				ResponseFiles response = new ResponseFilesDefault(
-					map,
+					this.map,
 					out,
 					this.configuration.sent(connection)
 				);
-				response.send(new LtDefault(connection.input()).next());
+				response.send(linetoken.next());
 			}
 		);
 	}
