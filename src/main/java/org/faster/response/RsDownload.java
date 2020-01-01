@@ -36,7 +36,7 @@ public class RsDownload implements Response {
 				);
 				response.send(linetoken.next());
 			}
-		);
+		).respondAll();
 	}
 
 	@Override
