@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import org.faster.connection.Connection;
+import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.pathmap.PathMap;
 import org.faster.requestlistened.ListenedConfiguration;
 import org.faster.responsefiles.RespondAllFiles;
@@ -22,7 +23,7 @@ public class RsDownload implements Response {
 	}
 
 	@Override
-	public void execute(Connection connection) throws IOException {
+	public void execute(Connection connection) throws IOException, ProtocolSyntaxErrorException {
 		final OutputStream out = connection.output();
 		final LtDefault linetoken = new LtDefault(connection.input());
 		new RespondAllFiles(

@@ -7,6 +7,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
 import org.faster.dirmap.DmDefault;
+import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.pathmap.PathMap;
 import org.faster.response.RsDownload;
 import org.faster.response.RsPath;
@@ -30,7 +31,7 @@ public class RlCreated implements RequestListened {
 	}
 
 	@Override
-	public void start() throws IOException {
+	public void start() throws IOException, ProtocolSyntaxErrorException {
 		ExecutorService executor = Executors.newFixedThreadPool(5, new ThreadFactory() {
 			@Override
 			public Thread newThread(Runnable r) {

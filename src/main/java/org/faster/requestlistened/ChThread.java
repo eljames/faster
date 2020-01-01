@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 
+import org.faster.exception.ProtocolSyntaxErrorException;
+
 public class ChThread implements ConnectedHost {
 	
 	private final ExecutorService executor;
@@ -21,7 +23,7 @@ public class ChThread implements ConnectedHost {
 			public void run() {
 				try {
 					host.connected(socket);
-				} catch (IOException e) {
+				} catch (IOException | ProtocolSyntaxErrorException e) {
 					e.printStackTrace();
 				}
 			}

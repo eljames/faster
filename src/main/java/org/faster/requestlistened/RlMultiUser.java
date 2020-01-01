@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import org.faster.exception.ProtocolSyntaxErrorException;
+
 public class RlMultiUser implements RequestListened {
 	
 	private final ConnectedHost host;
@@ -16,7 +18,7 @@ public class RlMultiUser implements RequestListened {
 	}
 
 	@Override
-	public void start() throws IOException {
+	public void start() throws IOException, ProtocolSyntaxErrorException {
 		while(true) {
 			Socket socket = this.server.accept();
 			this.host.connected(socket);
