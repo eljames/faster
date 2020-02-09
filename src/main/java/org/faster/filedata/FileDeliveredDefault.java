@@ -4,30 +4,31 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.faster.connection.Connection;
 import org.faster.feedback.transfer.BufferFeedbackCreated;
 import org.faster.feedback.transfer.DeltaSize;
 import org.faster.feedback.transfer.SizeLeft;
 import org.faster.feedback.transfer.TaTotal;
+import org.faster.feedback.transfer.TotalSize;
 import org.faster.feedback.transfer.TransferedSize;
 import org.faster.filedata.FileDelivered;
 import org.faster.filedata.HandledFile;
 import org.faster.pathinfo.PathInfo;
 import org.faster.server.uploads.creation.TransferElement;
-import org.faster.server.uploads.creation.Transferences;
 import org.faster.virtualpath.VirtualPath;
 import org.faster.virtualpath.VpPath;
 
 public class FileDeliveredDefault implements FileDelivered {
 
 	private final ChosenPath chosen;
-	private final Transferences downloads;
-	private final Connection connection;
+	private final TransferElement transferElement;
+	private final TotalSize totalSize;
+	private final TransferedSize totalTransfered;
 	
-	public FileDeliveredDefault(final ChosenPath chosen, final Transferences downs, final Connection con) {
+	public FileDeliveredDefault(final ChosenPath chosen, final TransferElement transferElement, final TransferedSize totalTransfered, final TotalSize totalSize) {
 		this.chosen = chosen;
-		this.downloads = downs;
-		this.connection = con;
+		this.transferElement = transferElement;
+		this.totalTransfered = totalTransfered;
+		this.totalSize = totalSize;
 	}
 	
 	@Override
@@ -42,21 +43,20 @@ public class FileDeliveredDefault implements FileDelivered {
 	
 	private HandledFile download(final PathInfo info, File finaldir) throws IOException {
 		final VirtualPath virtual = new VpPath(info);
-		final TransferedSize transfereddir = new TransferedSize();
-		final TransferElement element = this.downloads.add(virtual, this.connection);
+		this.transferElement.change(virtual);
 		return new DefaultHandledFile(
 			finaldir,
 			new BufferFeedbackCreated(
-				element,
-				transfereddir,
+					transferElement,
+					totalTransfered,
 				new TaTotal(
-					element,
-					new DeltaSize(transfereddir),
+						transferElement,
+					new DeltaSize(totalTransfered),
 					new SizeLeft(
-						transfereddir,
-						info.size()
+							totalTransfered,
+						this.totalSize.total()
 					),
-					transfereddir
+					totalTransfered
 				)
 			),
 			info

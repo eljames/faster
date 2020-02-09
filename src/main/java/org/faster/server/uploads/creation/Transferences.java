@@ -6,5 +6,6 @@ import org.faster.connection.Connection;
 import org.faster.virtualpath.VirtualPath;
 
 public interface Transferences {
-	public TransferElement add(VirtualPath path, Connection connection) throws IOException;
+	TransferElement add(Connection connection) throws IOException;
+	TransferElement add(final VirtualPath path, final Connection connection) throws IOException;
 }

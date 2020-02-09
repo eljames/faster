@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Collection;
 
-import org.faster.pathinfo.PrintedPath;
-import org.faster.pathinfo.PrintedPathDirectory;
 import org.faster.pathinfo.PrintedPathProtocol;
 import org.faster.pathinfo.response.PtResponse;
 import org.faster.pathmap.PathMap;
@@ -129,15 +127,15 @@ public class ResponseFilesDefault implements ResponseFiles {
 		}
 		
 		private void directory(final VirtualPath virtual, final SentData sentdata) throws IOException {
-			VirtualPath cached = new VpCachedSize(virtual, virtual.size());
+			/*VirtualPath cached = new VpCachedSize(virtual, virtual.size());
 			PrintedPath printed = new PrintedPathDirectory(
 				new PrintedPathProtocol(
 					new PtResponse(virtual)
 				),
 				cached
-			);
+			);*/
 			this.written
-				.write(printed.print())
+				.write("-1")
 				.writeLine()
 				.flush();
 			this.recursive(virtual, sentdata);

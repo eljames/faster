@@ -11,6 +11,7 @@ import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.pathmap.PathMap;
 import org.faster.response.RsDownload;
 import org.faster.response.RsPath;
+import org.faster.response.RsSize;
 import org.faster.responselist.ResponseList;
 import org.faster.responselist.ResponseListDefault;
 
@@ -69,6 +70,6 @@ public class RlCreated implements RequestListened {
 						this.configuration
 					)
 				)
-			);
+			).add(new RsSize(this.pathmap));
 	}
 }

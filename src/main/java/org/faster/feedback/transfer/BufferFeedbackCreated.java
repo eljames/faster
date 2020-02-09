@@ -10,12 +10,12 @@ import org.faster.virtualpath.VirtualPath;
 
 public class BufferFeedbackCreated {
 	private final TransferElement upload;
-	private final TransferedSize transfereddir;
+	private final TransferedSize transferedtotal;
 	private final TickerAction action;
 	
 	public BufferFeedbackCreated(final TransferElement ue, final TransferedSize ts, final TickerAction act) {
 		this.upload = ue;
-		this.transfereddir = ts;
+		this.transferedtotal = ts;
 		this.action = act;
 	}
 	
@@ -24,7 +24,7 @@ public class BufferFeedbackCreated {
 		final TransferedSize transferedfile = new TransferedSize();
 		return new BfbFile(
 			new BfbDefault(
-				this.transfereddir,
+				this.transferedtotal,
 				new Ticker(
 					1000,
 					new TaUI(

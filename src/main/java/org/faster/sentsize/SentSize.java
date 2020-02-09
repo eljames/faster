@@ -1,5 +1,6 @@
 package org.faster.sentsize;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collection;
 
@@ -26,13 +27,22 @@ public class SentSize {
 	public void send() throws IOException {
 		final LineToken lineToken = new LtDefault(this.con.input());
 		final String virtualPath = lineToken.next();
-		VirtualPath virtual = this.path.get(virtualPath);
-		sendSize(virtual);
+		final Written written = new WtDefault(this.con.output());
+		try {
+			VirtualPath virtual = this.path.get(virtualPath);
+			sendSize(virtual, written);
+		} catch (FileNotFoundException e) {
+			written
+				.write("err")
+				.writeLine()
+				.write("fnf")
+				.writeLine()
+				.flush();
+		}
 	}
 	
 	
-	private void sendSize(final VirtualPath virtual) throws IOException {
-		Written written = new WtDefault(this.con.output());
+	private void sendSize(final VirtualPath virtual, Written written) throws IOException {
 		written
 			.write("k")
 			.writeLine()
