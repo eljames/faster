@@ -13,5 +13,6 @@ public interface TransferElement extends TransferFile {
 	 */
 	void rate(TransferRate transferRate);
 	void change(VirtualPath path) throws IOException;
+	void finishedTransference();
 	
 }

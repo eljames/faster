@@ -27,7 +27,7 @@ public class RsDownload implements Response {
 		final OutputStream out = connection.output();
 		final LtDefault linetoken = new LtDefault(connection.input());
 		new RespondAllFiles(
-			connection,
+			linetoken,
 			() -> {
 				ResponseFiles response = new ResponseFilesDefault(
 					this.map,

@@ -3,12 +3,11 @@ package org.faster.responsefiles;
 import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import org.faster.connection.Connection;
 import org.faster.exception.ProtocolSyntaxErrorException;
-import org.faster.request.FakeConnection;
+import org.faster.token.LineToken;
+import org.faster.token.LtDefault;
 import org.junit.Test;
 
 public class ResponseAllFilesTest {
@@ -27,10 +26,11 @@ public class ResponseAllFilesTest {
 		.append("\n")
 		.toString();
 		ByteArrayInputStream in = new ByteArrayInputStream(requestedFile.getBytes());
-		Connection con = new FakeConnection(new ByteArrayOutputStream(), in);
+		//Connection con = new FakeConnection(new ByteArrayOutputStream(), in);
 		final Count count = new Count();
+		final LineToken lt = new LtDefault(in);
 		new RespondAllFiles(
-			con,
+			lt,
 			() -> {
 				count.sum();
 			}
