@@ -8,8 +8,6 @@ import java.nio.charset.StandardCharsets;
 
 import org.faster.dirmap.DmDefault;
 import org.faster.pathinfo.request.PathItemsToken;
-import org.faster.responsepaths.ResponsePaths;
-import org.faster.responsepaths.RspResponse;
 import org.faster.sentpath.SpDefault;
 import org.faster.written.WtDefault;
 import org.junit.Test;

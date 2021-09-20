@@ -67,8 +67,8 @@ public class ResponseFilesDefaultTest {
 		).send("/aaa");
 		assertEquals(
 			new StringBuilder()
-				.append("this file is the second file.")
 				.append("this example must end here because this is a test.")
+				.append("this file is the second file.")
 				.toString(),
 			new String(fileout.toByteArray())
 		);

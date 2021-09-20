@@ -8,9 +8,6 @@ import java.util.regex.Pattern;
 
 import org.faster.feedback.BufferFeedback;
 import org.faster.feedback.transfer.BufferFeedbackCreated;
-import org.faster.filedata.CdDefault;
-import org.faster.filedata.CopiedData;
-import org.faster.filedata.HandledFile;
 import org.faster.pathinfo.PathInfo;
 import org.faster.virtualpath.VpPath;
 

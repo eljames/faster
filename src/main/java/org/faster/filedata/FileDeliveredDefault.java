@@ -10,8 +10,6 @@ import org.faster.feedback.transfer.SizeLeft;
 import org.faster.feedback.transfer.TaTotal;
 import org.faster.feedback.transfer.TotalSize;
 import org.faster.feedback.transfer.TransferedSize;
-import org.faster.filedata.FileDelivered;
-import org.faster.filedata.HandledFile;
 import org.faster.pathinfo.PathInfo;
 import org.faster.server.uploads.creation.TransferElement;
 import org.faster.virtualpath.VirtualPath;

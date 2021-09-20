@@ -7,18 +7,18 @@ public class FasterServerMulticast {
 	
 	private final Thread thread;
 	
-	public FasterServerMulticast(String name, String hostIp, int hostPort) {
+	public FasterServerMulticast(String name, IPAddress hostIp, int hostPort) throws IOException {
 		this.thread = new Thread(() -> {
 			try {
 				new SentMulticast(
 					new MessageDefault(
 						name,
-						hostIp,
+						hostIp.ip(),
 						hostPort
 					),
 					4000
 				).keepSendSignal();
-			} catch (IOException | InterruptedException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		});

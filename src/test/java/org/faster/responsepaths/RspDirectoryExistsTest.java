@@ -5,8 +5,6 @@ import static org.junit.Assert.assertEquals;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import org.faster.dirmap.DmDefault;
-import org.faster.responsepaths.ResponsePaths;
-import org.faster.responsepaths.RspDirectoryExists;
 import org.faster.written.WtDefault;
 import org.faster.written.Written;
 import org.junit.Test;

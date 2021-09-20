@@ -5,9 +5,6 @@ import java.io.IOException;
 
 import org.faster.exception.ProtocolSyntaxErrorException;
 import org.faster.pathinfo.PathInfo;
-import org.faster.pathinfo.request.PtPath;
-import org.faster.pathinfo.request.PtSize;
-import org.faster.pathinfo.request.PtType;
 import org.faster.token.LineToken;
 import org.junit.Test;
 
